@@ -1,0 +1,159 @@
+﻿@using Onestop.Layouts.Helpers
+@using Orchard.ContentManagement
+@{
+    var prefix = String.IsNullOrWhiteSpace((string)Model.Prefix) ? "" : Model.Prefix + ".";
+    int editorIndex = -1;
+    if (Model.UsesIndex) {
+        editorIndex = Html.GetLayoutEditorIndex();
+    }
+    var id = prefix + "TemplatedItemData[" + editorIndex + "]";
+}
+<fieldset class="layout-element-editor">
+    <legend class="layout-element-index">@Model.HelperIndex - @(String.IsNullOrWhiteSpace(Model.Title) ? Model.Name : Model.Title)</legend>
+    @if (Model.HasTargetUrl) {
+        var hrefId = "templated_" + editorIndex + "_href";
+        var hrefName = id + "[0]";
+        <label for="@hrefId">@T("Target URL")</label>
+        <input type="hidden" name="@(hrefName).Key" value="href"/>
+        <input type="text" id="@hrefId" name="@(hrefName).Value" value="@Model.TargetUrl" class="textMedium templated-live-field"/>
+    }
+    @if (Model.HasBackground) {
+        Script.Require("jQuery").AtFoot();
+        Script.Require("jQueryUI_Sortable").AtFoot();
+        Style.Include("media-library-picker-admin.css");
+
+        Script.Require("jQueryColorBox");
+        Style.Require("jQueryColorBox");
+
+        var urlId = "templated_" + editorIndex + "_background";
+        var urlName = id + (Model.HasTargetUrl ? "[1]" : "[0]");
+        <input type="hidden" name="@(urlName).Key" value="background"/>
+        <div id="media-library-picker-@urlId" class="items media-library-picker">
+            <div class="media-library-picker-item">
+                <div class="thumbnail">
+                    <div class="media-thumbnail media-thumbnail-image">
+                        <img src="@Display.ResizeMediaUrl(Width: 200, Height: 200, Mode: "crop", Alignment: "middlecenter", Path: Model.Background)" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <label for="@urlId">@T("Background Image URL")</label>
+        <input type="text" id="@urlId" name="@(urlName).Value" value="@Model.Background" data-default-value="@Model.DefaultBackground" class="textMedium templated-live-field"/>
+        <span id="btn-@urlId" class="button">@T("Browse")</span>
+        <span id="btn-clear-@urlId" class="button">@T("Clear")</span>
+        if (!string.IsNullOrWhiteSpace(Model.DefaultBackground)) {
+            <div class="hint">@T("Leave empty to use the default <img src=\"{0}\" style=\"max-width:50px;max-height:25px;vertical-align:top;\"/>.",
+                Url.IsLocalUrl(Model.DefaultBackground) ? Href(Model.DefaultBackground) : Model.DefaultBackground)</div>
+        }
+        using (Script.Foot()) {
+            <script type="text/javascript">
+                //<![CDATA[
+                (function($) {
+                    var browseButton = $('#btn-@(urlId)'),
+                        clearButton = $('#btn-clear-@(urlId)')
+                    @(urlId)_Template = '<div class="media-library-picker-item"><div class="thumbnail">{thumbnail}</div></div>';
+
+                    browseButton.click(function() {
+                        var url = '@HttpUtility.JavaScriptStringEncode(Url.Action("Index", "Admin", new {area = "Orchard.MediaLibrary", dialog = true}))';
+                        $.colorbox({
+                            href: url,
+                            iframe: true,
+                            reposition: true,
+                            width: "100%",
+                            height: "100%",
+                            onLoad: function() { // hide the scrollbars from the main window
+                                $('html, body').css('overflow', 'hidden');
+                                $('#cboxClose').remove();
+                            },
+                            onClosed: function() {
+                                $('html, body').css('overflow', '');
+                                var selectedData = $.colorbox.selectedData;
+                                if (selectedData == null || selectedData.length == 0) return;
+                                var selectedImage = selectedData[0],
+                                    template = @(urlId)_Template.replace(/\{thumbnail\}/g, selectedImage.thumbnail),
+                                    content = $(template),
+                                    applicationPath = '@Url.RequestContext.HttpContext.Request.ApplicationPath.ToLower()';
+                                if (!/\/$/.test(applicationPath)) {
+                                    applicationPath += '/';
+                                }
+                                var url = selectedImage.resource;
+                                if (url.substr(0, 4) != "http") {
+                                    url = '~/' + url.substr(applicationPath.length);
+                                }
+                                $("#@(urlId)").val(url).change();
+                                $('#media-library-picker-@(urlId)').html(content);
+                            }
+                        });
+                    });
+
+                    clearButton.click(function() {
+                        $("#@(urlId)").val('').change();
+                        $('#media-library-picker-@(urlId)').html('');
+                    });
+                })(jQuery);
+                //]]>
+            </script>
+        }
+    }
+    @if (Model.HasContext) {
+        Script.Require("ContentPicker").AtFoot();
+        Style.Include("content-picker-admin.css");
+        var context = (IContent)Model.Context;
+        var contextId = "templated_" + editorIndex + "_context";
+        var contextName = id + "[" + ((Model.HasTargetUrl ? 1 : 0) + (Model.HasBackground ? 1 : 0)) + "]";
+        var contextButtonId = "btn_templated_" + editorIndex + "_context";
+        var contextClearButtonId = "clr_templated_" + editorIndex + "_context";
+        var noContextMessage = T("No context has been selected.");
+        <label for="@contextId">@T("Context")</label>
+        <input type="hidden" name="@(contextName).Key" value="context"/>
+        <input type="hidden" id="@contextId" name="@(contextName).Value" value="@(context != null ? context.Id.ToString() : "")" class="textMedium templated-live-field"/>
+        <span id="display_@(contextId)" data-fieldid="@contextId" class="content-picker-item">@(context != null ? Html.ItemEditLink(context) : Html.Raw(noContextMessage.Text))</span>
+        <span id="@contextClearButtonId" class="content-picker-remove button grey">@T("Remove")</span>
+        <span id="@contextButtonId" class="button">@T("Select")</span>
+        <span class="hint">@T("Please select the content item to use as the context for the contained elements.")</span>
+
+        using (Script.Foot()) {
+            <script type="text/javascript">
+            //<![CDATA[
+                (function ($) {
+                    var addButton = $('#@contextButtonId'),
+                        removeButton = $("#@contextClearButtonId"),
+                        context = $("#@contextId"),
+                        contextDisplay = $("#display_@(contextId)");
+                    
+                    if (context.val() == "") {
+                        removeButton.hide();
+                    }
+
+                    addButton.click(function() {
+                        addButton.trigger("orchard-admin-contentpicker-open", {
+                            callback: function (data) {
+                                context.val(data.id);
+                                contextDisplay.html(data.displayText);
+                                removeButton.show();
+                            },
+                            baseUrl: "@Url.Content("~/")"
+                        });
+                    });
+
+                    removeButton.on("click", function () {
+                        context.val("");
+                        contextDisplay.html("@noContextMessage");
+                        removeButton.hide();
+                    });
+                })(jQuery);
+            //]]>
+            </script>
+        }
+    }
+    @if (Model.Elements != null) {
+        foreach (dynamic elementEditor in Model.Elements) {
+            if (elementEditor.UsesIndex == true) {
+                var helperIndex = Html.GetLayoutEditorHelperIndex();
+                elementEditor.HelperIndex = helperIndex;
+                elementEditor.Attributes.Add("data-index", helperIndex.ToString());
+            }
+            @Display(elementEditor)
+        }
+    }
+</fieldset>

@@ -1,0 +1,23 @@
+﻿@model RaisingStudio.ModuleGenerator.TemplateModels.Module
+@{
+    Style.Require("Bootstrap");
+    Script.Require("jQuery");
+    Script.Require("Bootstrap");
+}
+
+<div class="jumbotron">
+    <div class="container">
+        @if (ViewBag.Success)
+        {
+            <h2>Module Generated.</h2>
+            <p><code>@(Model.ModuleName)</code> has been generated successfully.</p>
+            <p>
+                <a class="btn btn-primary" href="~/Admin/Modules/Features" role="button">View modules »</a>
+            </p>
+        }
+        else
+        {
+            <h2>Error Occurred.</h2>
+        }
+    </div>
+</div>

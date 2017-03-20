@@ -1,0 +1,96 @@
+﻿<Placement>
+  <!-- Products -->
+  <Place Parts_Product_Edit="Content:3" />
+  <Match DisplayType="Detail">
+    <Place Parts_Product="Content:3" />
+    <Place Price="Content:3.1" />
+  </Match>
+  <Match DisplayType="SummaryAdmin">
+    <Place Parts_Product="Content:1" />
+    <Place Price="Content:10" />
+  </Match>
+  <!-- VAT -->
+  <Place Parts_VatRate="Header:1" />
+  <Place Parts_VatRate_Edit="Content:1" />
+  <Place Parts_Vat_Edit="Content:3.1" />
+  <Match DisplayType="SummaryAdmin">
+    <Place Parts_Vat_SummaryAdmin="Content:10.1" />
+  </Match>
+  <!-- Shopping Cart -->
+  <Match DisplayType="Detail">
+    <Place Parts_Product_AddToCart="Content:4" />
+  </Match>
+  <Place Parts_ShoppingCartWidget="Content:0" />
+  <!-- Locations -->
+  <Place Fields_Location="Content:after"/>
+  <Place Fields_Location_Edit="Content:5"/>
+  <!-- Shipping -->
+  <Place Parts_Shipping_Edit="Content:3.2" />
+  <Place Parts_ShippingProvider_Edit="Content:10" />
+  <Match ContentType="ShippingProvider">
+    <Place Parts_Common_Metadata_Summary="-"/>
+  </Match>
+  <!-- Stocks -->
+  <Place Parts_Stock_Edit="Content:3.3" />
+  <Match DisplayType="Detail">
+    <Place Parts_Stock="Content:3.2" />
+  </Match>
+  <!-- Customer -->
+  <Place Parts_Customer_Edit="Content:3"/>
+  <Place Parts_Customer_AdminEdit="Content:3"/>
+  <Place Parts_CustomerAddress="Content:1"/>
+  <Place Parts_CustomerAddress_Edit="Content:1"/>
+  <Place Parts_CustomerOrder_Edit="Content:1"/>
+  <Match DisplayType="Detail">
+    <Place Parts_Customer="Content:3"/>
+    <Place Parts_Customer_Addresses="Content:5"/>
+    <Place Parts_Customer_Orders="Content:6"/>
+    <Place Parts_CustomerOrder="Header:1"/>
+    <!-- Admin -->
+    <Place Parts_Customer_Admin="Content:1"/>
+    <Place Parts_Customer_Addresses_Admin="Content:5"/>
+    <Place Parts_Customer_Orders_Admin="Content:6"/>
+  </Match>
+  <Match ContentType="Customer">
+    <Place Parts_Common_Metadata="-"/>
+    <Match DisplayType="SummaryAdmin">
+      <Place Parts_Contents_Publish_SummaryAdmin="-"
+        Parts_Contents_Clone_SummaryAdmin="-"/>
+    </Match>
+  </Match>
+  <Match ContentType="CustomerAddress">
+    <Place Parts_Common_Metadata="-"/>
+  </Match>
+  <!-- Orders -->
+  <Place Parts_Order_Summary="Content:5"/>
+  <Place Parts_Order_Edit="Content:1.1"/>
+  <Place Parts_Order_Shipping_Edit="Content:1.2"/>
+  <Place Parts_Order_Products_Edit="Content:5"/>
+  <Place Parts_Order_ShippingDetails_Edit="Content:8"/>
+  <Place Parts_Order_Vat_Edit="Content:9"/>
+  <Match DisplayType="Detail">
+    <Place Parts_Order_Summary="-"/>
+    <Place Parts_Order="Header:before"/>
+    <Place Parts_Order_Reference="Meta:10.1"/>
+    <Place Parts_Order_BillingAddress="Header:5"/>
+    <Place Parts_Order_Status="Meta:10.2"/>
+    <Place Parts_Order_Products="Details:5"/>
+    <Place Parts_Order_Products_SubTotal="Totals:1"/>
+    <Place Parts_Order_Total="Totals:10"/>
+    <Place Parts_Order_ShippingAddress="Header:6"/>
+    <Place Parts_Order_ShippingStatus="Meta:10.3"/>
+    <Place Parts_Order_ShippingProvider="Content:10"/>
+    <Place Parts_Order_Shipping_SubTotal="Totals:5"/>
+    <Place Parts_Order_Vat_SubTotal="Totals:7"/>
+  </Match>
+  <Match DisplayType="SummaryAdmin">
+    <Place Parts_Order_Summary="-"/>
+    <Place Parts_Order_SummaryAdmin="Content:10"/>
+  </Match>
+  <!-- Payment -->
+  <Place Parts_Payment_Edit="Content:10"/>
+  <Match DisplayType="Detail">
+    <Place Parts_Payment="Content:20"/>
+    <Place Parts_Payment_Providers="Content:20.1"/>
+  </Match>
+</Placement>

@@ -1,0 +1,12 @@
+Name: Orchard.DotNetX
+AntiForgery: enabled
+Author: zhongzf@126.com
+Website: http://zhongzf.cnblogs.com
+Version: 0.1
+OrchardVersion: 1.7
+Description: Make sure the following modules are installed jQuery, Successful.Bootstrap, RaisingStudio.Contents.RepositoryFactory or install them from Gallery.
+Dependencies: RaisingStudio.Contents.RepositoryFactory, Orchard.jQuery, Successful.Bootstrap
+Features:
+    Orchard.DoTNetX:
+        Description: Depends On: jQuery, Successful.Bootstrap, RaisingStudio.Contents.RepositoryFactory.
+		Category: A SuperRocket

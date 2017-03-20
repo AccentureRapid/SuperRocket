@@ -1,0 +1,39 @@
+﻿@model Dolph.JsonField.Settings.JsonFieldSettings
+@using Dolph.JsonField.Settings;
+@{
+    Script.Require("JsonFieldSettingsEdit");
+    Style.Require("JsonEditorStyle");
+}
+
+<fieldset>
+    <div>
+        <label for="@Html.FieldIdFor(m => m.Template)">@T("Template")</label>
+        <span class="hint">@T("When 'Allow updating values only?' is set, this will be the set structure, otherwise the user can use this as a template.")</span>
+        <input type="hidden" id="jsonvalue" name="@Html.FieldNameFor(m => m.Template)" value="@Model.Template" />
+        <div id="jsoneditor" style="width: 400px; height: 400px;"></div>
+    </div>
+</fieldset>
+
+<fieldset>
+    <div>
+        @Html.CheckBoxFor(m => m.UpdateValuesOnly) <label for="@Html.FieldIdFor(m => m.UpdateValuesOnly)" class="forcheckbox">@T("Allow updating values only?")</label>
+        <span class="hint">@T("The user will only be able to edit the values provided in the template and not be able to add or remove from the structure.")</span>
+    </div>
+</fieldset>
+
+<fieldset>
+    <div>
+        @Html.CheckBoxFor(m => m.CanEditJsonText) <label for="@Html.FieldIdFor(m => m.CanEditJsonText)" class="forcheckbox">@T("Allow viewing and editing JSON text output?")</label>
+        <span class="hint">@T("The user can change the output of the JSON, recommended for experienced users only.")</span>
+    </div>
+</fieldset>
+
+<fieldset>
+    <div>
+        <label for="@Html.FieldIdFor(m => m.Hint)">@T("Help text")</label>
+        @Html.TextAreaFor(m => m.Hint, new { @class = "text medium", rows = "5" })
+        <span class="hint">@T("The help text is written under the field when the user is entering a value.")</span>
+        @Html.ValidationMessageFor(m => m.Hint)
+    </div>
+</fieldset>
+

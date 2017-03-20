@@ -1,0 +1,34 @@
+﻿@model IEnumerable<dcp.Routing.Models.ExtendedAliasRecord>
+@{
+    Layout.Title = T("Manage Extended Aliases").Text;
+}
+
+<div class="message message-Warning">
+    <p>If you added a new extended alias then you should manually restart application to apply the changes.</p>
+    @using (Html.BeginFormAntiForgeryPost("Restart"))
+    {
+        <input type="submit" name="restart" value="Restart" class="button primaryAction" />
+    }
+</div>
+
+
+<table class="items">
+    <thead>
+        <tr>
+            <th scope="col">Path</th>
+            <th scope="col">RouteName</th>
+            <th scope="col">&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var record in Model)
+        {
+            <tr>
+                <td>@record.AliasRecord.Path</td>
+                <td>@record.RouteName</td>                 
+                <td>@Html.ActionLink(T("Edit").Text, "Edit", new { id = record.AliasRecord.Id})</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

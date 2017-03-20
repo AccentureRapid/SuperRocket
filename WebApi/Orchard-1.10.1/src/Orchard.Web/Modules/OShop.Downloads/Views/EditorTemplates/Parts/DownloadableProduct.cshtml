@@ -1,0 +1,11 @@
+﻿@model OShop.Downloads.Models.DownloadableProductPart
+@using Orchard.ContentManagement
+@Display.MediaLibraryPicker(
+    FieldName: Html.FieldNameFor(m => m.MediaId),
+    DisplayName: T("Downloadable media").Text,
+    Multiple: false,
+    Required: false,
+    Hint: T("Select the media to download when product is purchased").Text,
+    ContentItems: Model.Media != null ? new List<ContentItem>() { Model.Media } : Enumerable.Empty<ContentItem>(),
+    PromptOnNavigate: true,
+    ShowSaveWarning: true)

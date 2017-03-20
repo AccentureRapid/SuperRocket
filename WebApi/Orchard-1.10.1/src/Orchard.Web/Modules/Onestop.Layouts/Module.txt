@@ -1,0 +1,13 @@
+﻿Name: Onestop Layouts
+AntiForgery: enabled
+Author: Bertrand Le Roy / Onestop Internet
+Website: http://onestop.com
+Version: 1.9.2
+OrchardVersion: 1.9.2
+Description: Creates dynamic layouts
+Features:
+    Onestop.Layouts
+        Name: Onestop Layouts
+        Description: Creates dynamic layouts
+        Category: Content
+        Dependencies: Orchard.Autoroute, Orchard.Forms, Orchard.Themes, Orchard.jQuery, Orchard.Tokens, Orchard.MediaLibrary

@@ -1,0 +1,44 @@
+﻿@using Orchard.Core.Contents
+@using Orchard.Localization.Models
+
+@if (AuthorizedFor(Permissions.PublishContent)) 
+{
+    int MasterId = Model.MasterId;
+Style.Require("LocalizationAdmin");
+IEnumerable<LocalizationPart> localizations  = Model.Localizations;
+var localizationLinks = Html.UnorderedList(localizations, (c, i) => Html.ItemEditLink(c.Culture.Culture, c), "localizations");
+<div class="content-localization">
+    <div class="content-localizations">
+        @if (Model.MasterContentItem != null)
+        {
+            @T("This is the <em>{0}</em> variation of {1}", Model.SelectedCulture, Html.ItemEditLink(Model.MasterContentItem as Orchard.ContentManagement.IContent))
+        }
+        else
+        {
+            if (string.IsNullOrWhiteSpace(Model.SelectedCulture))
+            {
+                <div>@T("This content item has no translations ", Model.SelectedCulture ?? "-")</div>
+            }
+            else
+            {
+                <div>@T("This is the <strong>{0}</strong> master content item", Model.SelectedCulture ?? "-")</div>
+            }
+        }
+        @if (localizations.Count() > 0) 
+        {
+        <text>&nbsp;|&nbsp;</text>@T("Translations:")@localizationLinks
+        }
+    </div>
+
+    @if (Model.ShowAddTranslation)
+    {
+        if (Model.ContentItem.Id > 0 && ((IEnumerable<string>)Model.SiteCultures).Any())
+        {
+            foreach (string culture in Model.SiteCultures)
+            { 
+            <div class="add-localization">@Html.ActionLink(T("+ New translation for {0}", culture).Text, "Translate", "Admin", new { area = "Datwendo.Localization", id = MasterId, to = culture }, null)</div>
+            }
+        }       
+    }
+</div>
+}

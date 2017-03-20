@@ -1,0 +1,7 @@
+﻿@{Script.Include("inventory.js", "inventory.min.js");}
+<div class="bundle inventory">
+    @T("Inventory:") <span class="value @Model.ContentPart.ContentItem.ProductPart.Sku">@Model.ContentPart.ContentItem.ProductPart.Inventory</span>
+    <a class="remove" href="#"
+        data-id="@Model.ContentPart.ContentItem.Id"
+        data-url="@Url.Action("RemoveOne", "BundleAdmin", new {area = "Nwazet.Commerce"})">@T("Remove one")</a>
+</div>

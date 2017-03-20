@@ -1,0 +1,51 @@
+﻿@using System.Web.Mvc.Html
+@model PlanetTelex.ContactForm.Models.ContactFormPart
+@{
+    Script.Require("jQuery");
+}
+<fieldset>
+    <div class="editor-label">
+        @T("Recipient Email Address")
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.RecipientEmailAddress, new { @class = "textMedium" })
+    </div>
+</fieldset>
+<fieldset>
+    <div class="editor-field">
+        <label>@Html.CheckBoxFor(model => model.UseStaticSubject) @T("Use Same Subject for All Emails"):</label>
+        <span>@Html.TextBoxFor(model => model.StaticSubjectMessage, new { @class = "text-box" })</span>
+        <span class="hint">@T("If not checked, a subject field will display on the form. Tokens: {DOMAIN}, {NAME}.")</span>
+    </div>
+</fieldset>
+<fieldset>
+    <div class="editor-field">
+        <label>@Html.CheckBoxFor(model => model.DisplayNameField) @T("Display Name Field")</label>
+        <label id="required-name-field">@Html.CheckBoxFor(model => model.RequireNameField) @T("Require Name Field")</label>
+        <span class="hint">@T("The name collected by this field is included in the email body.")</span>
+    </div>
+</fieldset>
+
+@using (Script.Foot())
+{
+    <script type="text/javascript">
+//<![CDATA[
+        $(function () {
+            if ('@Model.DisplayNameField' == 'True') {
+                $('#required-name-field').show();
+            } else {
+                $('#required-name-field').hide();
+            }
+
+
+            $('#@Html.FieldIdFor(m => m.DisplayNameField)').click(function () {
+                if ($('#@Html.FieldIdFor(m => m.DisplayNameField)').is(':checked')) {
+                    $('#required-name-field').show();
+                } else {
+                    $('#required-name-field').hide();
+                }
+            });
+        })
+//]]>
+</script>
+}

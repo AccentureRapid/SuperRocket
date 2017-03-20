@@ -1,0 +1,23 @@
+﻿@model RM.QuickLogOn.OAuth.Models.TwitterSettingsPart
+@using Orchard.Utility.Extensions;
+
+<fieldset>
+    <legend>@T("Twitter OAuth")</legend>
+    <div>
+        <label for="@Html.FieldIdFor(m => m.ConsumerKey)">@T("Consumer Key")</label>
+        @Html.TextBoxFor(m=>m.ConsumerKey)
+        @Html.ValidationMessage("ConsumerKey", "*")
+        <span class="hint">@T("You have to register application on Twitter to get ConsumerKey.")&nbsp;<a href="https://dev.twitter.com/apps">https://dev.twitter.com/apps/Applications</a></span>
+    </div>
+    <div>
+        <label for="@Html.FieldIdFor(m => m.AccessToken)">@T("Access Token")</label>
+        @Html.TextBoxFor(m=>m.AccessToken)
+        @Html.ValidationMessage("AccessToken", "*")
+    </div>
+    <div>
+        <label for="@Html.FieldIdFor(m => m.ConsumerSecret)">@T("Consumer Secret")</label>
+        @Html.PasswordFor(m=>m.ConsumerSecret)
+        @Html.ValidationMessage("ConsumerSecret", "*")
+        <span class="hint">@T("Entre consumer secret to change. If empty then no change.")</span>
+    </div>
+</fieldset>

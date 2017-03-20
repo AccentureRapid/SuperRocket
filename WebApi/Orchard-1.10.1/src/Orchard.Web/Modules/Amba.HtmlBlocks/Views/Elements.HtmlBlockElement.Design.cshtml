@@ -1,0 +1,14 @@
+﻿@{
+    Script.Require("HB_Highlightjs").AtHead();
+    Script.Require("HB_Highlightjs_Init").AtFoot();
+    Style.Require("HB_Highlightjs").AtHead();
+    var id = Guid.NewGuid().ToString("N");
+}
+<div id="@id" style="background: white; padding: 5px;">
+    <pre><code class="html">@(Model.HTML)</code></pre>    
+</div>
+<script>
+    $('#@(id)').each(function (i, block) {
+        hljs.highlightBlock(block);
+    });
+</script>

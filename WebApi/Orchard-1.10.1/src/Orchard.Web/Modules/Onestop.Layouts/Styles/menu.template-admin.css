@@ -1,0 +1,13 @@
+﻿.navicon-templates {
+background-image:url(images/menu.template.png) !important;
+}
+.navicon-templates:hover {
+background-position:0 -30px !important;
+}
+
+.subnavicon-template {
+background-image:url(images/menu.template.png) !important;
+}
+.subnavicon-template:hover {
+background-position:0 -28px !important;
+}

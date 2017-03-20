@@ -1,0 +1,18 @@
+﻿<Placement>
+
+  <Place Parts_js_Ias="Content:10"/>
+  
+  <Match DisplayType="SummaryAdmin">
+    <Place Parts_js_Ias="-"/>
+  </Match >
+  <Match DisplayType="DetailAdmin">
+    <Place Parts_js_Ias="Content:10"/>
+  </Match>
+  <Match DisplayType="Summary">
+    <Place Parts_js_Ias="Content"/>
+  </Match >
+  <Match DisplayType="Detail">
+    <Place Parts_js_Ias="Content"/>
+  </Match >
+
+</Placement>

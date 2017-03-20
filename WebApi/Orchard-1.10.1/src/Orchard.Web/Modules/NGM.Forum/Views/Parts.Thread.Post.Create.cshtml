@@ -1,0 +1,16 @@
+﻿@using System.Web.Mvc.Html
+@using Orchard.Mvc.Html
+
+<div id="quick-reply">
+    <h3>@T("Quick Reply")</h3>
+    
+    
+
+    @using (Html.BeginFormAntiForgeryPost(Url.Action("Create", "Post"))) {
+        @Html.ValidationSummary()
+
+        @Display(Model.ContentEditor)
+
+        <input type="hidden" id="contentid" name="contentid" value="@Model.ContentId"/>
+    }
+</div>

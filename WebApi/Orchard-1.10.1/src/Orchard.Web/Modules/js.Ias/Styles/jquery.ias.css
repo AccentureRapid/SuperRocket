@@ -1,0 +1,12 @@
+.ias_loader {
+	text-align:center;
+	margin: 0;
+    z-index: 999;
+    position: relative;
+
+    display: block;
+    background-color: transparent;
+
+    margin-top: -5px;
+    padding: 10px;
+}

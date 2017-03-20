@@ -1,0 +1,8 @@
+﻿Name: Web API
+AntiForgery: enabled
+Author: Joshua Sigar
+Website: http://rhymedcode.net
+Version: 0.6.1
+OrchardVersion: 1.10
+Description: Web API for Blogs (for now) module
+Category: API

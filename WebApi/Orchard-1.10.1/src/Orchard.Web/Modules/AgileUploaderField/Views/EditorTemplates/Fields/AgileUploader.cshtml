@@ -1,0 +1,114 @@
+﻿@model AgileUploaderField.ViewModels.AgileUploaderFieldViewModel
+
+@{
+    Script.Require("jQuery").AtFoot();
+    Script.Require("jQuery.Migrate").AtFoot();
+    Script.Include("swfobject.js").AtFoot();
+    
+    Script.Include("agile-uploader.js").AtFoot();
+    Style.Include("agile-uploader-admin.css");
+}
+
+<fieldset class="control-group">
+    <label class="control-label">@Model.Field.DisplayName</label>
+    <div class="controls">
+        @if(!string.IsNullOrEmpty(Model.Field.FileNames))
+        {
+            <ul class="agileUploaderImageThumbs">
+                @foreach (var fileName in Model.Field.FileNames.Split(';'))
+                {
+                    <li class="agileUploaderImageThumb"> 
+                        @{
+                            var alternateText = string.IsNullOrEmpty(Model.Field.AlternateText) ? Path.GetFileNameWithoutExtension(fileName) : Model.Field.AlternateText;
+                            @Html.Image(fileName, alternateText, new {height = 100})
+                            <a href="#" class="auImgDelete" rel="@fileName" title='@T("Delete")'>
+                                <img src='@Href("~/" + "Modules/AgileUploaderField/Content/Images/trash-icon.png")' height="18" width="18" alt="@T("Delete")" />
+                            </a>
+                        }
+                    </li>
+                }
+            </ul>
+        }
+        <div id="divAgileUploader"></div>
+        <span class="hint">@Model.Settings.Hint</span>
+        <input type="hidden" name="agileUploaderMediaFolder" value="@Model.AgileUploaderMediaFolder" />
+        @Html.HiddenFor(model => model.Field.FileNames)
+    </div>
+</fieldset>
+
+@if (Model.Settings.AuthorCanSetAlternateText)
+{
+    <fieldset class="control-group">
+        <label for="@Html.FieldIdFor(m => m.Field.AlternateText)" class="control-label">@Model.Field.DisplayName @T("alternate text")</label>
+        <div class="controls">
+            @Html.TextBoxFor(m => m.Field.AlternateText, new { @class = "input-xlarge" })
+            <span class="hint">@T("Is used as a replacement text when images can't be displayed.")</span>
+        </div>
+    </fieldset>
+}
+
+@using (Script.Foot())
+{
+    <script type="text/javascript">
+    //<![CDATA[
+
+        var submitted = false;
+        var buttonClicked = null;
+
+        $("button:submit").click(function(event) {
+            buttonClicked = this;
+            var uploadsCount = $("#agileUploaderFileList li").length;
+            if (uploadsCount > 0 && !submitted && (!$("form").valid || $("form").valid()) )
+            {
+                event.preventDefault();
+                $().agileUploader('submitAgileUploader');
+            }
+        });
+
+        $("form").on("auUploaded", function() {
+            submitted = true;
+            buttonClicked.click();
+        });
+
+        $("a.auImgDelete").click(function() {
+            // remove from thumbnails
+            $(this).closest("li.agileUploaderImageThumb").remove();
+            // remove from the field value that will be saved
+            var fileNameToRemove = $(this).attr("rel");
+            var fileNamesField = $("#@Html.FieldIdFor(model => model.Field.FileNames)");
+            fileNamesField.val($.grep(fileNamesField.val().split(';'), function(fileName) { return fileName != fileNameToRemove; }).join(';'));
+        });
+
+        var addFileImage = '@Url.Content("~/" + "Modules/AgileUploaderField/Content/Images/add-file.png")';
+        $('#divAgileUploader').agileUploader({
+            flashSrc: '@Url.Content("~/" + "Modules/AgileUploaderField/scripts/agile-uploader.swf")',
+            expressInstallSrc: '@Url.Content("~/" + "Modules/AgileUploaderField/scripts/expressInstall.swf")',
+            removeIcon: '@Url.Content("~/" + "Modules/AgileUploaderField/Content/Images/trash-icon.png")',
+            genericFileIcon: '@Url.Content("~/" + "Modules/AgileUploaderField/Content/Images/file-icon.png")',
+            updateDiv: "@Html.FieldIdFor(model => model.Field.FileNames)",
+            flashVars: {
+                max_height: @Model.Settings.MaxHeight,
+                max_width: @Model.Settings.MaxWidth,
+                file_limit: @Model.Settings.FileLimit,
+                file_filter: '*.jpg;*.jpeg;*.gif;*.png;*.JPG;*.JPEG;*.GIF;*.PNG', /* todo expose a setting */
+                firebug: false,
+                button_up: addFileImage,
+                button_over: addFileImage,
+                button_down: addFileImage,
+                form_action: '@Url.Action("Upload", "AgileUploader", new { area = "AgileUploaderField" })'
+            }
+        });
+
+        function SerializeFormData() {
+            var data = $("input:hidden[name='agileUploaderMediaFolder']").serialize();
+            data += "&" + $("input[name='__RequestVerificationToken']").serialize();
+            return data;
+        }
+
+        function AgileUploaderEventHandler(event) {
+            $('#agileUploaderSWF').agileUploader('swfEvent', event);
+        }
+
+    //]]>
+    </script>
+}

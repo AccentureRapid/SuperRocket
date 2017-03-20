@@ -1,0 +1,12 @@
+Name: Media Folder
+AntiForgery: enabled
+Author: Sébastien Ros
+Website: http://orchardmediafolder.codeplex.com
+Version: 1.0.2
+OrchardVersion: 1.1
+Description: Enables the site to use a specific folder for storing Media files, like a shared folder when working on Web Farms, or a CDN.
+Features:
+    Contrib.MediaFolder:
+        Name: Media Folder
+        Description: Enables the site to use a specific folder for storing Media files, like a shared folder when working on Web Farms, or a CDN.
+        Category: Media

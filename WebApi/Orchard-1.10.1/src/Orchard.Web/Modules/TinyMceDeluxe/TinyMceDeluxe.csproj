@@ -1,0 +1,398 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4BC7963C-65A9-4258-B84A-85787B0D19A0}</ProjectGuid>
+    <ProjectTypeGuids>{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TinyMceDeluxe</RootNamespace>
+    <AssemblyName>TinyMceDeluxe</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\lib\aspnetmvc\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\langs\en.js" />
+    <Content Include="Scripts\license.txt" />
+    <Content Include="Scripts\orchard-tinymce.js" />
+    <Content Include="Scripts\plugins\autoresize\editor_plugin.js" />
+    <Content Include="Scripts\plugins\autoresize\editor_plugin_src.js" />
+    <Content Include="Scripts\plugins\example_dependency\editor_plugin.js" />
+    <Content Include="Scripts\plugins\example_dependency\editor_plugin_src.js" />
+    <Content Include="Scripts\plugins\fullscreen\editor_plugin.js" />
+    <Content Include="Scripts\plugins\fullscreen\editor_plugin_src.js" />
+    <Content Include="Scripts\plugins\fullscreen\fullscreen.htm" />
+    <Content Include="Scripts\plugins\mediapicker\editor_plugin.js" />
+    <Content Include="Scripts\plugins\mediapicker\editor_plugin_src.js" />
+    <Content Include="Scripts\plugins\mediapicker\img\picture_add.png" />
+    <Content Include="Scripts\plugins\searchreplace\css\searchreplace.css" />
+    <Content Include="Scripts\plugins\searchreplace\editor_plugin.js" />
+    <Content Include="Scripts\plugins\searchreplace\editor_plugin_src.js" />
+    <Content Include="Scripts\plugins\searchreplace\js\searchreplace.js" />
+    <Content Include="Scripts\plugins\searchreplace\langs\en_dlg.js" />
+    <Content Include="Scripts\plugins\searchreplace\searchreplace.htm" />
+    <Content Include="Scripts\plugins\syntaxhl\dialog.htm" />
+    <Content Include="Scripts\plugins\syntaxhl\editor_plugin.js" />
+    <Content Include="Scripts\plugins\syntaxhl\editor_plugin_src.js" />
+    <Content Include="Scripts\plugins\syntaxhl\img\highlight.gif" />
+    <Content Include="Scripts\plugins\syntaxhl\js\dialog.js" />
+    <Content Include="Scripts\plugins\syntaxhl\langs\en.js" />
+    <Content Include="Scripts\plugins\syntaxhl\langs\en_dlg.js" />
+    <Content Include="Scripts\plugins\syntaxhl\langs\zh.js" />
+    <Content Include="Scripts\plugins\syntaxhl\langs\zh_dlg.js" />
+    <Content Include="Scripts\plugins\visualblocks\css\visualblocks.css" />
+    <Content Include="Scripts\plugins\visualblocks\editor_plugin.js" />
+    <Content Include="Scripts\plugins\visualblocks\editor_plugin_src.js" />
+    <Content Include="Scripts\samples\orchard-tinymce.js" />
+    <Content Include="Scripts\plugins\advhr\css\advhr.css" />
+    <Content Include="Scripts\plugins\advhr\editor_plugin.js" />
+    <Content Include="Scripts\plugins\advhr\editor_plugin_src.js" />
+    <Content Include="Scripts\plugins\advhr\js\rule.js" />
+    <Content Include="Scripts\plugins\advhr\langs\en_dlg.js" />
+    <Content Include="Scripts\plugins\advhr\rule.htm" />
+    <Content Include="Scripts\plugins\advimage\css\advimage.css" />
+    <Content Include="Scripts\plugins\advimage\editor_plugin.js" />
+    <Content Include="Scripts\plugins\advimage\editor_plugin_src.js" />
+    <Content Include="Scripts\plugins\advimage\image.htm" />
+    <Content Include="Scripts\plugins\advimage\img\sample.gif" />
+    <Content Include="Scripts\plugins\advimage\js\image.js" />
+    <Content Include="Scripts\plugins\advimage\langs\en_dlg.js" />
+    <Content Include="Scripts\plugins\advlink\css\advlink.css" />
+    <Content Include="Scripts\plugins\advlink\editor_plugin.js" />
+    <Content Include="Scripts\plugins\advlink\editor_plugin_src.js" />
+    <Content Include="Scripts\plugins\advlink\js\advlink.js" />
+    <Content Include="Scripts\plugins\advlink\langs\en_dlg.js" />
+    <Content Include="Scripts\plugins\advlink\link.htm" />
+    <Content Include="Scripts\plugins\advlist\editor_plugin.js" />
+    <Content Include="Scripts\plugins\advlist\editor_plugin_src.js" />
+    <Content Include="Scripts\plugins\autolink\editor_plugin.js" />
+    <Content Include="Scripts\plugins\autolink\editor_plugin_src.js" />
+    <Content Include="Scripts\plugins\autosave\editor_plugin.js" />
+    <Content Include="Scripts\plugins\autosave\editor_plugin_src.js" />
+    <Content Include="Scripts\plugins\autosave\langs\en.js" />
+    <Content Include="Scripts\plugins\bbcode\editor_plugin.js" />
+    <Content Include="Scripts\plugins\bbcode\editor_plugin_src.js" />
+    <Content Include="Scripts\plugins\contextmenu\editor_plugin.js" />
+    <Content Include="Scripts\plugins\contextmenu\editor_plugin_src.js" />
+    <Content Include="Scripts\plugins\directionality\editor_plugin.js" />
+    <Content Include="Scripts\plugins\directionality\editor_plugin_src.js" />
+    <Content Include="Scripts\plugins\emotions\editor_plugin.js" />
+    <Content Include="Scripts\plugins\emotions\editor_plugin_src.js" />
+    <Content Include="Scripts\plugins\emotions\emotions.htm" />
+    <Content Include="Scripts\plugins\emotions\img\smiley-cool.gif" />
+    <Content Include="Scripts\plugins\emotions\img\smiley-cry.gif" />
+    <Content Include="Scripts\plugins\emotions\img\smiley-embarassed.gif" />
+    <Content Include="Scripts\plugins\emotions\img\smiley-foot-in-mouth.gif" />
+    <Content Include="Scripts\plugins\emotions\img\smiley-frown.gif" />
+    <Content Include="Scripts\plugins\emotions\img\smiley-innocent.gif" />
+    <Content Include="Scripts\plugins\emotions\img\smiley-kiss.gif" />
+    <Content Include="Scripts\plugins\emotions\img\smiley-laughing.gif" />
+    <Content Include="Scripts\plugins\emotions\img\smiley-money-mouth.gif" />
+    <Content Include="Scripts\plugins\emotions\img\smiley-sealed.gif" />
+    <Content Include="Scripts\plugins\emotions\img\smiley-smile.gif" />
+    <Content Include="Scripts\plugins\emotions\img\smiley-surprised.gif" />
+    <Content Include="Scripts\plugins\emotions\img\smiley-tongue-out.gif" />
+    <Content Include="Scripts\plugins\emotions\img\smiley-undecided.gif" />
+    <Content Include="Scripts\plugins\emotions\img\smiley-wink.gif" />
+    <Content Include="Scripts\plugins\emotions\img\smiley-yell.gif" />
+    <Content Include="Scripts\plugins\emotions\js\emotions.js" />
+    <Content Include="Scripts\plugins\emotions\langs\en_dlg.js" />
+    <Content Include="Scripts\plugins\example\dialog.htm" />
+    <Content Include="Scripts\plugins\example\editor_plugin.js" />
+    <Content Include="Scripts\plugins\example\editor_plugin_src.js" />
+    <Content Include="Scripts\plugins\example\img\example.gif" />
+    <Content Include="Scripts\plugins\example\js\dialog.js" />
+    <Content Include="Scripts\plugins\example\langs\en.js" />
+    <Content Include="Scripts\plugins\example\langs\en_dlg.js" />
+    <Content Include="Scripts\plugins\fullpage\css\fullpage.css" />
+    <Content Include="Scripts\plugins\fullpage\editor_plugin.js" />
+    <Content Include="Scripts\plugins\fullpage\editor_plugin_src.js" />
+    <Content Include="Scripts\plugins\fullpage\fullpage.htm" />
+    <Content Include="Scripts\plugins\fullpage\js\fullpage.js" />
+    <Content Include="Scripts\plugins\fullpage\langs\en_dlg.js" />
+    <Content Include="Scripts\plugins\iespell\editor_plugin.js" />
+    <Content Include="Scripts\plugins\iespell\editor_plugin_src.js" />
+    <Content Include="Scripts\plugins\inlinepopups\editor_plugin.js" />
+    <Content Include="Scripts\plugins\inlinepopups\editor_plugin_src.js" />
+    <Content Include="Scripts\plugins\inlinepopups\skins\clearlooks2\img\alert.gif" />
+    <Content Include="Scripts\plugins\inlinepopups\skins\clearlooks2\img\button.gif" />
+    <Content Include="Scripts\plugins\inlinepopups\skins\clearlooks2\img\buttons.gif" />
+    <Content Include="Scripts\plugins\inlinepopups\skins\clearlooks2\img\confirm.gif" />
+    <Content Include="Scripts\plugins\inlinepopups\skins\clearlooks2\img\corners.gif" />
+    <Content Include="Scripts\plugins\inlinepopups\skins\clearlooks2\img\horizontal.gif" />
+    <Content Include="Scripts\plugins\inlinepopups\skins\clearlooks2\img\vertical.gif" />
+    <Content Include="Scripts\plugins\inlinepopups\skins\clearlooks2\window.css" />
+    <Content Include="Scripts\plugins\inlinepopups\template.htm" />
+    <Content Include="Scripts\plugins\insertdatetime\editor_plugin.js" />
+    <Content Include="Scripts\plugins\insertdatetime\editor_plugin_src.js" />
+    <Content Include="Scripts\plugins\layer\editor_plugin.js" />
+    <Content Include="Scripts\plugins\layer\editor_plugin_src.js" />
+    <Content Include="Scripts\plugins\legacyoutput\editor_plugin.js" />
+    <Content Include="Scripts\plugins\legacyoutput\editor_plugin_src.js" />
+    <Content Include="Scripts\plugins\lists\editor_plugin.js" />
+    <Content Include="Scripts\plugins\lists\editor_plugin_src.js" />
+    <Content Include="Scripts\plugins\media\css\media.css" />
+    <Content Include="Scripts\plugins\media\editor_plugin.js" />
+    <Content Include="Scripts\plugins\media\editor_plugin_src.js" />
+    <Content Include="Scripts\plugins\media\js\embed.js" />
+    <Content Include="Scripts\plugins\media\js\media.js" />
+    <Content Include="Scripts\plugins\media\langs\en_dlg.js" />
+    <Content Include="Scripts\plugins\media\media.htm" />
+    <Content Include="Scripts\plugins\media\moxieplayer.swf" />
+    <Content Include="Scripts\plugins\nonbreaking\editor_plugin.js" />
+    <Content Include="Scripts\plugins\nonbreaking\editor_plugin_src.js" />
+    <Content Include="Scripts\plugins\noneditable\editor_plugin.js" />
+    <Content Include="Scripts\plugins\noneditable\editor_plugin_src.js" />
+    <Content Include="Scripts\plugins\pagebreak\editor_plugin.js" />
+    <Content Include="Scripts\plugins\pagebreak\editor_plugin_src.js" />
+    <Content Include="Scripts\plugins\paste\editor_plugin.js" />
+    <Content Include="Scripts\plugins\paste\editor_plugin_src.js" />
+    <Content Include="Scripts\plugins\paste\js\pastetext.js" />
+    <Content Include="Scripts\plugins\paste\js\pasteword.js" />
+    <Content Include="Scripts\plugins\paste\langs\en_dlg.js" />
+    <Content Include="Scripts\plugins\paste\pastetext.htm" />
+    <Content Include="Scripts\plugins\paste\pasteword.htm" />
+    <Content Include="Scripts\plugins\preview\editor_plugin.js" />
+    <Content Include="Scripts\plugins\preview\editor_plugin_src.js" />
+    <Content Include="Scripts\plugins\preview\example.html" />
+    <Content Include="Scripts\plugins\preview\jscripts\embed.js" />
+    <Content Include="Scripts\plugins\preview\preview.html" />
+    <Content Include="Scripts\plugins\print\editor_plugin.js" />
+    <Content Include="Scripts\plugins\print\editor_plugin_src.js" />
+    <Content Include="Scripts\plugins\save\editor_plugin.js" />
+    <Content Include="Scripts\plugins\save\editor_plugin_src.js" />
+    <Content Include="Scripts\plugins\spellchecker\css\content.css" />
+    <Content Include="Scripts\plugins\spellchecker\editor_plugin.js" />
+    <Content Include="Scripts\plugins\spellchecker\editor_plugin_src.js" />
+    <Content Include="Scripts\plugins\spellchecker\img\wline.gif" />
+    <Content Include="Scripts\plugins\style\css\props.css" />
+    <Content Include="Scripts\plugins\style\editor_plugin.js" />
+    <Content Include="Scripts\plugins\style\editor_plugin_src.js" />
+    <Content Include="Scripts\plugins\style\js\props.js" />
+    <Content Include="Scripts\plugins\style\langs\en_dlg.js" />
+    <Content Include="Scripts\plugins\style\props.htm" />
+    <Content Include="Scripts\plugins\tabfocus\editor_plugin.js" />
+    <Content Include="Scripts\plugins\tabfocus\editor_plugin_src.js" />
+    <Content Include="Scripts\plugins\table\cell.htm" />
+    <Content Include="Scripts\plugins\table\css\cell.css" />
+    <Content Include="Scripts\plugins\table\css\row.css" />
+    <Content Include="Scripts\plugins\table\css\table.css" />
+    <Content Include="Scripts\plugins\table\editor_plugin.js" />
+    <Content Include="Scripts\plugins\table\editor_plugin_src.js" />
+    <Content Include="Scripts\plugins\table\js\cell.js" />
+    <Content Include="Scripts\plugins\table\js\merge_cells.js" />
+    <Content Include="Scripts\plugins\table\js\row.js" />
+    <Content Include="Scripts\plugins\table\js\table.js" />
+    <Content Include="Scripts\plugins\table\langs\en_dlg.js" />
+    <Content Include="Scripts\plugins\table\merge_cells.htm" />
+    <Content Include="Scripts\plugins\table\row.htm" />
+    <Content Include="Scripts\plugins\table\table.htm" />
+    <Content Include="Scripts\plugins\template\blank.htm" />
+    <Content Include="Scripts\plugins\template\css\template.css" />
+    <Content Include="Scripts\plugins\template\editor_plugin.js" />
+    <Content Include="Scripts\plugins\template\editor_plugin_src.js" />
+    <Content Include="Scripts\plugins\template\js\template.js" />
+    <Content Include="Scripts\plugins\template\langs\en_dlg.js" />
+    <Content Include="Scripts\plugins\template\template.htm" />
+    <Content Include="Scripts\plugins\visualchars\editor_plugin.js" />
+    <Content Include="Scripts\plugins\visualchars\editor_plugin_src.js" />
+    <Content Include="Scripts\plugins\wordcount\editor_plugin.js" />
+    <Content Include="Scripts\plugins\wordcount\editor_plugin_src.js" />
+    <Content Include="Scripts\plugins\xhtmlxtras\abbr.htm" />
+    <Content Include="Scripts\plugins\xhtmlxtras\acronym.htm" />
+    <Content Include="Scripts\plugins\xhtmlxtras\attributes.htm" />
+    <Content Include="Scripts\plugins\xhtmlxtras\cite.htm" />
+    <Content Include="Scripts\plugins\xhtmlxtras\css\attributes.css" />
+    <Content Include="Scripts\plugins\xhtmlxtras\css\popup.css" />
+    <Content Include="Scripts\plugins\xhtmlxtras\del.htm" />
+    <Content Include="Scripts\plugins\xhtmlxtras\editor_plugin.js" />
+    <Content Include="Scripts\plugins\xhtmlxtras\editor_plugin_src.js" />
+    <Content Include="Scripts\plugins\xhtmlxtras\ins.htm" />
+    <Content Include="Scripts\plugins\xhtmlxtras\js\abbr.js" />
+    <Content Include="Scripts\plugins\xhtmlxtras\js\acronym.js" />
+    <Content Include="Scripts\plugins\xhtmlxtras\js\attributes.js" />
+    <Content Include="Scripts\plugins\xhtmlxtras\js\cite.js" />
+    <Content Include="Scripts\plugins\xhtmlxtras\js\del.js" />
+    <Content Include="Scripts\plugins\xhtmlxtras\js\element_common.js" />
+    <Content Include="Scripts\plugins\xhtmlxtras\js\ins.js" />
+    <Content Include="Scripts\plugins\xhtmlxtras\langs\en_dlg.js" />
+    <Content Include="Scripts\samples\templates\two-col.htm" />
+    <Content Include="Scripts\samples\tinymce_template_list.js" />
+    <Content Include="Scripts\themes\advanced\about.htm" />
+    <Content Include="Scripts\themes\advanced\anchor.htm" />
+    <Content Include="Scripts\themes\advanced\charmap.htm" />
+    <Content Include="Scripts\themes\advanced\color_picker.htm" />
+    <Content Include="Scripts\themes\advanced\editor_template.js" />
+    <Content Include="Scripts\themes\advanced\editor_template_src.js" />
+    <Content Include="Scripts\themes\advanced\image.htm" />
+    <Content Include="Scripts\themes\advanced\img\colorpicker.jpg" />
+    <Content Include="Scripts\themes\advanced\img\flash.gif" />
+    <Content Include="Scripts\themes\advanced\img\icons.gif" />
+    <Content Include="Scripts\themes\advanced\img\iframe.gif" />
+    <Content Include="Scripts\themes\advanced\img\pagebreak.gif" />
+    <Content Include="Scripts\themes\advanced\img\quicktime.gif" />
+    <Content Include="Scripts\themes\advanced\img\realmedia.gif" />
+    <Content Include="Scripts\themes\advanced\img\shockwave.gif" />
+    <Content Include="Scripts\themes\advanced\img\trans.gif" />
+    <Content Include="Scripts\themes\advanced\img\video.gif" />
+    <Content Include="Scripts\themes\advanced\img\windowsmedia.gif" />
+    <Content Include="Scripts\themes\advanced\js\about.js" />
+    <Content Include="Scripts\themes\advanced\js\anchor.js" />
+    <Content Include="Scripts\themes\advanced\js\charmap.js" />
+    <Content Include="Scripts\themes\advanced\js\color_picker.js" />
+    <Content Include="Scripts\themes\advanced\js\image.js" />
+    <Content Include="Scripts\themes\advanced\js\link.js" />
+    <Content Include="Scripts\themes\advanced\js\source_editor.js" />
+    <Content Include="Scripts\themes\advanced\langs\en.js" />
+    <Content Include="Scripts\themes\advanced\langs\en_dlg.js" />
+    <Content Include="Scripts\themes\advanced\link.htm" />
+    <Content Include="Scripts\themes\advanced\shortcuts.htm" />
+    <Content Include="Scripts\themes\advanced\skins\default\content.css" />
+    <Content Include="Scripts\themes\advanced\skins\default\dialog.css" />
+    <Content Include="Scripts\themes\advanced\skins\default\img\buttons.png" />
+    <Content Include="Scripts\themes\advanced\skins\default\img\items.gif" />
+    <Content Include="Scripts\themes\advanced\skins\default\img\menu_arrow.gif" />
+    <Content Include="Scripts\themes\advanced\skins\default\img\menu_check.gif" />
+    <Content Include="Scripts\themes\advanced\skins\default\img\progress.gif" />
+    <Content Include="Scripts\themes\advanced\skins\default\img\tabs.gif" />
+    <Content Include="Scripts\themes\advanced\skins\default\ui.css" />
+    <Content Include="Scripts\themes\advanced\skins\highcontrast\content.css" />
+    <Content Include="Scripts\themes\advanced\skins\highcontrast\dialog.css" />
+    <Content Include="Scripts\themes\advanced\skins\highcontrast\ui.css" />
+    <Content Include="Scripts\themes\advanced\skins\o2k7\content.css" />
+    <Content Include="Scripts\themes\advanced\skins\o2k7\dialog.css" />
+    <Content Include="Scripts\themes\advanced\skins\o2k7\img\button_bg.png" />
+    <Content Include="Scripts\themes\advanced\skins\o2k7\img\button_bg_black.png" />
+    <Content Include="Scripts\themes\advanced\skins\o2k7\img\button_bg_silver.png" />
+    <Content Include="Scripts\themes\advanced\skins\o2k7\ui.css" />
+    <Content Include="Scripts\themes\advanced\skins\o2k7\ui_black.css" />
+    <Content Include="Scripts\themes\advanced\skins\o2k7\ui_silver.css" />
+    <Content Include="Scripts\themes\advanced\source_editor.htm" />
+    <Content Include="Scripts\themes\simple\editor_template.js" />
+    <Content Include="Scripts\themes\simple\editor_template_src.js" />
+    <Content Include="Scripts\themes\simple\img\icons.gif" />
+    <Content Include="Scripts\themes\simple\langs\en.js" />
+    <Content Include="Scripts\themes\simple\skins\default\content.css" />
+    <Content Include="Scripts\themes\simple\skins\default\ui.css" />
+    <Content Include="Scripts\themes\simple\skins\o2k7\content.css" />
+    <Content Include="Scripts\themes\simple\skins\o2k7\img\button_bg.png" />
+    <Content Include="Scripts\themes\simple\skins\o2k7\ui.css" />
+    <Content Include="Scripts\tinymcedeluxe.orchard.js">
+      <DependentUpon>tinymcedeluxe.orchard.coffee</DependentUpon>
+    </Content>
+    <Content Include="Scripts\tiny_mce.js" />
+    <Content Include="Scripts\tiny_mce_popup.js" />
+    <Content Include="Scripts\tiny_mce_src.js" />
+    <Content Include="Scripts\utils\editable_selects.js" />
+    <Content Include="Scripts\utils\form_utils.js" />
+    <Content Include="Scripts\utils\mctabs.js" />
+    <Content Include="Scripts\utils\validate.js" />
+    <Content Include="Web.config" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Scripts\Web.config" />
+    <Content Include="Styles\Web.config" />
+    <Content Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Module.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">
+      <Project>{2D1D92BB-4555-4CBE-8D0E-63563D6CE4C6}</Project>
+      <Name>Orchard.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Orchard.Core.csproj">
+      <Project>{9916839C-39FC-4CEB-A5AF-89CA7E87119F}</Project>
+      <Name>Orchard.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orchard.Themes\Orchard.Themes.csproj">
+      <Project>{cde24a24-01d3-403c-84b9-37722e18dfb7}</Project>
+      <Name>Orchard.Themes</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ResourceManifest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Body-Html.Editor.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\plugins\syntaxhl\README" />
+    <None Include="Scripts\tinymcedeluxe.orchard.coffee" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target> -->
+  <Target Name="AfterBuild" DependsOnTargets="AfterBuildCompiler">
+    <PropertyGroup>
+      <AreasManifestDir>$(ProjectDir)\..\Manifests</AreasManifestDir>
+    </PropertyGroup>
+    <!-- If this is an area child project, uncomment the following line:
+    <CreateAreaManifest AreaName="$(AssemblyName)" AreaType="Child" AreaPath="$(ProjectDir)" ManifestPath="$(AreasManifestDir)" ContentFiles="@(Content)" />
+    -->
+    <!-- If this is an area parent project, uncomment the following lines:
+    <CreateAreaManifest AreaName="$(AssemblyName)" AreaType="Parent" AreaPath="$(ProjectDir)" ManifestPath="$(AreasManifestDir)" ContentFiles="@(Content)" />
+    <CopyAreaManifests ManifestPath="$(AreasManifestDir)" CrossCopy="false" RenameViews="true" />
+    -->
+  </Target>
+  <Target Name="AfterBuildCompiler" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(ProjectDir)\..\$(ProjectName)" />
+  </Target>
+  <ProjectExtensions />
+</Project>

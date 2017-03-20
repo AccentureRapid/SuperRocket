@@ -1,0 +1,13 @@
+﻿@using Orchard.Core.Contents
+@using OShop.Models
+@{
+    CustomerPart customer = Model.ContentPart;
+    Layout.Title = T("Customer account");
+}
+
+@customer.FirstName @customer.LastName
+@if (Authorizer.Authorize(Permissions.EditContent, customer)) {
+    <div class="manage">
+        <a href="@Url.ItemEditUrl(customer)" class="button">@T("Edit")</a>
+    </div>
+}

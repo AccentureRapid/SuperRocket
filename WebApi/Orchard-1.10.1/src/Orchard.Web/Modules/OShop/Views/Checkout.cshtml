@@ -1,0 +1,61 @@
+﻿@using OShop.Models
+@using OShop.Extensions
+@{
+    Script.Require("OShop");
+
+    Layout.Title = T("Check-out");
+    IEnumerable<CustomerAddressPart> addresses = Model.Addresses;
+    ShoppingCart cart = Model.Cart;
+    var billingAddress = cart.Properties["BillingAddress"] as CustomerAddressPart;
+    var shippingAddress = cart.Properties["ShippingAddress"] as CustomerAddressPart;
+}
+
+<article class="checkout">
+    @Html.ValidationSummary()
+    @using (Html.BeginFormAntiForgeryPost()) {
+        if (addresses.Any()) {
+            <div class="addresses">
+                <h2>@T("Your addresses :")</h2>
+                <fieldset>
+                    @Html.ActionLink(T("Create new address").Text, "CreateAddress", "Customer", new { area = "OShop", returnUrl = Url.Action("Index", "Checkout", new { area = "OShop" }) }, new { })
+                </fieldset>
+                <fieldset>
+                    <legend>@T("Billing address")</legend>
+                    <select name="BillingAddressId" class="oshop-autoupdate">
+                        @foreach (var address in addresses) {
+                        <option value="@address.Id" @(billingAddress != null && billingAddress.Id == address.Id ? "selected" : "")>@address.AddressAlias@(address.IsDefault ? T(" (Default)").Text : "")</option>
+                        }
+                    </select>
+                    <button type="submit" name="Action" value="EditBillingAddress">@T("Edit")</button>
+                    <button type="submit" name="Action" value="RemoveBillingAddress" class="oshop-confirm" data-msg="@T("Are you sure you want to remove this address ?")">@T("Remove")</button>
+                    <div class="address-preview">
+                        @Display(BuildDisplay(billingAddress))
+                    </div>
+                </fieldset>
+                @if (cart.IsShippingRequired()) {
+                    <fieldset>
+                        <legend>@T("Shipping address")</legend>
+                        <select name="ShippingAddressId" class="oshop-autoupdate">
+                            @foreach (var address in addresses) {
+                                <option value="@address.Id" @(shippingAddress != null && shippingAddress.Id == address.Id ? "selected" : "")>@address.AddressAlias@(address.IsDefault ? T(" (Default)").Text : "")</option>
+                            }
+                        </select>
+                        <button type="submit" name="Action" value="EditShippingAddress">@T("Edit")</button>
+                        <button type="submit" name="Action" value="RemoveShippingAddress" class="oshop-confirm" data-msg="@T("Are you sure you want to remove this address ?")">@T("Remove")</button>
+                        <div class="address-preview">
+                            @Display(BuildDisplay(shippingAddress))
+                        </div>
+                    </fieldset>
+                }
+            </div>
+            @Display(Model.ShippingOptions)
+            <fieldset class="checkout-actions">
+                @Html.ActionLink(T("Return").Text, "Index", "ShoppingCart", new { area = "OShop" }, new { @class = "button" })
+                <button type="submit" name="Action" value="Validate">@T("Validate")</button>
+            </fieldset>
+        }
+        else {
+            <span>@T("You have no address, please")&nbsp;@Html.ActionLink(T("create one.").Text, "CreateAddress", "Customer", new { area = "OShop", returnUrl = Url.Action("Index", "Checkout", new { area = "OShop" }) }, new { })</span>
+        }
+    }
+</article>

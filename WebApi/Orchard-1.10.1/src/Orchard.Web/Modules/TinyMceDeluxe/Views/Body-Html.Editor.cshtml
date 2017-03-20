@@ -1,0 +1,28 @@
+﻿
+@using Orchard.Themes.Models
+@using Orchard.Themes.Preview
+@using Orchard.Themes.Services
+@using Orchard.Themes.ViewModels
+@{ 
+    Script.Require("OrchardTinyMceDeluxe");
+    var pluginsBaseUrl = Url.Content("~/modules/tinymcedeluxe/scripts/plugins");
+
+    var siteThemeService = WorkContext.Resolve<ISiteThemeService>();
+    var themeName = siteThemeService.GetSiteTheme().Name;
+    var themeCssPath = Url.Content("~/themes/"+themeName+"/styles/custom.css");
+}
+@Html.TextArea("Text", (string)Model.Text, 25, 80,
+	 new Dictionary<string,object> {
+		{"class", "html tinymce"},
+		{"data-mediapicker-uploadpath",Model.AddMediaPath},
+		{"data-mediapicker-title",T("Insert/Update Media")},
+        {"style", "width:100%"}
+	 })
+
+@using (Script.Foot()) {
+//Set plugin and theme css path via TinyMceDeluxe.Orchard javascript class static properties. 
+<script type="text/javascript">
+    TinyMceDeluxe.Orchard.PluginBaseUrl = '@pluginsBaseUrl';
+    TinyMceDeluxe.Orchard.ThemePath = '@themeCssPath';
+</script>
+}

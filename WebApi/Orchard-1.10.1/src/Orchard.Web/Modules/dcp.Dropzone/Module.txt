@@ -1,0 +1,16 @@
+﻿Name: dcp.Dropzone
+AntiForgery: enabled
+Author: Stanislav Sotkin
+Website: http://orchardproject.net
+Version: 1.0.0
+OrchardVersion: 1.10.1
+Description: dropzone plugin
+Category: Designer
+Features:
+    dcp.Dropzone:
+        Description: dropzone plugin
+        Category: Designer
+    dcp.Dropzone.AgileUploaderField:
+        Description: Customization AgileUploaderField
+        Category: Fields
+        Dependencies: dcp.Dropzone, AgileUploaderField

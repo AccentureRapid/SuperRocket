@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C4557BDF-1053-4D68-97EC-48C4C897E842}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Datwendo.Localization</RootNamespace>
+    <AssemblyName>Datwendo.Localization</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\..\..\..\lib\autofac\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\..\..\..\lib\dotnetzip\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Commands\ExportTranslationCommand.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CookieCultureController.cs" />
+    <Compile Include="Controllers\LocalizedHomeController.cs" />
+    <Compile Include="Drivers\AdminCultureSettingsPartDriver.cs" />
+    <Compile Include="Drivers\UserCultureSettingsPartDriver.cs" />
+    <Compile Include="Drivers\ContentCultureSettingsPartDriver.cs" />
+    <Compile Include="Drivers\BrowserCultureSettingsPartDriver.cs" />
+    <Compile Include="Drivers\MenuCulturePickerDriver.cs" />
+    <Compile Include="Drivers\CookieCultureSettingsPartDriver.cs" />
+    <Compile Include="Drivers\LocalizationPartDriver.cs" />
+    <Compile Include="Drivers\HomePageSettingsPartDriver.cs" />
+    <Compile Include="Events\IProfileProviderEventHandler.cs" />
+    <Compile Include="Filters\HomePageFilter.cs" />
+    <Compile Include="Filters\LocalizedMenuFilter.cs" />
+    <Compile Include="Handlers\AdminCultureSettingsPartHandler.cs" />
+    <Compile Include="Handlers\UserCultureSettingsPartHandler.cs" />
+    <Compile Include="Handlers\BrowserCultureSettingsPartHandler.cs" />
+    <Compile Include="Handlers\MenuCulturePickerPartHandler.cs" />
+    <Compile Include="Handlers\CookieCulturePickerPartHandler.cs" />
+    <Compile Include="Handlers\ContentCultureSettingsPartHandler.cs" />
+    <Compile Include="Handlers\CookieCultureSettingsPartHandler.cs" />
+    <Compile Include="Handlers\HomePageSettingsPartHandler.cs" />
+    <Compile Include="LocalizedHomeRoute.cs" />
+    <Compile Include="LocResourceManifest.cs" />
+    <Compile Include="Migrations\LocalizationMigrations.cs" />
+    <Compile Include="Migrations\CookieMigrations.cs" />
+    <Compile Include="Migrations\MenuMigrations.cs" />
+    <Compile Include="Models\AdminCultureSettings.cs" />
+    <Compile Include="Models\UserCultureSettings.cs" />
+    <Compile Include="Models\BrowserCultureSettings.cs" />
+    <Compile Include="Models\MenuCulturePickerPart.cs" />
+    <Compile Include="Models\MenuCulturePickerPartRecord.cs" />
+    <Compile Include="Models\CookieCulturePickerPartRecord.cs" />
+    <Compile Include="Models\CookieCultureSettings.cs" />
+    <Compile Include="Models\ContentCultureSettings.cs" />
+    <Compile Include="Models\HomePageSettings.cs" />
+    <Compile Include="Models\CultureItemModel.cs" />
+    <Compile Include="Models\CookieCulturePickerPart.cs" />
+    <Compile Include="CultureHelper.cs" />
+    <Compile Include="Drivers\CookieCulturePickerDriver.cs" />
+    <Compile Include="Providers\UserCultureSelector.cs" />
+    <Compile Include="Providers\AdminCultureSelector.cs" />
+    <Compile Include="Providers\BrowserCultureSelector.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\ContentCultureSelector.cs" />
+    <Compile Include="Providers\CookieCultureSelector.cs" />
+    <Compile Include="Providers\CultureTokensProvider.cs" />
+    <Compile Include="Services\CultureAlternatesFactory.cs" />
+    <Compile Include="Services\UserCultureService.cs" />
+    <Compile Include="Services\AdminCultureService.cs" />
+    <Compile Include="Services\IBrowserCultureService.cs" />
+    <Compile Include="Services\IContentCultureService.cs" />
+    <Compile Include="Services\ICultureService.cs" />
+    <Compile Include="Services\IExportTranslationService.cs" />
+    <Compile Include="Services\IHomePageService.cs" />
+    <Compile Include="Services\ICookieCultureService.cs" />
+    <Compile Include="ViewModels\AddLocalizationViewModel.cs" />
+    <Compile Include="ViewModels\AdminCultureViewModel.cs" />
+    <Compile Include="ViewModels\CookieCultureItemViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">
+      <Project>{2d1d92bb-4555-4cbe-8d0e-63563d6ce4c6}</Project>
+      <Name>Orchard.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Orchard.Core.csproj">
+      <Project>{9916839C-39FC-4CEB-A5AF-89CA7E87119F}</Project>
+      <Name>Orchard.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orchard.Alias\Orchard.Alias.csproj">
+      <Project>{475B6C45-B27C-438B-8966-908B9D6D1077}</Project>
+      <Name>Orchard.Alias</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orchard.Autoroute\Orchard.Autoroute.csproj">
+      <Project>{66fccd76-2761-47e3-8d11-b45d0001ddaa}</Project>
+      <Name>Orchard.Autoroute</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orchard.Localization\Orchard.Localization.csproj">
+      <Project>{FBC8B571-ED50-49D8-8D9D-64AB7454A0D6}</Project>
+      <Name>Orchard.Localization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orchard.Tokens\Orchard.Tokens.csproj">
+      <Project>{6f759635-13d7-4e94-bcc9-80445d63f117}</Project>
+      <Name>Orchard.Tokens</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orchard.Widgets\Orchard.Widgets.csproj">
+      <Project>{194d3ccc-1153-474d-8176-fde8d7d0d0bd}</Project>
+      <Name>Orchard.Widgets</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Module.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\AutorouteComplete.js" />
+    <Content Include="Scripts\PickerSelector.js" />
+    <Content Include="Styles\datwendo-localization-admin.css" />
+    <Content Include="Styles\datwendo-localization-base.css" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Placement.info" />
+    <Content Include="Views\EditorTemplates\Parts\ExLocalization.ContentTranslations.cshtml" />
+    <Content Include="Views\EditorTemplates\Parts.Autoroute.Edit.cshtml" />
+    <Content Include="Views\CultureSelection.cshtml" />
+    <Content Include="Scripts\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="ReadMe.md" />
+    <Content Include="Views\Admin\Translate.cshtml" />
+    <None Include="Views\EditorTemplates\Parts\AdminCultureSettings.cshtml" />
+    <None Include="Views\EditorTemplates\Parts\UserCultureSettings.cshtml" />
+    <None Include="Views\EditorTemplates\Parts\ContentCultureSettings.cshtml" />
+    <None Include="Views\EditorTemplates\Parts\MenuCulturePicker.cshtml" />
+    <None Include="Views\EditorTemplates\Parts\CookieCulturePicker.cshtml" />
+    <None Include="Views\EditorTemplates\Parts\BrowserCultureSettings.cshtml" />
+    <None Include="Views\EditorTemplates\Parts\CookieCultureSettings.cshtml" />
+    <None Include="Views\EditorTemplates\Parts\HomePageSettings.cshtml" />
+    <Content Include="Views\NotTranslated.cshtml" />
+    <Content Include="Views\MenuItemLink-CulturePickerLink.cshtml" />
+    <Content Include="Views\Header.cshtml" />
+    <None Include="Views\Parts\CookieCulturePickerMenu.cshtml" />
+    <None Include="Views\Parts\InlineListCookieCulturePicker.cshtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\Parts\ExLocalization.ContentTranslations.SummaryAdmin.cshtml" />
+    <None Include="Views\Parts\DropdownCookieCulturePicker.cshtml" />
+    <Content Include="Views\Parts\ExLocalization.ContentTranslations.Summary.cshtml" />
+    <Content Include="Views\Parts\ExLocalization.ContentTranslations.cshtml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

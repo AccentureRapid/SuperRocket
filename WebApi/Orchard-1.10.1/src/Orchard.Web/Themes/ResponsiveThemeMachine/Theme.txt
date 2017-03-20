@@ -1,0 +1,8 @@
+﻿Name: Responsive Theme Machine
+Author: Sergey Ermakovich
+Description: Orchard default theme with a "mobile-first" responsive design.
+Version: 2.1
+OrchardVersion: 1.6
+Tags: default, classic, clean, light, responsive, adaptive, mobile-first, cross-device, HTML5, CSS3
+Website: https://github.com/ermakovich/orchard-responsive-theme-machine
+Zones: Header, Navigation, Featured, BeforeMain, AsideFirst, Messages, BeforeContent, Content, AfterContent, AsideSecond, AfterMain, TripelFirst, TripelSecond, TripelThird, FooterQuadFirst, FooterQuadSecond, FooterQuadThird, FooterQuadFourth, Footer

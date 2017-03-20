@@ -1,0 +1,149 @@
+﻿@using System.Globalization
+@using System.Web.Mvc.Html
+@using Onestop.Layouts.Helpers
+@using Orchard.ContentManagement
+@using Orchard.Core.Title.Models
+@model Onestop.Layouts.ViewModels.LayoutViewModel
+@{
+    Script.Require("jQuery").AtFoot();
+    Script.Require("jQueryUI").AtFoot();
+    Script.Include("~/Core/Navigation/Scripts/jquery.mjs.nestedSortable.js");
+    Script.Include("layout.js").AtFoot();
+    Style.Include("jQueryUI_Orchard");
+    Style.Include("layout-admin.css");
+    if (Model.Layout != null && !String.IsNullOrWhiteSpace(Model.Layout.StylesheetPath)) {
+        Style.Include(Model.Layout.StylesheetPath);
+    }
+    foreach (dynamic layoutElementEditorTemplate in Model.LayoutElementEditors) {
+        @Display(layoutElementEditorTemplate)
+    }
+    using (Script.Foot()) {
+        <script type="text/javascript">
+            //<![CDATA[
+            $(function () {
+                var cssClasses = @Model.CssClasses.ToJson();
+                var fonts = @Model.Fonts.ToJson();
+                window.layout({
+                    isTemplate: @Model.IsTemplate.ToString().ToLowerInvariant(),
+                    sourceField: $("#@Html.IdFor(m => m.Layout.LayoutDescription)"),
+                    generalEditor: $("#@Html.IdFor(m => m.Layout.LayoutDescription)_general"),
+                    editorContainer: $("#@Html.IdFor(m => m.Layout.LayoutDescription)_list"),
+                    previewContainer: $("#@Html.IdFor(m => m.Layout.LayoutDescription)_preview"),
+
+                    elementTemplates: $(".layout-editor-element-template"),
+                    toolbar: $(".layout-editor-toolbar"),
+                    
+                    generalSwitch: $(".layout-general-switch"),
+                    editorsSwitch: $(".layout-editors-switch"),
+                    xmlSwitch: $(".layout-xml-switch"),
+                    
+                    widthField: $("#@Html.IdFor(m => m.Layout.LayoutDescription)_width"),
+                    heightField: $("#@Html.IdFor(m => m.Layout.LayoutDescription)_height"),
+                    classField: $("#@Html.IdFor(m => m.Layout.LayoutDescription)_class"),
+                    pageClassField: $("#@Html.IdFor(m => m.Layout.LayoutDescription)_pageclass"),
+                    stylesheetField: $("#@Html.IdFor(m => m.Layout.LayoutDescription)_stylesheet"),
+                    cssClasses: cssClasses,
+                    fonts: fonts,
+                    
+                    zoom: $(".layout-preview-zoom"),
+                    
+                    applicationPath: "@Url.RequestContext.HttpContext.Request.ApplicationPath.ToLower()",
+                    
+                    resources: {
+                        del: "@T("Delete")",
+                        cancel: "@T("Cancel")",
+                        confirm: "@T("Confirm")",
+                        expandAll: "@T("Expand all")",
+                        collapseAll: "@T("Collapse all")"
+                    }
+                });
+            });
+            //]]>
+        </script>
+    }
+}
+<fieldset class="layout">
+    <label class="sub" for="LayoutDescription">@(Model.IsTemplate ? T("Template") : T("Layout"))</label><br/>
+    <div class="layout-preview">
+        <div id="@Html.IdFor(m => m.Layout.LayoutDescription)_preview" class="layout-preview-container"></div>
+    </div>
+    <div class="layout-preview-zoom">
+        <div class="layout-zoom-box">
+            <input type="number" value="100" step="0.1" min="1" class="layout-preview-zoom-value text-small"/>%
+        </div>
+        <div class="layout-zoom-box">
+            <div class="layout-preview-zoom-slider"></div>
+        </div>
+        <div class="layout-zoom-buttons">
+            <a href="#" class="layout-zoom-fit" title="@T("Fit")">@T("Fit")</a>
+            <a href="#" class="layout-zoom-100-percent" title="@T("100%")">@T("100%")</a>
+        </div>
+    </div>
+    <div class="layout-editor">
+        <div class="layout-editor-frame">
+            <div class="layout-editor-layer layout-editor-xml">
+                @Html.TextAreaFor(m => m.Layout.LayoutDescription, 20, 120, new { })
+            </div>
+            <div class="layout-editor-layer layout-editor-list">
+                <ol id="@Html.IdFor(m => m.Layout.LayoutDescription)_list" data-iscontainer="true" class="layout-editor-element"></ol>
+            </div>
+            <div class="layout-editor-layer layout-editor-general" id="@Html.IdFor(m => m.Layout.LayoutDescription)_general">
+                <fieldset class="layout-editor-element">
+                    <legend>@(Model.IsTemplate ? T("Template Properties") : T("Layout Properties"))</legend>
+                    @if (Model.IsTemplate) {
+                        var layouts = Model.Layouts.ToList();
+                        var parentLayoutId = Model.ParentLayoutId != null ? Model.ParentLayoutId : -1;
+                        var stylesheetVirtualPath = Model.Stylesheet != null ? Model.Stylesheet.VirtualPath : "";
+                        <div>
+                            @* layout selection *@
+                            <label for="@Html.IdFor(m => m.ParentLayoutId)">@T("Layout:")</label>
+                            @Html.DropDownListFor(
+                                m => m.ParentLayoutId,
+                                (new[] {new SelectListItem {Text = "-", Value = "0"}})
+                                    .Concat(
+                                        layouts
+                                            .OrderBy(l => l.ContentItem.As<TitlePart>().Title)
+                                            .Select(l => new SelectListItem {
+                                                Text = l.ContentItem.As<TitlePart>().Title,
+                                                Value = l.Id.ToString(CultureInfo.InvariantCulture),
+                                                Selected = l.Id == parentLayoutId
+                                            })))
+                            <span class="hint">@T("Save the template to apply the layout.<br/>Warning: the template may be reset by this action.")</span>
+                        </div>
+                        <div>
+                            @* stylesheet selection *@
+                            <label for="@Html.IdFor(m => m.Layout.LayoutDescription)_stylesheet">@T("Stylesheet:")</label>
+                            <select id="@Html.IdFor(m => m.Layout.LayoutDescription)_stylesheet">
+                                <option value="">-</option>
+                                @foreach(var stylesheet in Model.Stylesheets.OrderBy(s => s.ThemeName + ":" + s.Name)) {
+                                    <option value="@stylesheet.VirtualPath"@(stylesheet.VirtualPath == stylesheetVirtualPath ? " selected=\"selected\"" : "")>@stylesheet.Name (@stylesheet.ThemeName)</option>
+                                }
+                            </select>
+                            <span class="hint">@T("The stylesheet will be applied on the items using this template.")</span>
+                        </div>
+                    }
+                    <div>
+                        <label for="@Html.IdFor(m => m.Layout.LayoutDescription)_width">@T("Width")</label>
+                        <input type="number" id="@Html.IdFor(m => m.Layout.LayoutDescription)_width" class="text-small">
+                        <label for="@Html.IdFor(m => m.Layout.LayoutDescription)_height">@T("Height")</label>
+                        <input type="number" id="@Html.IdFor(m => m.Layout.LayoutDescription)_height" class="text-small">
+                    </div>
+                    <div>
+                        <label for="@Html.IdFor(m => m.Layout.LayoutDescription)_class">@T("CSS class")</label>
+                        <input type="text" id="@Html.IdFor(m => m.Layout.LayoutDescription)_class" class="text-smallish">
+                    </div>
+                    <div>
+                        <label for="@Html.IdFor(m => m.Layout.LayoutDescription)_pageclass">@T("Page CSS class")</label>
+                        <input type="text" id="@Html.IdFor(m => m.Layout.LayoutDescription)_pageclass" class="text-smallish">
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+        <div class="layout-editor-layer-switches">
+            <div class="layout-editor-layer-switch"><a href="#" class="layout-general-switch">@(Model.IsTemplate ? T("Template") : T("Layout"))</a></div>
+            <div class="layout-editor-layer-switch selected"><a href="#" class="layout-editors-switch">@T("Elements")</a></div>
+            <div class="layout-editor-layer-switch"><a href="#" class="layout-xml-switch">@T("XML")</a></div>
+        </div>
+        <div class="layout-editor-toolbar" data-xml-layout="@Html.IdFor(m => m.Layout.LayoutDescription)_list"></div>
+    </div>
+</fieldset>

@@ -1,0 +1,39 @@
+﻿@using Orchard.Utility.Extensions
+@model PlanetTelex.ContactForm.ViewModels.ContactFormViewModel
+@{
+    Script.Require("jQuery");
+    Style.Include("ContactForm.css");
+    const string displayNone = "style=\"display:none\"";
+    var displaySubject = Model.ShowSubjectField ? string.Empty : displayNone;
+    var displayName = Model.ShowNameField ? string.Empty : displayNone;
+}
+@{using (Html.BeginForm("sendcontactemail", "contactform", new { area = "PlanetTelex.ContactForm" }, FormMethod.Post, new { @class = "contact-form" }))
+    {
+        <ul>
+            <li @Html.Raw(displayName)>
+                <label for="Name">@T("Name")</label>
+                <input id="Name" class="text" name="Name" type="text" placeholder="Your Name" />
+            </li>
+            <li class="emailForm">
+                <label for="Email">@T("Email")</label>
+                <input id="Email" class="text" name="Email" type="text" placeholder="Email Address" />
+            </li>
+            <li>
+                <label for="ConfirmEmail">@T("Email")</label>
+                <input id="ConfirmEmail" class="text" name="ConfirmEmail" type="text" placeholder="Email Address" />
+            </li>
+            <li @Html.Raw(displaySubject)>
+                <label for="Subject">@T("Subject")</label>
+                <input id="Subject" class="text" name="Subject" type="text" placeholder="Subject" />
+            </li>
+            <li>
+                <label for="Message">@T("Message")</label>
+                <textarea id="Message" class="text" name="Message" placeholder="Comments or Inquiry" cols="50" rows="10"></textarea>
+            </li>
+        </ul>
+        <input id="ReturnUrl" name="ReturnUrl" type="hidden" value="@Context.Request.ToUrlString()" />
+        <input id="Id" name="Id" type="hidden" value="@Model.ContentPartId" />
+        @Html.AntiForgeryTokenOrchard()
+        <input type="submit" value="@T("Send")" />
+    }
+}

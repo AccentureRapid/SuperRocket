@@ -1,0 +1,12 @@
+﻿@using Onestop.Layouts.Models
+@model LayoutSettingsPart
+
+<fieldset>
+    <legend>@T("Onestop Layouts Settings")</legend>
+    <div>
+        <label for="@Html.FieldIdFor(m => m.DefaultColumnBreak)">@T("Default responsive breakpoint for columns")</label>
+        @Html.TextBoxFor(m => m.DefaultColumnBreak, new { @class = "small text" })
+        @Html.ValidationMessageFor(m => m.DefaultColumnBreak, "*") 
+        <span class="hint">@T("The default bootstrap breakpoint for columns in layouts and templates. Possible values are: xs, sm, md, lg. Defaults to md.")</span>
+    </div>
+</fieldset>

@@ -1,0 +1,9 @@
+Name: AngularJS
+AntiForgery: enabled
+Author: Google - Marco Kroonwijk
+Website: http://angularjs.org/
+Version: 1.4.1
+OrchardVersion: 1.10.1
+Description: AngularJS is an open-source JavaScript framework, maintained by Google, that assists with running what are known as single-page applications. Its goal is to augment browser-based applications with model–view–controller (MVC) capability, in an effort to make both development and testing easier.
+FeatureDescription: All resources distributed as part of the latest stable AngularJS toolkit.
+Category: Developer

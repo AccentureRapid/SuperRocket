@@ -1,0 +1,37 @@
+﻿@using Orchard.Core.Contents;
+@using Orchard.ContentManagement;
+@using Orchard.Utility.Extensions;
+@{
+    string hiddenId = String.Format("Actions_{0}", Model.Content.Id);
+
+    bool hasPublished = ((ContentPart)Model.Content).HasPublished();
+    bool hasDraft = ((ContentPart)Model.Content).HasDraft();
+    bool hasChildren = Model.Children != null && Model.Children.Count > 0;
+    
+    string unpublished = (hasDraft | !hasPublished) ? "Unpublished" : "";
+    string noEdit = Model.Editable ? "" : "no-edit";
+    string noHide = Model.NoHide ? "" : "can-hide";
+
+}
+
+@if (hasChildren) {
+    <a href="#" class="tree-expando @if(Model.Level > 0) { <text>closed</text> }"></a>
+}
+<div class="tree-item @unpublished @noEdit @noHide" data-path="@Model.Path" data-level="@Model.Level">
+    <div class="properties">
+        <p>@Html.ItemDisplayLink((string)Model.Title, (IContent)Model.Content) <span class="path"><em>/@Model.Path</em></span></p>
+    </div>
+    @if(Model.Editable) {
+        <div class="related">
+            @Html.Hidden(hiddenId, "", new { @class = "actions" })
+            @Display(Model.Actions) 
+        </div>
+    }
+</div>
+@if (hasChildren) {
+    <ul @if(Model.Level > 0) { <text>style="display:none;"</text> }>
+        @foreach (var child in Model.Children) {
+            <li>@Display(child)</li>
+        }
+    </ul>
+}

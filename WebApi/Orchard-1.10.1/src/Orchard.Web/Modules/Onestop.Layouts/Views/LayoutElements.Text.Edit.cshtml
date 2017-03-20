@@ -1,0 +1,17 @@
+﻿@using Onestop.Layouts.Helpers
+@{
+    var prefix = String.IsNullOrWhiteSpace((string)Model.Prefix) ? "" : Model.Prefix + ".";
+    var editorIndex = Html.GetLayoutEditorIndex();
+    var id = prefix + "TemplatedItemData[" + editorIndex + "]";
+    var textId = "templated_" + editorIndex + "_text";
+    var textName = id + "[0]";
+}
+<fieldset class="layout-element-editor">
+    <legend class="layout-element-index">@Model.HelperIndex - @(String.IsNullOrWhiteSpace(Model.Title) ? Model.Name : Model.Title)</legend>
+    <label for="@textId">@T("Text")</label>
+    <input type="hidden" name="@(textName).Key" value="text"/>
+    <input type="text" id="@textId" name="@(textName).Value" value="@Model.Text" data-default-value="@Model.DefaultText" class="textMedium templated-live-field"/>
+    @if (!string.IsNullOrWhiteSpace(Model.DefaultText)) {
+        <div class="hint">@T("Leave empty to use the default \"{0}\".", Model.DefaultText)</div>
+    }
+</fieldset>

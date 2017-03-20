@@ -1,0 +1,73 @@
+Name: Nwazet Commerce
+AntiForgery: enabled
+Author: Bertrand Le Roy, Sipke Schoorstra
+Website: http://nwazet.com
+Version: 1.9
+OrchardVersion: 1.9
+Description: Commerce for small online businesses
+Features:
+    Nwazet.Commerce:
+        Name: Nwazet Commerce
+        Description: Commerce for small online businesses
+        Category: Commerce
+        Dependencies: Orchard.Autoroute, Orchard.Fields, Orchard.Tokens, Orchard.Workflows, Orchard.SecureSocketsLayer
+    Nwazet.Bundles:
+        Name: Nwazet Bundles
+        Description: Product bundles are products made of a set of products
+        Category: Commerce
+        Dependencies: Nwazet.Commerce
+    Nwazet.Attributes:
+        Name: Nwazet Product Attributes
+        Description: Enables customers to customize a product when they add it to the cart
+        Category: Commerce
+        Dependencies: Nwazet.Commerce
+    Nwazet.Orders:
+        Name: Nwazet Orders
+        Description: Order management for Nwazet.Commerce
+        Category: Commerce
+        Dependencies: Nwazet.Commerce
+    Nwazet.Shipping:
+        Name: Nwazet Shipping
+        Description: Define shipping options to work with Nwazet Commerce
+        Category: Commerce
+        Dependencies: Nwazet.Commerce
+    Nwazet.Promotions:
+        Name: Nwazet Promotions
+        Description: Apply promotions to your products
+        Category: Commerce
+        Dependencies: Nwazet.Commerce, Orchard.Roles
+    Nwazet.Taxes:
+        Name: Nwazet Taxes
+        Description: Define tax options to work with Nwazet Commerce
+        Category: Commerce
+        Dependencies: Nwazet.Commerce
+    Nwazet.Referrals:
+        Name: Nwazet Referrals
+        Description: Keeps track of the domain the user came from, in order to honor partner referral fees
+        Category: Commerce
+        Dependencies: Nwazet.Commerce
+    Nwazet.Reports:
+        Name: Nwazet Reports
+        Description: Generates reports for Nwazet Commerce
+        Category: Commerce
+        Dependencies: Nwazet.Commerce, Nwazet.Orders
+    Usps.Shipping:
+        Name: USPS Shipping
+        Description: Dynamic USPS shipping method, using USPS web services for data that is always up-to-date
+        Category: Commerce
+        Dependencies: Nwazet.Commerce, Nwazet.Shipping
+    Stripe:
+        Name: Stripe
+        Description: Stripe services, and checkout for Nwazet.Commerce
+        Category: Commerce
+        Dependencies: Nwazet.Orders
+    Nwazet.TieredPricing:
+        Name: Nwazet Tiered Pricing
+        Description: Define different price tiers for products based on quantity ordered
+        Category: Commerce
+        Dependencies: Nwazet.Commerce
+    Nwazet.AttributeExtensions:
+        Name: Nwazet Attribute Extensions
+        Description: Collect additional information when specific product attributes are selected
+        Category: Commerce
+        Dependencies: Nwazet.Commerce, Nwazet.Attributes

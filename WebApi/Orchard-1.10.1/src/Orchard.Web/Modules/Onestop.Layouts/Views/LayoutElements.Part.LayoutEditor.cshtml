@@ -1,0 +1,31 @@
+﻿@{
+    Script.Require("jQueryUI").AtFoot();
+    Script.Include("layout-element-part.js").AtFoot();
+}
+<fieldset class="layout-editor-element-template"
+          data-template="part"
+          data-icon="@Url.Content("~/Modules/Onestop.Layouts/Content/Part.png")"
+          data-description="Content Part"
+          data-for-templates="true"
+          data-default-xml="&lt;part/&gt;">
+    <legend>Content Part</legend>
+    <div>
+        <label for="{{part}}">@T("Part")</label>
+        <select id="{{part}}" name="{{part}}" data-value="{{part}}">
+            <option value="">-</option>
+            @foreach(var part in Model.ContentParts) {
+                <option value="@part.Name">@part.Name</option>
+            }
+        </select>
+    </div>
+    <div>
+        <label for="{{left}}">@T("X")</label>
+        <input type="number" id="{{left}}" name="{{left}}" data-value="{{left}}" class="text-small left length" />
+        <label for="{{top}}">@T("Y")</label>
+        <input type="number" id="{{top}}" name="{{top}}" data-value="{{top}}" class="text-small top length" />
+    </div>
+    <div>
+        <label for="{{class}}">@T("CSS class")</label>
+        <input type="text" id="{{class}}" name="{{class}}" value="{{class}}" class="text-smallish css-class-editor" />
+    </div>
+</fieldset>

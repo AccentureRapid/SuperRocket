@@ -1,0 +1,28 @@
+﻿@{
+    Script.Require("jQueryUI").AtFoot();
+    Script.Include("layout-element-column.js").AtFoot();
+}
+<fieldset class="layout-editor-element-template"
+          data-template="column"
+          data-icon="@Url.Content("~/Modules/Onestop.Layouts/Content/Column.png")"
+          data-description="Column"
+          data-iscontainer="true"
+          data-can-go-under="row"
+          data-for-templates="false"
+          data-default-xml="&lt;column span=&quot;12&quot; offset=&quot;0&quot;/&gt;">
+    <legend>Column</legend>
+    <div>
+        <label for="{{offset}}">@T("Offset")</label>
+        <input type="number" min="0" max="11" id="{{offset}}" name="{{offset}}" data-value="{{offset}}" data-custom-handling="true" class="text-small layout-offset-editor" />
+        <label for="{{span}}">@T("Span")</label>
+        <input type="number" min="1" max="12" id="{{span}}" name="{{span}}" data-value="{{span}}" data-custom-handling="true" class="text-small layout-span-editor" />
+    </div>
+    <div>
+        <label for="{{width}}">@T("Width")</label>
+        <input type="number" id="{{width}}" name="{{width}}" data-value="{{width}}" class="text-small width length" />
+    </div>
+    <div>
+        <label for="{{class}}">@T("CSS class")</label>
+        <input type="text" id="{{class}}" name="{{class}}" value="{{class}}" class="text-smallish css-class-editor" />
+    </div>
+</fieldset>

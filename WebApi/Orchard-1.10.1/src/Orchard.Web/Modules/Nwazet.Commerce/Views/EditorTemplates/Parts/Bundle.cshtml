@@ -1,0 +1,23 @@
+﻿@model Nwazet.Commerce.ViewModels.BundleViewModel
+@{
+    Style.Include("bundle.nwazet-commerce-admin.css");
+    var productIndex = 0;
+}
+<fieldset><label>@T("Products in this bundle")</label>
+    <ul class="bundle">
+    @foreach(var productEntry in Model.Products) {
+        <li>
+            <input type="hidden" value="@productEntry.ProductId"
+                name="@Html.FieldNameFor(m => m.Products[productIndex].ProductId)"/>
+            <label for="@Html.FieldNameFor(m => m.Products[productIndex].Quantity)">
+                <input type="number" min="0"
+                    value="@productEntry.Quantity"
+                    name="@Html.FieldNameFor(m => m.Products[productIndex].Quantity)"
+                    id="@Html.FieldNameFor(m => m.Products[productIndex].Quantity)"/>
+                <a href="@(Url.ItemEditUrl(productEntry.Product))">@productEntry.DisplayText</a>
+            </label>
+            @{productIndex++;}
+        </li>
+    }
+    </ul>
+</fieldset>

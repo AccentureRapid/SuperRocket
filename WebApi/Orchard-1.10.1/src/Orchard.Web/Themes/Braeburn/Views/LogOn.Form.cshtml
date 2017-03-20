@@ -1,0 +1,59 @@
+﻿@using Orchard.ContentManagement
+
+@{
+    var userCanRegister = WorkContext.CurrentSite.As<Orchard.Users.Models.RegistrationSettingsPart>().UsersCanRegister;
+    var enableLostPassword = WorkContext.CurrentSite.As<Orchard.Users.Models.RegistrationSettingsPart>().EnableLostPassword;
+}
+
+<h3>Sign In to @WorkContext.CurrentSite.SiteName</h3>
+@using (Html.BeginFormAntiForgeryPost(Url.Action("LogOn", "Account", new { area = "Orchard.Users", ReturnUrl = Request.QueryString["ReturnUrl"] }), 
+    FormMethod.Post, new { @class = "form-horizontal" }))
+{
+        <!-- Username -->
+    <div class="form-group">
+        <label for="userNameOrEmail" class="col-lg-3 control-label">@T("Username")</label>
+        <div class="col-lg-9">
+            @Html.TextBox("userNameOrEmail", "", new { id = "username-email", @class = "form-control", autofocus = "autofocus" })
+            @Html.ValidationMessage("userNameOrEmail")
+        </div>
+    </div>
+        <!-- Password -->
+    <div class="form-group">
+        <label for="password" class="col-lg-3 control-label">@T("Password")</label>
+        <div class="col-lg-9">
+            @Html.Password("password", string.Empty, new { @class = "form-control" })
+            @Html.ValidationMessage("password")
+        </div>
+    </div>
+        <!-- Remember me -->
+    <div class="form-group">
+        <div class="col-lg-offset-3 col-lg-9">
+            <div class="checkbox">
+                <label>
+                    @Html.CheckBox("rememberMe", new { id = "remember-me" })
+                    @T("Remember me")
+                </label>
+            </div>
+        </div>
+    </div>
+        <!-- Buttons -->
+    <div class="form-group">
+        <div class="col-lg-offset-3 col-lg-9">
+            <button type="submit" class="btn btn-primary">@T("Login")</button>
+            <button type="reset" class="btn btn-default">@T("Reset")</button>
+        </div>
+    </div>
+}
+@if (userCanRegister)
+{
+    <hr />
+    <div class="lregister">
+        @T("Don't have an account?") @Html.ActionLink(T("Register").Text, "Index", new { controller = "Register", area = "Advantage.Cider.Core", ReturnUrl = Request.QueryString["ReturnUrl"] })<br />
+        @T("Don't have a username?") @Html.ActionLink(T("Activate your account").Text, "Activate", new { controller = "Register", area = "Advantage.Cider.Core", ReturnUrl = Request.QueryString["ReturnUrl"] })<br />
+        @if (enableLostPassword)
+        {
+            @Html.ActionLink(T("Lost your Password?").Text, "RequestLostPassword", new { controller = "Account", area = "Advantage.Cider.Core" })
+        }
+    </div>
+
+}

@@ -1,0 +1,26 @@
+﻿@using Orchard.Utility.Extensions;
+@using Orchard.Mvc.Html;
+@using Orchard.Mvc.Extensions;
+@using System.Linq;
+@using Datwendo.Localization.ViewModels;
+
+@{
+    Script.Require("PickerSelector");
+    // Redesign it as dropdown
+    var cultures = Model.Cultures as IEnumerable<CookieCultureItemViewModel> ?? new CookieCultureItemViewModel[0];
+}
+<select class="dropdown-culture-selector">
+    @foreach (var c in cultures) 
+    {
+        var active = (c.Current) ? "selected" : string.Empty;
+        if (c.IsBrowser)
+        {
+            <option @active value="@Url.Action("ResetCulture", "CookieCulture", new { Area = "Datwendo.Localization", returnUrl = c.ReturnUrl })">@T("Browser")-@c.CultureItem.LocalizedName</option>
+        }
+        else
+        {
+            var url1 = Url.Action("SetCulture", "CookieCulture", new { Area = "Datwendo.Localization", culture = c.CultureItem.Culture.ToLower(), returnUrl = c.ReturnUrl });
+            <option @active value="@url1">@c.CultureItem.LocalizedName</option>
+        }
+    }
+</select>

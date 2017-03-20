@@ -1,0 +1,9 @@
+﻿@model TheMonarch.SyntaxHighlighter.Models.SyntaxHighlighterSettingsViewModel
+
+<fieldset>
+    <legend>@T("Theme")</legend>
+    <div>
+        @Html.DropDownList("Theme", new[] { new SelectListItem { Text = T("").Text, Value = "" } }.Union(new SelectList(Model.Themes, "", "", Model.Theme)))
+        @Html.ValidationMessage("TimeZone", "*")
+    </div>
+</fieldset>

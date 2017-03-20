@@ -1,0 +1,58 @@
+﻿@model Laughlin.ErrorLog.ViewModels.IndexViewModel
+
+@{
+     Script.Require("jQuery");
+
+     using (Script.Foot()) { 
+        <script type="text/javascript">
+            $(function () {
+                $('#DateList').change(function () {
+                    var selectedItem = $(this).val();
+                    if (selectedItem) {
+                        var pathArray = window.location.pathname.split('/');
+                        var host = pathArray[2];
+                        var url = host + '?SelectedLogFileName=' + selectedItem;
+                        $(window.location).attr('href', url);
+                    }
+                });
+            });
+     </script>
+     }
+}
+
+
+<style>
+  li.error-item div.error { position:relative;border-bottom:1px solid #CECECE;padding-left:30px;padding-bottom:5px; }
+  li.error-item div.error a { position:relative; padding-top:3px;  display:block  }
+  li.error-item { padding:10px; }
+  li.error-item div.detail-container {border:0px solid #CECECE; padding-top:5px;margin-top:2px; padding-left: 3px }
+</style>
+
+@using (Html.BeginFormAntiForgeryPost())
+{
+    <span>View:</span>
+    @Html.DropDownList("SelectedLogFileName", Model.Dates, new { id = "DateList" }) 
+    <br /><br />
+}
+
+@using (Script.Foot())
+{
+    <script type="text/javascript">
+        $(function () {
+            $("div.error").click(function (e) {
+                $(this).next().slideToggle();
+                e.preventDefault();
+            });
+        });
+    </script>
+}
+
+<ul class="contentItems">
+@foreach (var item in Model.LogItems)
+{ 
+    <li class='error-item'>
+        <div class='error'><a href='#'>@item.Date - @item.Preview</a></div>
+        <div class="detail-container" style='display:none;'>@item.Text</div>
+    </li>
+}
+</ul>

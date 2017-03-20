@@ -1,0 +1,20 @@
+<Placement>
+  <Place Parts_Localization_ContentTranslations_Edit="-"/>
+  <Match DisplayType="SummaryAdmin">
+    <Place Parts_Localization_ContentTranslations_SummaryAdmin="-"/>
+  </Match>
+  <Place Parts_ExLocalization_ContentTranslations_Edit="Content:0"/>
+  <Match DisplayType="SummaryAdmin">
+    <Place Parts_ExLocalization_ContentTranslations_SummaryAdmin="Content:5"/>
+  </Match>
+  <Place Parts_CookieCulturePickerWidget="Content:1"/>
+  <Place Parts_CookieCulturePickerMenu="Content:1"/>
+  <Place Parts_CookieCulturePicker_Edit="Content:10"/>
+  <Place Parts_MenuCulturePicker_Edit="Content:10"/>
+  <Place Parts_HomepageSettings_Edit="Content:2"/>
+  <Place Parts_CookieCultureSettings_Edit="Content:2"/>
+  <Place Parts_BrowserCultureSettings_Edit="Content:2"/>
+  <Place Parts_ContentCultureSettings_Edit="Content:2"/>
+  <Place Parts_AdminCultureSettings_Edit="Content:2"/>
+  <Place Parts_UserCultureSettings_Edit="Content:2"/>
+</Placement>

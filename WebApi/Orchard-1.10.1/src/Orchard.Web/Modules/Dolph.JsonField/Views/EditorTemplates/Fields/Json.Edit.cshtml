@@ -1,0 +1,27 @@
+﻿@model Dolph.JsonField.Fields.JsonField
+@using Orchard.Utility.Extensions;
+@using Dolph.JsonField.Settings;
+@{    
+    Script.Require("JsonFieldEdit");
+    Style.Require("JsonEditorStyle");
+    var settings = Model.PartFieldDefinition.Settings.GetModel<JsonFieldSettings>();
+}
+<fieldset>
+    
+    <label for="@Html.FieldIdFor(m => m.Value)">@Model.DisplayName</label>    
+    @if (settings.Template != null && settings.Template != string.Empty){
+        <a href="#" id="useTemplate">Use Template</a>
+    }    
+    <input type="hidden" id="jsonvalue" name="@Html.FieldNameFor(m => m.Value)" value="@Model.Value" />
+    <div id="jsoneditor" style="width: 400px; height: 400px;"></div>
+    @Html.ValidationMessageFor(m => m.Value)
+    @if (HasText(settings.Hint)) {
+    <span class="hint">@settings.Hint</span>
+    }
+</fieldset>
+
+<script>
+    window.dolphJsonTemplate = '@Html.Raw(settings.Template)';
+    window.dolphJsonUpdateValuesOnly = '@settings.UpdateValuesOnly';
+    window.dolphJsonCanEditJsonText = '@settings.CanEditJsonText';
+</script>

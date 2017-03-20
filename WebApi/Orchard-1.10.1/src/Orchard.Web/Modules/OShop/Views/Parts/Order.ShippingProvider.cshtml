@@ -1,0 +1,19 @@
+﻿@using OShop.Models
+@using OShop.Extensions
+@{
+    OrderShippingPart contentPart = Model.ContentPart;
+}
+
+@if (contentPart.ShippingDetails.Any()) {
+    <div class="order-shipping">
+        <h3>@T("Shipping :")</h3>
+        @foreach (var detail in contentPart.ShippingDetails) {
+            <div>
+                @detail.Designation
+                @if (!String.IsNullOrWhiteSpace(detail.Description)) {
+                    <span class="description">@detail.Description</span>
+                }
+            </div>
+        }
+    </div>
+}

@@ -1,0 +1,51 @@
+﻿@using Orchard.Core.Contents;
+@using Orchard.ContentManagement;
+@using Orchard.Utility.Extensions;
+
+@{
+    Script.Require("ShapesBase");
+    ContentPart contentPart = Model.ContentPart;
+}
+<div class="manage-actions">
+    @if (Authorizer.Authorize(Permissions.EditContent, (IContent)Model.ContentPart.ContentItem)) {
+        @Html.ItemEditLink(T("Edit").Text, (IContent)Model.ContentPart.ContentItem, new { returnUrl = Request.ToUrlString() })@T(" | ")
+    }
+    @if (contentPart.HasPublished()) {
+        @Html.ItemDisplayLink(T("View").Text, (ContentItem)Model.ContentPart.ContentItem)
+        @T(" | ")
+
+        if (contentPart.HasDraft()) {
+            @Html.Link(T("Publish Draft").Text, Url.Action("Publish", "Admin", new { area = "Contents", id = contentPart.ContentItem.Id, returnUrl = Request.ToUrlString() }))
+            @T(" | ")
+
+            if (Authorizer.Authorize(Permissions.PublishContent, contentPart)) {
+                @Html.ActionLink(T("Preview").Text, "Preview", "Item", new {area = "Contents", id = ((ContentItem) Model.ContentPart.ContentItem).Id})
+                @T(" | ")
+            }
+        }
+
+        if (Authorizer.Authorize(Permissions.PublishContent, contentPart)) {
+            @Html.Link(T("Unpublish").Text, Url.Action("Unpublish", "Admin", new {area = "Contents", id = contentPart.ContentItem.Id, returnUrl = Request.ToUrlString()}))
+            @T(" | ")
+        }
+     } else {
+        if ( contentPart.HasDraft() ) {    
+            @Html.ActionLink(T("Preview").Text, "Preview", "Item", new { area = "Contents", id = ((ContentItem)Model.ContentPart.ContentItem).Id })
+            @T(" | ")
+        }
+
+        if (Authorizer.Authorize(Permissions.PublishContent, contentPart)) {
+            @Html.Link(T("Publish").Text, Url.Action("Publish", "Admin", new {area = "Contents", id = contentPart.ContentItem.Id, returnUrl = Request.ToUrlString()}))
+            @T(" | ")
+        }
+    }
+
+    @if (Authorizer.Authorize(Permissions.DeleteContent, (IContent)Model.ContentPart.ContentItem)) {
+        if (!Model.HasChildren) {
+            @Html.Link(T("Delete").Text, Url.ItemRemoveUrl((IContent)Model.ContentPart.ContentItem, new { returnUrl = Request.ToUrlString() }))
+        }
+        else{
+            <span title="@T("You may not delete an item until all it's children have been deleted.")">@T("Delete")</span>
+        }
+    }
+</div>

@@ -1,0 +1,16 @@
+﻿@{
+    if (Layout.IsCartPage != true) {
+        Script.Require("jQuery");
+        Script.Include("jquery.iframe-transport.js");
+        Script.Include("shoppingcart.js", "shoppingcart.min.js");
+        <div class="shopping-cart-container minicart"
+             data-load="@Url.Action("NakedCart", "ShoppingCart", new {area="Nwazet.Commerce"})"
+             data-update="@Url.Action("AjaxUpdate", "ShoppingCart", new {area="Nwazet.Commerce"})"
+             data-token="@Html.AntiForgeryTokenValueOrchard()"></div>
+        <script type="text/javascript">
+            var Nwazet = window.Nwazet || {};
+            Nwazet.WaitWhileWeRestoreYourCart = "@T("Please wait while we restore your shopping cart...")";
+            Nwazet.FailedToLoadCart = "@T("Failed to load the cart")";
+        </script>
+    }
+}

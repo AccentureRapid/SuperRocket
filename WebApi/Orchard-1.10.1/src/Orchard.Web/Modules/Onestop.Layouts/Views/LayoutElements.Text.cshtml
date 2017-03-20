@@ -1,0 +1,24 @@
+﻿@using Onestop.Layouts.Helpers
+@using Onestop.Layouts.Models
+@{
+    if (Model.Metadata.DisplayType == "Preview" && Model.UsesIndex) {
+        var displayIndex = Html.GetLayoutDisplayIndex();
+        var textId = "templated_" + displayIndex + "_text";
+        Model.Classes.Add(textId + "_live");
+        Model.Attributes["data-live-property-" + textId] = "html";
+    }
+    Model.Classes.Add("layout-element");
+    Model.Classes.Add("layout-element-text");
+    Model.Classes.Add(Model.CssClass);
+    var styles = new Dictionary<string, string>();
+    styles.AddPercentIfNonZeroPixels("left", (Length)Model.Left, (int)Model.LayoutWidth, "position", "absolute");
+    styles.AddPercentIfNonZeroPixels("top", (Length)Model.Top, (int)Model.LayoutHeight, "position", "absolute");
+    styles.AddIfNotEmpty("font-family", (string)Model.Font);
+    styles.AddIfNotEmpty("font-size", (string)Model.Size);
+    Model.Attributes["style"] = styles.BuildStyle();
+    
+    var tag = Tag(Model, String.IsNullOrWhiteSpace(Model.Tag) ? "span" : Model.Tag);
+}
+@tag.StartElement
+@Html.Raw(Model.Text)
+@tag.EndElement

@@ -1,0 +1,55 @@
+﻿@using Nwazet.Commerce.Models
+@using Orchard.ContentManagement;
+@using Orchard.Utility.Extensions;
+@{
+    ContentItem contentItem = Model.ContentItem;
+    var order = contentItem.As<OrderPart>();
+    var returnUrl = ViewContext.RequestContext.HttpContext.Request.ToUrlString();
+
+
+    var hasManageOrderPermission = Authorizer.Authorize(Nwazet.Commerce.Permissions.OrderPermissions.ManageOrders);
+    var contentManager = WorkContext.Resolve<IContentManager>();
+}
+<div class="summary" itemscope="itemscope" itemid="@contentItem.Id" itemtype="http://orchardproject.net/data/ContentItem">
+    <div class="properties">
+        <input type="checkbox" value="@contentItem.Id" name="itemIds"/>
+        
+        @if (hasManageOrderPermission) { 
+            <h3>@Html.ItemAdminLink(contentItem)</h3>
+        }
+        else
+        {
+            string title = contentManager.GetItemMetadata(contentItem).DisplayText;
+            <h3>@Html.Link(title, Url.Action("Show", "OrderSsl", new { area = "Nwazet.Commerce", id = contentItem.Id }), new { itemprop = "UnsafeUrl" })</h3>            
+        }
+        
+        
+        @if (Model.Header != null) {
+        <div class="header">@Display(Model.Header)</div>
+        }
+        @if (Model.Meta != null) {
+        <div class="metadata">@Display(Model.Meta)</div>
+        }
+    </div>
+    <div class="related">
+
+        @if (hasManageOrderPermission) {
+            @Display(Model.Actions)
+            @Html.ItemEditLink(T("Edit").Text, contentItem)@T(" | ")
+            if (order.Status == OrderPart.Archived) {
+                @Html.Link(T("Unarchive").Text, Url.Action("Unarchive", "OrderAdmin", new {@id = order.Id, returnUrl}), new {itemprop = "UnsafeUrl"})@T(" | ")
+                @Html.Link(T("Delete").Text, Url.ItemRemoveUrl(contentItem, new {returnUrl}), new {itemprop = "RemoveUrl UnsafeUrl"})
+            }
+            else {
+                @Html.Link(T("Archive").Text, Url.Action("Archive", "OrderAdmin", new {@id = order.Id, returnUrl}), new {itemprop = "UnsafeUrl"})
+            }
+        }
+        else
+        {             
+                @Html.Link(T("View order").Text, Url.Action("Show", "OrderSsl", new {area = "Nwazet.Commerce", id = contentItem.Id}), new {itemprop = "UnsafeUrl"})                
+        }
+    </div>
+    @if (Model.Content != null) {
+    <div class="primary">@Display(Model.Content)</div>
+    }
+</div>

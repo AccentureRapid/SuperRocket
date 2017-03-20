@@ -1,0 +1,52 @@
+﻿@using System.Globalization
+@using System.Web.Mvc.Html
+@using Onestop.Layouts.Helpers
+@using Orchard.ContentManagement
+@using Orchard.Core.Title.Models
+@model Onestop.Layouts.ViewModels.TemplatedItemViewModel
+@{
+    Style.Include("layout-admin.css");
+    var layoutId = Model.Template == null ? -1 : Model.Template.Id;
+    var templates = Model.Templates.ToList();
+    var templateSelectListItems =
+        (new[] {
+            new SelectListItem {
+                Text = T("No template").Text,
+                Value = "0"
+            }
+        }).Union(
+            templates
+                .OrderBy(l => l.ContentItem.As<TitlePart>().Title)
+                .Select(l => new SelectListItem {
+                    Text = l.ContentItem.As<TitlePart>().Title,
+                    Value = l.Id.ToString(CultureInfo.InvariantCulture),
+                    Selected = l.Id == layoutId
+                }));
+}
+<div>
+    @if (Model.TemplatedItemPreviewShape != null) {
+        @* layout preview *@
+        var previewShape = New.TemplatedItemPreview(Slide: Model.TemplatedItem, Layout: Model.Template, TemplatedItemPreviewShape: Model.TemplatedItemPreviewShape);
+        Layout.Content.Add(previewShape);
+        Html.ResetLayoutEditorHelperIndex();
+    }
+    @if (Model.Template != null || Model.CanChangeTemplate) {
+            @* layout selection *@
+        <label for="@Html.Id("layoutId")">@T("Template:")</label>
+        @Html.DropDownList("layoutId", templateSelectListItems)
+        <div class="hint">@T("Changing the template requires saving the content item in order to be able to see the updated editor.")</div>
+    }
+    @* templated item editor *@
+    <div>
+        @foreach (dynamic editorShape in Model.EditorShapes) {
+            editorShape.Prefix = Model.Prefix;
+            if (editorShape.UsesIndex == true) {
+                var helperIndex = Html.GetLayoutEditorHelperIndex();
+                editorShape.HelperIndex = helperIndex;
+                editorShape.Attributes.Add("data-index", helperIndex.ToString(CultureInfo.InvariantCulture));
+            }
+            @Display(editorShape)
+        }
+        @{ Html.ResetLayoutEditorHelperIndex(); }
+    </div>
+</div>

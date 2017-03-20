@@ -1,0 +1,12 @@
+﻿Name: RaisingStudio.Contents.RepositoryFactory
+AntiForgery: enabled
+Author: zhongzf@126.com
+Website: http://zhongzf.cnblogs.com
+Version: 0.1
+OrchardVersion: 1.7
+Description: Description for the module
+Dependencies: Orchard.Fields, Orchard.ContentPicker
+Features:
+    RaisingStudio.Contents.RepositoryFactory:
+        Description: Description for feature RaisingStudio.Contents.RepositoryFactory.
+		Category: A SuperRocket

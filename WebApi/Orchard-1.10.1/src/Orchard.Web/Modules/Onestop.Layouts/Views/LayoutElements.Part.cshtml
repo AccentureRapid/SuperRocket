@@ -1,0 +1,26 @@
+﻿@using Onestop.Layouts.Helpers
+@using Onestop.Layouts.Models
+@using Orchard.Utility.Extensions
+@{
+    var partShapes = Model.PartShapes;
+    if (partShapes != null) {
+        foreach (var part in partShapes) {
+            if (part != null) {
+                Model.Classes.Add("layout-element");
+                Model.Classes.Add("layout-element-part");
+                Model.Classes.Add("layout-element-part-" + ((string) Model.PartName).HtmlClassify());
+                if (!String.IsNullOrWhiteSpace((string) Model.CssClass)) {
+                    Model.Classes.Add(Model.CssClass);
+                }
+                var styles = new Dictionary<string, string>();
+                styles.AddPercentIfNonZeroPixels("left", (Length) Model.Left, (int) Model.LayoutWidth, "position", "absolute");
+                styles.AddPercentIfNonZeroPixels("top", (Length) Model.Top, (int) Model.LayoutHeight, "position", "absolute");
+                Model.Attributes["style"] = styles.BuildStyle();
+                var tag = Tag(Model, "div");
+                @tag.StartElement
+                @Display(part)
+                @tag.EndElement
+            }
+        }
+    }
+}

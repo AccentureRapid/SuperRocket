@@ -1,0 +1,19 @@
+﻿@model Datwendo.Localization.Models.CookieCultureSettingsPart
+
+<fieldset>
+    <legend>@T("Cookie Culture Selector")</legend>
+    <div>
+        @Html.EditorFor(m => m.Enabled)
+        <label for="@Html.FieldIdFor(m => m.Enabled)" class="forcheckbox">@T("Enable Localization by Cookie (you must install the widget)")</label>
+       @Html.ValidationMessageFor(m => m.Enabled, "*")
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Priority, @T("Priority"))
+        @Html.EditorFor(m => m.Priority)
+    </div>
+    <div>
+        @Html.EditorFor(m => m.EnforceCookieUrl)
+        <label for="@Html.FieldIdFor(m => m.EnforceCookieUrl)" class="forcheckbox">@T("Enforce versus proxies doing cache the url used for changing culture by adding an unique id")</label>
+        @Html.ValidationMessageFor(m => m.EnforceCookieUrl, "*")
+    </div>
+</fieldset>

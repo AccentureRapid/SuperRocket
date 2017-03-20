@@ -1,0 +1,15 @@
+﻿@using OShop.Models
+@{
+    Layout.Title = T("My shopping cart");
+
+    Script.Require("OShop");
+}
+
+<article class="shopping-cart">
+    @using (Html.BeginFormAntiForgeryPost()) {
+        @Display(Model.CartItems)
+        @Display(Model.LocationEdit)
+        @Display(Model.ShippingOptions)
+        @Display(Model.Actions)
+    }
+</article>

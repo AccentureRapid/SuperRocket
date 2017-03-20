@@ -1,0 +1,19 @@
+﻿@model Orchard.ContentTree.ViewModels.ContentTreeSettingsViewModel
+@{
+    Layout.Title = "Content Tree Settings";
+    int ti = 0;
+}
+@using (Html.BeginFormAntiForgeryPost()) {
+<fieldset>
+    <legend>@T("Types to include in Content Tree")</legend>
+    <ul>
+        @foreach (var type in Model.SelectedTypes) {
+            @Html.HiddenFor(m => m.SelectedTypes[ti].Value)
+            <li><label for="@Html.FieldIdFor(m => m.SelectedTypes[ti].Selected)">@Html.CheckBoxFor(m => m.SelectedTypes[ti].Selected) @type.Text</label></li>
+            ti++;
+        }
+    </ul>
+    <button class="button primaryAction" value="submit.Save" id="submit.Save" name="submit.Save">Save</button>
+</fieldset>
+}
+

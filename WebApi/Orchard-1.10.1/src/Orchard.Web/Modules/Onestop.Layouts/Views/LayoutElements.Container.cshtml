@@ -1,0 +1,47 @@
+﻿@using Onestop.Layouts.Helpers
+@using Onestop.Layouts.Models
+@{
+    var enumerableElements = Model.Elements;
+    if (enumerableElements != null) {
+        var elements = ((IEnumerable<dynamic>) enumerableElements).ToList();
+        Model.Classes.Add("layout-element");
+        Model.Classes.Add("layout-element-container");
+        Model.Classes.Add((string) Model.CssClass ?? "");
+        var styles = new Dictionary<string, string>();
+        styles.AddPercentIfNonZeroPixels("width", (Length) Model.Width, (int) Model.LayoutWidth);
+        var isCentered = Model.Center;
+        var height = ((Length)Model.Height).ToString();
+        height = string.IsNullOrWhiteSpace(height) && isCentered ? "100%" : height;
+        styles.AddIfNotEmpty("height", height);
+        styles.AddPercentIfNonZeroPixels("left", (Length) Model.Left, (int) Model.LayoutWidth, "position", "absolute");
+        styles.AddPercentIfNonZeroPixels("top", (Length) Model.Top, (int) Model.LayoutHeight, "position", "absolute");
+        if (isCentered) {
+            styles.Add("text-align", "center");
+        }
+        var hasLink = !String.IsNullOrWhiteSpace(Model.TargetUrl);
+        if (hasLink) {            
+            Model.Attributes["href"] = Model.TargetUrl;
+        }
+        var backgroundUrl = (string) Model.Background;
+        if (!String.IsNullOrWhiteSpace(backgroundUrl)) {
+            backgroundUrl = Url.FixedHref(s => Href(s), backgroundUrl);
+            styles.Add("background", "no-repeat center top url(" + backgroundUrl + ")");
+            styles.Add("background-size", "cover");
+        }
+        if (Model.Metadata.DisplayType == "Preview" && Model.UsesIndex) {
+            var displayIndex = Html.GetLayoutDisplayIndex();
+            var urlId = "templated_" + displayIndex + "_background";
+            Model.Attributes["data-live-property-" + urlId] = "background-image";
+            Model.Attributes["data-live-property-" + urlId + "-is-style"] = "true";
+            Model.Attributes["data-live-property-" + urlId + "-is-url"] = "true";
+            Model.Classes.Add(urlId + "_live");
+        }
+        Model.Attributes["style"] = styles.BuildStyle();
+        var tag = Tag(Model, hasLink ? "a" : "div");
+        
+        //removed center, its easier to use text-center, its hacky to inject table cell to center contents. Its easier to specify a class name and control alignment through css instead
+        @tag.StartElement        
+            @Display.ChildLayoutElements(Elements: elements, DisplayType: Model.Metadata.DisplayType, ParentShape: Model)        
+        @tag.EndElement
+    }
+}

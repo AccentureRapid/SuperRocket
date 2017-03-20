@@ -1,0 +1,20 @@
+﻿@using Orchard.Utility.Extensions;
+@using Orchard.Mvc.Html;
+@using Orchard.Mvc.Extensions;
+@using System.Linq;
+@using RM.QuickLogOn.Providers
+
+@{
+    var providers = Model.Providers as IEnumerable<IQuickLogOnProvider>;
+}
+
+@if (providers.Any())
+{
+     <ul>
+         @foreach (var p in providers) { <li>@Html.Link(p.Name, p.GetLogOnUrl(WorkContext), new { title = p.Description })</li> }
+     </ul>
+}
+else
+{
+    <div>No QuickLogOn providers enabled. Please goto Dashboard and enable at least one.</div>
+}

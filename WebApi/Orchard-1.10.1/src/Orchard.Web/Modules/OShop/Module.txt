@@ -1,0 +1,69 @@
+﻿Name: OShop
+AntiForgery: enabled
+Author: Codinlab
+Website: https://github.com/OShop/OShop
+Version: 1.0
+OrchardVersion: 1.10
+Category: Commerce
+Description: E-commerce module for Orchard CMS.
+Features:
+    OShop.Products:
+		Name: OShop Products
+		Category: Commerce
+        Description: Provides product part.
+		Dependencies: OShop
+    OShop.Stocks:
+		Name: OShop Stocks
+		Category: Commerce
+        Description: Provides stocks management.
+		Dependencies: OShop
+    OShop.VAT:
+		Name: OShop VAT
+		Category: Commerce
+        Description: Provides VAT management.
+		Dependencies: OShop
+    OShop.ShoppingCart:
+		Name: OShop Shopping Cart
+		Category: Commerce
+        Description: Provides shopping Cart service.
+		Dependencies: OShop, Orchard.Resources
+	OShop.Locations:
+		Name: OShop Locations
+		Category: Commerce
+        Description: Provides location management.
+		Dependencies: OShop, Orchard.Tokens
+	OShop.Shipping:
+		Name: OShop Shipping
+		Category: Commerce
+        Description: Provides shipping service.
+		Dependencies: OShop.Locations
+	OShop.Customers:
+		Name: OShop Customers
+		Category: Commerce
+        Description: Provides customer management.
+		Dependencies: OShop.Locations, Orchard.Users, Orchard.Resources
+	OShop.Checkout:
+		Name: OShop customer check-out
+		Category: Commerce
+        Description: Provides check-out service for customers.
+		Dependencies: OShop.Customers, OShop.ShoppingCart, OShop.Orders
+	OShop.Orders:
+		Name: OShop Orders
+		Category: Commerce
+        Description: Provides orders management.
+		Dependencies: OShop.Locations
+	OShop.Orders.Workflows:
+		Name: OShop Orders Workflows Activities
+		Category: Commerce
+        Description: Provides Order based Workflow Activites.
+		Dependencies: OShop.Orders, Orchard.Workflows
+	OShop.Payment:
+		Name: OShop Payment
+		Category: Commerce
+        Description: Enables payment features.
+		Dependencies: OShop
+	OShop.OfflinePayment:
+		Name: OShop Offline Payment
+		Category: Commerce
+        Description: Enables offline payment.
+		Dependencies: OShop.Payment, Orchard.ContentPicker

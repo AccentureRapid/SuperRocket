@@ -1,0 +1,35 @@
+﻿@{
+    Script.Require("Orchard_ContentTree");
+    Style.Require("Orchard_ContentTree");
+
+    Layout.Title = "Content Tree";
+}
+<fieldset class="content-tree-fields">
+    <div class="content-tree-clear"></div>
+    <div class="content-tree-key">
+        <div class="left-column">
+            <p class="placeholder">Tree placeholder.</p>
+            <p class="uneditable">Item you can't edit.</p>
+        </div>
+        <div class="right-column">
+            <p class="delete">Unsaved deleted item.</p>
+            <p class="unpublish">Unpublished item.</p>
+        </div>
+        <div class="content-tree-clear"></div>
+    </div>
+    <div class="blanket-actions">
+        <a href="#" class="button primaryAction Toggle_Editable">Show only items I can edit</a>
+        <a href="#" class="button primaryAction Expand_All">Expand All</a>
+        <a href="#" class="button primaryAction Collapse_All">Collapse All</a>
+        @Html.ActionLink(T("Create New Content").Text, "Create", new { Area = "Contents", Id = "" }, new { @class = "button primaryAction" })
+    </div>
+    <div class="content-tree-clear"></div>
+    <div class="content-tree">
+        <p class="content-tree-spinner">@T("Loading content tree...")</p>
+        <p class="hint">This can sometimes take a short while, depending on the number of content items in the site.</p> 
+    </div>
+    <p class="hint">@T("TIP: The content tree only shows items which have a route (URL).")</p>
+</fieldset>
+
+
+

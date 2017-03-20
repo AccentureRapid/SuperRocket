@@ -1,0 +1,11 @@
+﻿Name: Amba.HtmlBlocks
+AntiForgery: enabled
+Author: Alexey V. Ryazhskikh
+Website: http://htmlblocks.codeplex.com
+Version: 1.6
+OrchardVersion: 1.9
+Description: This module contains Html Field to manage THML without WYSIWYG, but with syntax highlighting by Codemirror code editor. This module also allows to manage HTML Blocks (like Google Analytics code to insert) in dashboard and HTML Helper to insert block into Views. 
+Features:
+    Amba.HtmlBlocks:
+        Description: Field and HTML Block entity.
+        Category: Content

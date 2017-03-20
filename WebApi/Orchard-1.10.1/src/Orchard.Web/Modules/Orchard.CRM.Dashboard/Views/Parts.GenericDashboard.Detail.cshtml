@@ -1,0 +1,75 @@
+﻿@using System.Dynamic;
+@using Newtonsoft.Json;
+@{
+    Script.Require("DashboardComponents");
+    Style.Include("Style.css");
+    // route table. We must send the routes to the client, so that in the client we don't have to hard-code the routes
+    dynamic routeTable = new ExpandoObject();
+    routeTable.IMapSettings = Url.Action("Index", "Admin", new { area = "Settings", groupInfoId = "IMAP Email Client" });
+    routeTable.SmptSettings = Url.Action("Index", "Admin", new { area = "Settings", groupInfoId = "Email" });
+    routeTable.BusinessUnits = Url.Action("BusinessUnits", "Organization", new { area = "Orchard.CRM.Core" });
+    routeTable.Priorities = Url.Action("Priorities", "BasicData", new { area = "Orchard.CRM.Core" });
+    routeTable.TicketTypes = Url.Action("TicketTypes", "BasicData", new { area = "Orchard.CRM.Core" });
+    routeTable.Services = Url.Action("Services", "BasicData", new { area = "Orchard.CRM.Core" });
+    routeTable.TicketStatusList = Url.Action("TicketStatusList", "BasicData", new { area = "Orchard.CRM.Core" });
+    routeTable.Workflows = Url.Action("Index", "Admin", new { area = "Orchard.Workflows" });
+    routeTable.Navigation = Url.Action("Index", "Admin", new { area = "Navigation" });
+    routeTable.Queries = Url.Action("Index", "Admin", new { area = "Orchard.Projections" });
+    routeTable.ContentManagement = Url.Action("List", "Admin", new { area = "Contents" });
+    routeTable.NewPage = Url.Action("Create", "Admin", new { area = "Contents", id = "Page" });
+    Model.Routes = routeTable;
+
+    // Sending translate table to the client
+    dynamic translateTable = new ExpandoObject();
+    translateTable.BasicDataSettings = T("Basic data Settings").Text;
+    translateTable.QueriesSetting = T("Custom Queries Management").Text;
+    translateTable.Post = T("Post").Text;
+    translateTable.QueriesDescription = T("Queries and Projections are allowing you to query, filter and sort Contentitems and display them on a custom Layout. Changing the queries needs basic knowledge of Orchard. For a quick start, you can take a look at this: ").Text;
+    translateTable.NavigationSettings = T("Menus & Navigation Management").Text;
+    translateTable.NavigationDescription = T("You can change the menu's and navigations on the site here.").Text;
+    translateTable.ContentManagementSettings = T("Contnent Management").Text;
+    translateTable.NewPage = T("New Page").Text;
+    translateTable.ListOfContent = T("Content List").Text;
+    translateTable.WorkflowManagement = T("Workflow Management").Text;
+    translateTable.WorkflowDescription = T("You can manage the Workflows of the system here. Please note that changing the workflows needs at-least a basic knowledge of Orchard & its data model.").Text;
+    translateTable.Host = T("Host").Text;
+    translateTable.LastSuccessfulConnection = T("Last Successful Connection:").Text;
+    translateTable.BySettingsIMAPEMail_OrchardCAN = T("By settings IMAP Email Client, Orchard collaboration can receive emails and create corresponding tickets for them").Text;
+    translateTable.NotConfigIMAPEmailClient = T("Not configured.").Text;
+    translateTable.IMAPEmailSettings = T("IMAP Email Client Settings").Text;
+    translateTable.SMTPEmailClientIsConfigured = T("SMTP Email is configured properly.").Text;
+    translateTable.NotConfigSMTPEmailClient = T("Not configured.").Text;
+    translateTable.BySettingsSMTPEMail_OrchardCAN = T("By settings SMTP Email Client, Orchard collaboration can send emails to the users in case of any change").Text;
+    translateTable.SMTPEmailSettings = T("SMTP Email Client Settings").Text;
+    translateTable.Loading = T("Loading...").Text;
+    Model.TranslateTable = translateTable;
+}
+@{
+// Generate Anti forgery token. This token is used by AJAX requests.
+}
+@*@using (Html.BeginFormAntiForgeryPost())
+{
+}
+<script type="application/json" id="dashboardData">
+    @Html.Raw(JsonConvert.SerializeObject(Model))
+</script>
+@using (Script.Foot())
+{
+    <script language="javascript" type="text/javascript">
+        $(document).ready(function () {
+            orchardcollaboration.react.Render("Parts_GenericDashboard_Detail", "dashboardContainer", "dashboardData");
+        });
+    </script>
+}
+<div id="dashboardContainer">
+</div>*@
+<div class="dashboardContainer">
+    <div class="row ">
+        @foreach (var item in Model.List)
+        {
+            <div class="col-lg-4">
+                @Display(item)
+        </div>
+        }
+    </div>
+</div>

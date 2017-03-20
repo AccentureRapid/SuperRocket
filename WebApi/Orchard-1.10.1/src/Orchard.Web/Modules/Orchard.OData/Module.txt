@@ -1,0 +1,10 @@
+﻿Name: Orchard.OData
+AntiForgery: enabled
+Author: O.STEPHAN
+Website: http://orchardproject.net
+Version: 1.1.0.1
+OrchardVersion: 1.9
+Description: Implementation of a module that provides OData protocol and then enables third parties to query (custom) creatable content types embedded in an Orchard CMS Site
+FeatureDescription: OData reader service provider.
+Category: Syndication
+Dependencies: 

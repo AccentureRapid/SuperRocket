@@ -1,0 +1,22 @@
+﻿@model dynamic 
+@{
+    var themeName = (string)Model.ThemeName;
+    string themeResource = ""; 
+    if (!string.IsNullOrWhiteSpace(themeName)) {
+        themeResource = "TheMonarch.prettify-" + themeName.Trim(); 
+    }
+    else {
+        themeResource = "TheMonarch.prettify-github"; 
+    }
+
+    Style.Require(themeResource).AtHead();     
+    Script.Require("TheMonarch.prettify").AtFoot();
+}
+@using (Script.Foot()) {
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('pre code').parent().addClass('prettyprint');
+        prettyPrint();
+    }); 
+</script>
+}

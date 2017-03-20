@@ -1,0 +1,54 @@
+﻿@model Amba.AnonymousViewPermissionsEditor.Controllers.AnonymousViewEditorViewModel
+<script>
+    function checkAll(checkbox, selector) {
+        var value = $(checkbox).prop('checked');
+        $(selector + ':enabled').prop('checked', value);
+    }
+</script>
+<div>
+    @using (Html.BeginFormAntiForgeryPost("SaveAnonymousViewEditor"))
+    {
+        <fieldset>
+            <input type="checkbox" name="AllowViewAllContent" value="true"
+             @if (Model.AllowViewAllContent) { <text> checked="true" </text>  } /> Allow view all content
+        </fieldset>
+        if (!Model.AllowViewAllContent)
+        {
+             <table class="items">
+                 <thead>
+                 <tr>
+                     <th>Type</th>
+                     <th>
+                         <input type="checkbox" onclick="checkAll(this, '.is-securable')" /> Is Securable
+
+                     </th>
+                     <th>
+                         <input type="checkbox" onclick="checkAll(this, '.permission')" /> Anonymous can view
+                     </th>
+                 </tr>
+                 </thead>
+                 <tbody>
+                 @foreach (var typeSettings in Model.TypesSecuritySettings)
+                 {
+                     <tr>
+                         <td>@typeSettings.TypeName</td>
+                         <td>
+                             <input type="checkbox" class="is-securable" name="@typeSettings.TypeName" value="true" @if (typeSettings.IsSecurable) { <text> checked="true" </text> } />                             
+                         </td>
+                         <td>
+                             <input type="checkbox" class="permission" name="@typeSettings.Permission" value="true"
+                                    @if (typeSettings.CanView) { <text> checked="true" </text>  }
+                                    @if (!typeSettings.IsSecurable) { <text> disabled="true" </text>    } />                                                          
+                         </td>
+                     </tr>
+                 }
+                 </tbody>
+             </table>
+         }
+        <div>
+            <input type="submit" class="button primaryAction" value="Save" />
+        </div>
+    }
+</div>
+
+    

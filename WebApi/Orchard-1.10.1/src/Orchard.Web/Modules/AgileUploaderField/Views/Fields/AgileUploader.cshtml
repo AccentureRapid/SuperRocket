@@ -1,0 +1,13 @@
+﻿@if (!string.IsNullOrEmpty(Model.ContentField.FileNames))
+{
+    <ul class="agileUploaderImages">
+        @foreach (var fileName in Model.ContentField.FileNames.Split(';'))
+        {
+            <li class="agileUploaderImage">
+                @{ var alternateText = string.IsNullOrEmpty(Model.ContentField.AlternateText) ? Path.GetFileNameWithoutExtension(fileName) : Model.ContentField.AlternateText; }
+                <img src="@fileName" alt="@alternateText" />
+            </li>
+        }
+    </ul>
+}
+

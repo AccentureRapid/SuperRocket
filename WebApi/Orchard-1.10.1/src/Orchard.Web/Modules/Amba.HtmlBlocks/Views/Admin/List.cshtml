@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Amba.HtmlBlocks.Models.HtmlBlockRecord>
+@{
+    Layout.Title = @T("Html Blocks");                  
+}
+<div class="buttonset">
+@Html.ActionLink("Create", "Edit", new {id = 0}, new {@class="button"}) 
+</div>
+<table class="items html-blocks-table">
+    <thead>
+        <tr>
+            <th>@T("Block key")</th>
+            <th>@T("Help text")</th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach(var block in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(block.BlockKey, "Edit", new {id = block.Id})
+            </td>
+            <td>
+                @block.HelpText    
+            </td>
+            <td style="width: 100px;">
+                @Html.ActionLink(T("Edit").ToString(), "Edit", new {id = block.Id})
+                |
+                @Html.ActionLink(T("Delete").ToString(), "Delete", new {id = block.Id}, new {@class="needs-confirmation"})
+            </td>
+        </tr>
+    } 
+</table>
+<style type="text/css">
+    .buttonset {
+        clear: both;
+        margin-bottom: 10px;
+        height: 25px;
+    }
+
+    .buttonset .button {
+        float: right;
+    }
+</style>
+@using(Script.Foot())
+{
+    <script type="text/javascript">
+        $().ready(function() {
+            $(".needs-confirmation").click(function() {
+                if (!window.confirm('@T("Are you sure want to delete this html block?")')) {
+                    return false;
+                }
+                return true;
+            });
+        });
+    </script>
+}

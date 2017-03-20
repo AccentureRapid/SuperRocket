@@ -1,0 +1,12 @@
+﻿Name: Dolph.SmartContentPicker
+AntiForgery: enabled
+Author: Rudolph Koegelenberg
+Website: https://bitbucket.org/rkoegelenberg/orchard.modules.dolph.smartcontentpicker
+Version: 1.0
+OrchardVersion: 1.9.2
+Description: In-page content field picker, for connecting content items to each other and creating relationships.  Using jQuery Chosen.
+Features:
+    Dolph.SmartContentPicker:
+        Description: In-page content field picker, for connecting content items to each other and creating relationships.  Using jQuery Chosen.
+		Dependencies: Contents
+		Category: A SuperRocket

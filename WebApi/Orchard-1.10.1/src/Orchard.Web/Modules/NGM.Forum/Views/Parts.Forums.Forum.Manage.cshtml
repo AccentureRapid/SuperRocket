@@ -1,0 +1,10 @@
+﻿@using NGM.Forum.Extensions;
+@using NGM.Forum.Models;
+@{
+    Style.Require("ForumsAdmin");
+}
+@if (AuthorizedFor(NGM.Forum.Permissions.ManageForums)) {
+<div class="item-properties actions">
+    <p><a href="@Url.ForumEdit((ForumPart)Model.ContentPart)" class="edit">@T("Forum Properties")</a></p>
+</div>
+}

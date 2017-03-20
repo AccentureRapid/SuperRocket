@@ -1,0 +1,29 @@
+﻿@using Onestop.Layouts.Helpers
+@using Onestop.Layouts.Models
+@{
+    Model.Classes.Add("layout-element");
+    Model.Classes.Add("layout-element-link");
+    Model.Classes.Add(Model.CssClass);
+    var styles = new Dictionary<string, string>();
+    styles.AddPercentIfNonZeroPixels("left", (Length)Model.Left, (int)Model.LayoutWidth, "position", "absolute");
+    styles.AddPercentIfNonZeroPixels("top", (Length)Model.Top, (int)Model.LayoutHeight, "position", "absolute");
+    styles.AddIfNotEmpty("font-family", (string)Model.Font);
+    styles.AddIfNotEmpty("font-size", (string)Model.Size);
+
+    var url = Url.FixedHref(s => Href(s), (string)Model.Url);
+
+    if (Model.Metadata.DisplayType == "Preview" && Model.UsesIndex)
+    {
+        var displayIndex = Html.GetLayoutDisplayIndex();
+        var textId = "templated_" + displayIndex + "_text";
+        var urlId = "templated_" + displayIndex + "_href";
+        <a class="@(textId + "_live") @(urlId + "_live") @string.Join(" ", Model.Classes)"
+           @Html.Raw("data-live-property-" + textId + "=\"html\"")
+           @Html.Raw("data-live-property-" + urlId + "=\"href\"")
+           href="@url" style="@styles.BuildStyle()">@Model.Text</a>
+    }
+    else
+    {
+        <a href="@url" style="@styles.BuildStyle()" class="@string.Join(" ", Model.Classes)">@Model.Text</a>
+    }
+}

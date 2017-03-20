@@ -1,0 +1,14 @@
+﻿@{
+    Style.Require("pivotViewer").AtHead();
+    Script.Require("pivotViewer").AtHead();
+    var collectionUrl = string.Format("$collection/{0}.cxml", ViewBag.ContentType);
+}
+<div id="pivotviewer" style="height:600px;"></div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var debug = true;
+        $('#pivotviewer').PivotViewer({
+            Loader: new PivotViewer.Models.Loaders.CXMLLoader("@collectionUrl")
+        });
+    });
+</script>

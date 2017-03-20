@@ -1,0 +1,15 @@
+@using Orchard.ContentManagement;
+@using PJS.Bootstrap.Models;
+@{
+    var homeUrl = Href("~/");
+    var settings = WorkContext.CurrentSite.As<BootstrapThemeSettingsPart>();
+    string iconUrl = Href(Html.ThemePath(WorkContext.CurrentTheme, "/Content/logo.png"));
+}
+
+@if (settings.UseFixedNav) { 
+    <a class="navbar-brand" href="@homeUrl"><img src="@iconUrl" alt="logo"></a>
+}
+else {
+    <h1>@WorkContext.CurrentSite.SiteName</h1>
+    <p class="lead">Your tagline here.</p>
+}

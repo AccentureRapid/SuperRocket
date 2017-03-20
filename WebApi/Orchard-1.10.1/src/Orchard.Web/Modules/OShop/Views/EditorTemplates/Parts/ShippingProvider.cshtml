@@ -1,0 +1,59 @@
+﻿@model OShop.Models.ShippingProviderPart
+@using OShop.Extensions
+
+@{
+    Style.Require("OShopAdmin");
+}
+
+<fieldset>
+    <legend>@T("Shipping options")</legend>
+    <table class="items">
+        <thead>
+            <tr>
+                <th scope="col" style="width: 100%">@T("Name")</th>
+                <th scope="col">@T("Zone")</th>
+                <th scope="col">@T("Priority")</th>
+                <th scope="col">@T("Price")</th>
+                <th scope="col">@T("Actions")</th>
+            </tr>
+        </thead>
+        @foreach (var option in Model.Options.OrderByDescending(o => o.Priority)) {
+            <tr>
+                <td scope="col">
+                    @if (!option.Enabled) {
+                        <img class="icon" src="@Href("~/Modules/OShop/Content/Admin/Images/Disabled.png")" alt="@T("Disabled")" title="@T("Disabled")" />
+                    }
+                    else {
+                        <img class="icon" src="@Href("~/Modules/OShop/Content/Admin/Images/Enabled.png")" alt="@T("Enabled")" title="@T("Enabled")" />
+                    }
+                    @Html.ActionLink(option.Name, "EditOption", "ShippingProvidersAdmin", new { Area = "OShop", id = option.Id }, new { })
+                </td>
+                <td scope="col">@(option.ShippingZoneRecord != null ? option.ShippingZoneRecord.Name : "-")</td>
+                <td scope="col">@option.Priority</td>
+                <td scope="col">@String.Format(WorkContext.NumberFormat(), "{0:C}", option.Price)</td>
+                <td scope="col">
+                    @if (option.Enabled) {
+                        @Html.ActionLink(T("Disable").Text, "DisableOption", "ShippingProvidersAdmin", new { Area = "OShop", Id = option.Id }, new { @class = "button" })
+                    }
+                    else {
+                        @Html.ActionLink(T("Enable").Text, "EnableOption", "ShippingProvidersAdmin", new { Area = "OShop", Id = option.Id }, new { @class = "button" })
+                    }
+                    @Html.ActionLink(T("Edit").Text, "EditOption", "ShippingProvidersAdmin", new { Area = "OShop", Id = option.Id }, new { @class = "button" })
+                    @Html.ActionLink(T("Delete").Text, "DeleteOption", "ShippingProvidersAdmin", new { Area = "OShop", Id = option.Id }, new { @class = "button", itemprop = "RemoveUrl UnsafeUrl" })
+                </td>
+            </tr>
+        }
+        <tfoot>
+            <tr>
+                <td scope="col">
+                    <input type="text" name="ShippingProvider.New.Option" class="text large" />
+                </td>
+                <td scope="col" colspan="3"></td>
+                <td scope="col">
+                    <button type="submit" name="submit.Save" value="ShippingProvider.New">@T("Add option")</button>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+
+</fieldset>

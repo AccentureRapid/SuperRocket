@@ -1,0 +1,9 @@
+Name: SoNerdy.NHProf
+AntiForgery: enabled
+Author: Brandon Joyce
+Website: http://orchardnhprof.codeplex.com
+Version: 1.0
+OrchardVersion: 1.0
+Category: Developer
+Description: Enables NHProf for Orchard.
+FeatureDescription: Enables NHProf for Orchard. 

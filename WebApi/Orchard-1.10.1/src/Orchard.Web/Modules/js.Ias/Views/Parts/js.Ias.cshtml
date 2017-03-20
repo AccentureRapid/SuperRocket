@@ -1,0 +1,61 @@
+﻿@using Orchard.ContentManagement
+@using js.Ias.Models
+@model dynamic
+@functions {
+bool IsAdmin()
+{
+    string displayType = Model.Metadata.DisplayType;
+    if (!String.IsNullOrWhiteSpace(displayType))
+    {
+        if (displayType == "DetailAdmin")
+            return true;
+    }
+    return false;
+}
+}
+    
+@{
+    Style.Include("jQuery_Ias").AtHead();
+    Script.Require("jQuery_Ias").AtFoot();
+
+    var item = (IContent)Model.ContentItem;
+
+    var ias = item.As<InfiniteAjaxScrollingPart>();
+
+    //string iascontainer = IsAdmin() ? ".zone-content .contentItems > ul" : @ias.Container;
+    //string iasitem = IsAdmin() ? "> li" : @ias.Item;
+    //string iaspagination = IsAdmin() ? ".pager-footer" : @ias.Pagination;
+    //string iasnextanchor = IsAdmin() ? ".pager .last a" : @ias.NextAnchor;
+    string iascontainer = ".image-gallery-images";
+    string iasitem = ".grid-item";
+    string iaspagination = ".zone-content .pager";
+    string iasnextanchor = ".zone-content .pager .last a";
+    string usehistory = IsAdmin() ? "false" : @ias.UseHistory.ToString().ToLower();
+    string onpagechange = IsAdmin() ? "function() {}" : string.IsNullOrWhiteSpace(ias.OnPageChange) ? "function() {}" : ias.OnPageChange;
+    string beforepagechange = IsAdmin() ? "function() {}" : string.IsNullOrWhiteSpace(ias.BeforePageChange) ? "function() {}" : ias.BeforePageChange;
+    string onloaditems = IsAdmin() ? "function() {}" : string.IsNullOrWhiteSpace(ias.OnLoadItems) ? "function() {}" : ias.OnLoadItems;
+    string onrendercomplete = IsAdmin() ? "function() {}" : string.IsNullOrWhiteSpace(ias.OnRenderComplete) ? "function() {}" : ias.OnRenderComplete;
+    string iasloader = IsAdmin() ? "~/Modules/js.Ias/Styles/images/loader.gif" : string.IsNullOrWhiteSpace(ias.Loader) ? "~/Modules/js.Ias/Styles/images/loader.gif" : ias.Loader;
+
+}
+
+@using(Script.Foot()){
+<script type="text/javascript">
+    //<![CDATA[
+    $(function () {
+        jQuery.ias({
+            container: '@Html.Raw(iascontainer)',
+            item: '@Html.Raw(iasitem)',
+            pagination: '@Html.Raw(iaspagination)',
+            next: '@Html.Raw(iasnextanchor)',
+            loader: '<img src="@Href(iasloader)" />',
+            history: @usehistory,
+            onPageChange: @Html.Raw(onpagechange),
+            beforePageChange: @Html.Raw(beforepagechange),
+            onLoadItems: @Html.Raw(onloaditems),
+            onRenderComplete: @Html.Raw(onrendercomplete)
+            });
+    })
+    //]]>
+</script>
+}

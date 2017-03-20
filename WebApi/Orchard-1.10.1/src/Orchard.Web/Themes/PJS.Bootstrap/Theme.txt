@@ -1,0 +1,7 @@
+Name: PJS.Bootstrap
+Author: Philip Senechal
+Website: http://philipsenechal.com
+Description: Description for the theme
+Version: 3.3.5
+Tags: Bootstrap
+Zones: Header, Navigation, Featured, BeforeMain, AsideFirst, Messages, BeforeContent, Content, AfterContent, AsideSecond, AfterMain, TripelFirst, TripelSecond, TripelThird, FooterQuadFirst, FooterQuadSecond, FooterQuadThird, FooterQuadFourth, Footer

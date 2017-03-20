@@ -1,0 +1,10 @@
+﻿Name: Successful.Bootstrap
+AntiForgery: enabled
+Author: Stefan Karlsson
+Website: http://successful.se
+Version: 1.2.2
+OrchardVersion: 1.8.1
+Description: The Bootstrap module contains the Bootstrap version 3.3.1 and related script libraries.
+FeatureDescription: A common location for Bootstrap and related script libraries.
+FeatureDependencies: Orchard.jQuery
+Category: CSS Framework

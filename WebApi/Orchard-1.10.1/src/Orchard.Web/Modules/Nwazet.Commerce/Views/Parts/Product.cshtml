@@ -1,0 +1,18 @@
+﻿@{
+    var outOfStockMessage = (string) Model.OutOfStockMessage;
+}
+<br/>
+@T("Price"):
+@Display.Price(Price: Model.Price, DiscountedPrice: Model.DiscountedPrice, DiscountComment: Model.DiscountComment)
+<br />
+@Model.Sku<br/>
+@if (Model.Inventory != null && (int)Model.Inventory <= 0) {
+    <div class="out-of-stock">
+    @if (String.IsNullOrWhiteSpace(outOfStockMessage)) {
+        @T("This product is currently out of stock.")
+    }
+    else {
+        @outOfStockMessage
+    }
+    </div>
+}

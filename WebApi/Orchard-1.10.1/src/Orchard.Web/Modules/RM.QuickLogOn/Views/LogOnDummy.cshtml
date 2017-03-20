@@ -1,0 +1,16 @@
+﻿@model RM.QuickLogOn.ViewModels.LogOnDummyModel
+
+@using (Html.BeginFormAntiForgeryPost(Url.Action("Dummy", "LogOn", new { Area = "RM.QuickLogOn", ReturnUrl = Model.ReturnUrl })))
+{
+    <h2>QuickLogOn test form</h2>
+    <div>
+        @Html.ValidationSummary()
+    </div>
+    <div>
+        @Html.Label("Login", "Login")
+        @Html.TextBox("Login")
+    </div>
+    <div>
+        <button type="submit">Enter</button>
+    </div>
+}

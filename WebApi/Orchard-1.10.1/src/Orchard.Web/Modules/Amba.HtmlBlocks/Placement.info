@@ -1,0 +1,7 @@
+﻿<Placement>
+  <Place Fields_HtmlBlockField_Edit="Content:2.5"/>
+  <Place Fields_HtmlBlockField="Content:before" />
+  <Match DisplayType="SummaryAdmin">
+    <Place Fields_HtmlBlockField="-" />
+  </Match>
+</Placement>

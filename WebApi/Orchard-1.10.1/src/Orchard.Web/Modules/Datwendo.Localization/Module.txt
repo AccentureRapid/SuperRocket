@@ -1,0 +1,51 @@
+Name: Datwendo.Localization
+AntiForgery: enabled
+Author: Christian Surieux 
+Website: http://www.datwendo.com
+Version: 1.2
+OrchardVersion: 1.8
+Description: Provide enchancements of default Orchard multilanguage support
+Dependencies: Orchard.Localization, Orchard.Alias, Orchard.Search, Orchard.Autoroute, Orchard.Tokens, Orchard.Widgets, Orchard.Caching
+Category: Localization
+FeatureName: Datwendo Localization
+Features:
+    Datwendo.Localization.Alternates:
+        Name: Datwendo Culture Alternates
+        Description: Insert alternate templates based on culture
+        Category: Localization
+        Dependencies: Orchard.Localization, Datwendo.Localization
+    Datwendo.Localization.AdminCultureSelector:
+        Name: Datwendo Admin culture selector
+        Description: Select the language to use in Admin
+        Category: Localization
+        Dependencies: Orchard.Localization, Datwendo.Localization
+	Datwendo.Localization.UserCultureSelector:
+        Name: Datwendo User culture selector
+        Description: Select the language to use for AuthenticatedUsers
+        Category: Localization
+        Dependencies: Orchard.Localization, Datwendo.Localization
+    Datwendo.Localization.BrowserCultureSelector:
+        Name: Datwendo Browser culture selector
+        Description: Select current language as default user's browser language
+        Category: Localization
+        Dependencies: Orchard.Localization, Datwendo.Localization
+    Datwendo.Localization.CookieCultureSelector:
+        Name: Datwendo Cookie culture selector
+        Description: Select current language from cookie. Use Language Picker Widget to change current language
+        Category: Localization
+        Dependencies: Orchard.Localization, Datwendo.Localization
+    Datwendo.Localization.ContentCultureSelector:
+        Name: Datwendo Content culture selector
+        Description: Select current language from content related to this page.
+        Category: Localization
+        Dependencies: Orchard.Localization, Datwendo.Localization
+    Datwendo.Localization.MenuCulturePicker:
+        Name: Datwendo Menu Culture Picker
+        Description: MenuItem to select culture.
+        Category: Localization
+        Dependencies: Orchard.Localization, Datwendo.Localization			
+	Datwendo.Localization.LocalizedMenuFilter:
+	    Name: Datwendo Localized Menu Filter
+        Description: Override default Orchard behaviour to always show menu items without specific culture. They will be shown only when default site culture is selected as current.
+        Category: Localization
+        Dependencies: Orchard.Localization, Datwendo.Localization

@@ -1,0 +1,13 @@
+﻿<Placement>
+  <Place Fields_AgileUploader_Edit="Content:2.5"/>
+
+  <Match DisplayType="SummaryAdmin">
+    <Place Fields_AgileUploader="-"/>
+  </Match>
+
+  <Match DisplayType="Summary">
+    <Place Fields_AgileUploader="-"/>
+  </Match>
+
+  <Place Fields_AgileUploader="Content:before"/>
+</Placement>

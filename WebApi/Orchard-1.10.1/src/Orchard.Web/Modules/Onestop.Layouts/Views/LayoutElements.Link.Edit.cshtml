@@ -1,0 +1,28 @@
+﻿@using Onestop.Layouts.Helpers
+@{
+    var prefix = String.IsNullOrWhiteSpace((string)Model.Prefix) ? "" : Model.Prefix + ".";
+    var editorIndex = Html.GetLayoutEditorIndex();
+    var id = prefix + "TemplatedItemData[" + editorIndex + "]";
+    var textId = "templated_" + editorIndex + "_text";
+    var textName = id + "[0]";
+    var urlId = "templated_" + editorIndex + "_href";
+    var urlName = id + "[1]";
+}
+<fieldset class="layout-element-editor">
+    <legend class="layout-element-index">@Model.HelperIndex - @(String.IsNullOrWhiteSpace(Model.Title) ? Model.Name : Model.Title)</legend>
+    <label for="@textId">@T("Link text")</label>
+    <input type="hidden" name="@(textName).Key" value="text"/>
+    <input type="text" id="@textId" name="@(textName).Value" value="@Model.Text" data-default-value="@Model.DefaultText" class="textMedium templated-live-field"/>
+    @if (!string.IsNullOrWhiteSpace(Model.DefaultText)) {
+        <div class="hint">@T("Leave empty to use the default \"{0}\" or a link to the current context.", Model.DefaultText)</div>
+    }
+    else {
+        <div class="hint">@T("Leave empty to make this a link to the current context.", Model.DefaultText)</div>
+    }
+    <label for="@urlId">@T("Target URL")</label>
+    <input type="hidden" name="@(urlName).Key" value="href"/>
+    <input type="text" id="@urlId" name="@(urlName).Value" value="@Model.Url" data-default-value="@Model.DefaultUrl" class="textMedium templated-live-field"/>
+    @if (!string.IsNullOrWhiteSpace(Model.DefaultUrl)) {
+        <div class="hint">@T("Leave empty to use the default \"{0}\".", Model.DefaultUrl)</div>
+    }
+</fieldset>

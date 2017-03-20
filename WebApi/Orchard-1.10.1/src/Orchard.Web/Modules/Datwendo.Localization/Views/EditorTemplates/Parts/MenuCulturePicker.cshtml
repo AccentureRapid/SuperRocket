@@ -1,0 +1,8 @@
+﻿@model Datwendo.Localization.Models.MenuCulturePickerPart
+@using Orchard.Utility.Extensions;
+
+<div>
+    @Html.LabelFor(m => m.ShowBrowser, T("Show Browser Link"))
+    @Html.EditorFor(m => m.ShowBrowser)
+    <span class="hint">@T("Check to display browser link in widget")</span>
+</div>

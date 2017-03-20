@@ -1,0 +1,13 @@
+﻿@model Amba.HtmlBlocks.Settings.HtmlBlockFieldSettings
+<fieldset>
+    <div>
+        <label for="@Html.FieldIdFor(m => m.Height)">@T("Html block height in pixels (0 for default)")</label>
+        @Html.TextBoxFor(m => m.Height)
+    </div>
+    <div>
+        <label for="@Html.FieldIdFor(m => m.Height)">@T("Help text")</label>
+        @Html.TextAreaFor(m => m.HelpText, new { @class = "text medium", rows = "5" })
+        <span class="hint">@T("The help text is written under the field when authors are editing the content item.")</span>
+    </div>
+
+</fieldset>

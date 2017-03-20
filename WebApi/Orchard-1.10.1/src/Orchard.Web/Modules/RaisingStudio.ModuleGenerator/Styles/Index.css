@@ -1,0 +1,20 @@
+﻿#ajax_loader_dialog {
+    z-index: 10000;
+}
+
+    #ajax_loader_dialog .modal-dialog {
+        width: 100px;
+        height: 100px;
+    }
+
+.models input[type=checkbox] {
+    display: inline;
+}
+
+.models label {
+    display: inline;
+}
+
+#template-description p {
+    padding: 4px;
+}

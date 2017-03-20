@@ -1,0 +1,48 @@
+@model Orchard.DoTNetX.ViewModels.BlogPostViewModel
+@using Orchard.DoTNetX.ViewModels;
+@using Orchard.DoTNetX.Models;
+@helper SortIcon(OrderByDirection? order)
+{
+        if (order != null)
+        {
+            if (order == OrderByDirection.Ascending)
+            {
+    <span class="glyphicon glyphicon-sort-by-alphabet"></span>
+            }
+            else
+            {
+    <span class="glyphicon glyphicon-sort-by-alphabet-alt"></span>
+            }
+        }
+}
+<table id="main_table" class="table table-hover table-striped" data-pager-page="@Model.Pager.Page" data-pager-pagesize="@Model.Pager.PageSize">
+    <thead>
+        <tr>
+            <th class="BlogPost-item" data-sort-name="#Sort_Id">@T("Item #") @SortIcon(Model.Sort.Id)</th>
+            <th class="BlogPost-operation text-center">@T("Operation")</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var entity in Model.Entities)
+        {
+            <tr>
+                <td class="BlogPost-Id"><a href='@Url.Action("Edit", new { id = entity.Id, returnUrl = Url.Action("List") })' data-id="@entity.Id" class="edit-button" data-ajax="true" data-updatesection="#table_section">@entity.Id</a></td>
+                <td class="BlogPost-operation text-center">
+                    <a href='@Url.Action("Edit", new { id=entity.Id, returnurl=Url.Action("List") })'
+                       data-toggle="tooltip" data-placement="bottom" title='@T("Edit")' data-id='@entity.Id'
+                       class="edit edit-button" data-ajax="true" data-updatesection="#table_section">
+                        <span class="glyphicon glyphicon-edit"></span>
+                    </a>
+                    <a href='@Url.Action("Delete", new { id=entity.Id, returnurl=Url.Action("List") })'
+                       data-toggle="tooltip" data-placement="bottom" title='@T("Delete")'
+                       class="trash delete-button" data-ajax="true" data-updatesection="#table_section">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="row table-pager">
+    @Display(Model.Pager)
+</div>

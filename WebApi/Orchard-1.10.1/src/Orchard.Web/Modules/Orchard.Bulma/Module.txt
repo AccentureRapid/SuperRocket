@@ -1,0 +1,10 @@
+﻿Name: Orchard.Bulma
+AntiForgery: enabled
+Author: dystudio
+Website: http://www.dystudio.cn && http://github.com/dystudio
+Version: 1.0
+OrchardVersion: 1.10.1
+Description: A modern CSS framework based on Flexbox
+Features:
+    Orchard.Bulma:
+        Description: It is an Orchard Module for Bulma which is A modern CSS framework based on Flexbox

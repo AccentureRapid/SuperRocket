@@ -1,0 +1,13 @@
+Name: RM.QuickLogOn
+AntiForgery: enabled
+Author: Maxim Rich
+Website: http://www.richmaxim.com
+Version: 1.0.2
+OrchardVersion: 1.8.1
+Description: Gives users log on site without registration but with different providers, like OAuth and etc.
+Features:
+    RM.QuickLogOn:
+        Name: Quick LogOn
+        Description: Gives users log on site without registration but with different providers, like OAuth and etc.
+        Category: Security
+        Dependencies: Orchard.Users

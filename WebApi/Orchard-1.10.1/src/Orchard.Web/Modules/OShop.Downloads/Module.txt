@@ -1,0 +1,9 @@
+﻿Name: OShop Downloads
+AntiForgery: enabled
+Author: Codinlab
+Website: https://github.com/OShop/OShop.Downloads
+Version: 1.0
+OrchardVersion: 1.9
+Category: Commerce
+Description: Allows selling downloadable products.
+Dependencies: OShop.Orders, Orchard.MediaLibrary

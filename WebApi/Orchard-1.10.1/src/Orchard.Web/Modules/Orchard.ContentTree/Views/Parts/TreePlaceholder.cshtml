@@ -1,0 +1,23 @@
+﻿@using Orchard.Core.Contents;
+@using Orchard.ContentManagement;
+@using Orchard.Utility.Extensions;
+@{
+    string noHide = Model.NoHide ? "" : "can-hide";
+}
+<div class="tree-node">
+    @if (Model.Children != null) {
+        <a href="#" class="tree-expando @if(Model.Level > 0) { <text>closed</text> }"></a>
+    }
+    <div class="tree-item placeholder @noHide" data-path="@Model.Path" data-level="@Model.Level">
+        <div class="properties">
+            <p>@Model.Title <span class="path"><em>/@Model.Path</em></span></p>
+        </div>
+    </div>
+    @if (Model.Children != null) {
+        <ul @if(Model.Level > 0) { <text>style="display:none;"</text> }>
+            @foreach (var child in Model.Children) {
+                <li>@Display(child)</li>
+            }
+        </ul>
+    }
+</div>

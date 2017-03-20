@@ -1,0 +1,18 @@
+@model Orchard.DoTNetX.ViewModels.BlogPostViewModel
+@using (Html.BeginForm("Table", "BlogPost", new { returnUrl = Url.Action("List") }, FormMethod.Get, new { id = "search_dialog_form", @class = "form-horizontal" }))
+{
+    <div>
+        @Html.HiddenFor(m => m.Sort.Id)
+        @Html.Hidden("Page", (int)Model.Pager.Page)
+        @Html.Hidden("PageSize", (int)Model.Pager.PageSize)
+    </div>
+    <div class="col-md-3 col-md-offset-9">
+        <div class="input-group">
+            <span class="input-group-btn">
+                <button id="search_dialog_sumbit" type="submit" class="btn btn-default search-button button">
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
+            </span>
+        </div>
+    </div>
+}

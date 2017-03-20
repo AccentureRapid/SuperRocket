@@ -1,0 +1,23 @@
+﻿@model Datwendo.Localization.ViewModels.AdminCultureViewModel
+@{
+    Style.Require("DtwLocalizationAdmin");
+    var siteCultures = Model.SiteCultures.ToList();
+    siteCultures.Insert(0, "");
+}
+
+<fieldset class="localization culture-selection">
+    <legend>@T("Admin Culture Selector")</legend>
+    <div>
+        @Html.LabelFor(m => m.SelectedCulture, @T("Admin culture"))
+        @Html.DropDownList("SelectedCulture", new SelectList(siteCultures, Model.SelectedCulture))
+    </div>
+    <div>
+        @Html.EditorFor(m => m.AdminCulture.Enabled)
+        <label for="@Html.FieldIdFor(m => m.AdminCulture.Enabled)" class="forcheckbox">@T("Enable Localization for Admin panel")</label>
+        @Html.ValidationMessageFor(m => m.AdminCulture.Enabled, "*")
+    </div>
+    <div>
+        @Html.LabelFor(m => m.AdminCulture.Priority, @T("Priority"))
+        @Html.EditorFor(m => m.AdminCulture.Priority)
+    </div>
+</fieldset>

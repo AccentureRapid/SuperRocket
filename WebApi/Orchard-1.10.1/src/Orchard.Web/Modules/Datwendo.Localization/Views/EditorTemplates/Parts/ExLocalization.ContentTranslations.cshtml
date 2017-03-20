@@ -1,0 +1,41 @@
+﻿@model Orchard.Localization.ViewModels.EditLocalizationViewModel
+
+@if (!string.Equals(Url.RequestContext.RouteData.Values["action"].ToString(), "Translate", StringComparison.CurrentCultureIgnoreCase))
+{ 
+    Style.Require("LocalizationAdmin"); 
+<fieldset class="localization culture-selection">
+    <label for="SelectedCulture">@T("Content Localization")</label>
+    @if (Model.MasterContentItem == null)
+    {
+        if (string.IsNullOrWhiteSpace(Model.SelectedCulture))
+        {
+            <div>@T("This content item has no translations ")</div>
+        }
+        else
+        {
+            <div>@T("This is the <strong>{0}</strong> master content item", Model.SelectedCulture)</div>
+        }
+    }
+    else
+    {
+        <div>@T("This is the <em>{0}</em> variation of {1}.",
+                            Model.SelectedCulture,
+                            Html.ItemEditLink(Model.MasterContentItem))</div>
+    }
+    @if (Model.ContentItem.ContentItem.Id > 0 && Model.SelectedCulture != null && Model.ContentLocalizations.Localizations.Count() > 0) {
+        <dl class="content-localization">
+            <dt>@T("Other translations:")</dt>
+            <dd class="content-localizations">
+                @Html.UnorderedList(Model.ContentLocalizations.Localizations, (c, i) => Html.ItemEditLink(c.Culture.Culture, c), "localizations")
+            </dd>
+        </dl>
+    }
+    @if (Model.ContentItem.Id > 0 && Model.SiteCultures.Any())
+    {
+        foreach (var culture in Model.SiteCultures)
+        { 
+        <div class="add-localization">@Html.ActionLink(T("+ New translation for {0}", culture).Text, "Translate", "Admin", new { area = "Datwendo.Localization", id = (Model.MasterContentItem ?? Model.ContentItem).Id, to= culture }, null)</div>
+        }
+    }
+</fieldset>
+}

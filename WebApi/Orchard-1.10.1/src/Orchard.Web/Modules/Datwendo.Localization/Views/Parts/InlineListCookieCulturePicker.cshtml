@@ -1,0 +1,26 @@
+﻿@using Orchard.Utility.Extensions;
+@using Orchard.Mvc.Html;
+@using Orchard.Mvc.Extensions;
+@using System.Linq;
+@using Datwendo.Localization.ViewModels;
+
+@{
+    var cultures = Model.Cultures as IEnumerable<CookieCultureItemViewModel> ?? new CookieCultureItemViewModel[0];
+}
+
+<ul class="inline-list-culture-selector">
+    @foreach (var c in cultures)
+    {
+        var active = (c.Current) ? "class=active" : string.Empty;
+        if (c.IsBrowser)
+        {
+            <li  style="list-style-type: none;"><hr style="margin-right:50%;"/></li>
+            <li @active><a href="@Url.Action("ResetCulture", "CookieCulture", new { Area = "Datwendo.Localization", returnUrl = c.ReturnUrl })">@T("Browser")-@c.CultureItem.LocalizedName</a></li>
+        }
+        else
+        {
+            var url1 = Url.Action("SetCulture", "CookieCulture", new { Area = "Datwendo.Localization", culture = c.CultureItem.Culture.ToLower(), returnUrl = c.ReturnUrl });
+            <li @active><a href="@url1">@c.CultureItem.LocalizedName</a></li>
+        }
+    }
+</ul>

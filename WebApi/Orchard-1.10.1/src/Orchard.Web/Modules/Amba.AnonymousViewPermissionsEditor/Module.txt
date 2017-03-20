@@ -1,0 +1,11 @@
+﻿Name: Amba.AnonymousViewPermissionsEditor
+AntiForgery: enabled
+Author: Alexey V. Ryazhskikh
+Website: https://github.com/musukvl/Amba.AnonymousViewPermissionsEditor
+Version: 1.0
+OrchardVersion: 1.9
+Description: Orchard CMS Module to manage anonymous role view permissions. This adds extra tab at /Admin/Users page. It allows to make content type securable and edit anonymous view access for it. 
+Features:
+    Amba.AnonymousViewPermissionsEditor:
+        Description: List of anonymous role view permissions.
+        Category: Security  

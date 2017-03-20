@@ -1,0 +1,127 @@
+﻿@model Nwazet.Commerce.ViewModels.DiscountEditorViewModel
+@{
+    var roles = Model.Roles.ToList();
+    var discountRoles = Model.DiscountRoles;
+    Style.Include("discount.nwazet-commerce-admin.css");
+    Style.Require("jQueryCalendars_Picker");
+    Style.Require("jQueryUI_Calendars_Picker");
+    Style.Require("jQueryTimeEntry");
+    Style.Require("jQueryDateTimeEditor");
+}
+<fieldset class="nwazet-discount">
+    <label class="sub" for="@Html.IdFor(m => m.Name)">@T("Discount Name")</label><br />
+    @Html.TextBoxFor(m => m.Name, new { @class = "text" })<br />
+    <span class="hint">@T("The technical name of the discount (this is different from the title, which is the discount's friendly name that will be displayed to end-users).")</span><br/>
+
+    <label class="sub" for="@Html.IdFor(m => m.Discount)">@T("Discounted Amount or Percentage")</label><br />
+    @Html.TextBoxFor(m => m.Discount, new { @class = "text-small" })<br />
+    <span class="hint">@T("This can be a fixed amount, which will be subtracted from the price of each item (if the result is less than zero, the item becomes free), or a percentage amount. \"10%\" removes ten percent to the price. \"5\" removes $5 to the price.")</span><br/>
+    
+    <fieldset class="nwazet-discount-datetime">
+        <legend>@T("Starts")</legend>
+        <label class="forpicker" for="@Html.IdFor(m => m.StartDate)">@T("Date")</label>
+        @Html.EditorFor(m => m.StartDate, new {@class="date"})
+        <label class="forpicker" for="@Html.IdFor(m => m.StartTime)">@T("Time")</label>
+        @Html.EditorFor(m => m.StartTime, new { @class = "time" })
+    </fieldset>
+    
+    <fieldset class="nwazet-discount-datetime nwazet-discount-datetime-second">
+        <legend>@T("Ends")</legend>
+        <label class="forpicker" for="@Html.IdFor(m => m.EndDate)">@T("Date")</label>
+        @Html.EditorFor(m => m.EndDate, new { @class = "date" })
+        <label class="forpicker" for="@Html.IdFor(m => m.EndTime)">@T("Time")</label>
+        @Html.EditorFor(m => m.EndTime, new { @class = "time" })
+    </fieldset>
+    
+    <fieldset>
+        <legend>@T("Roles")</legend>
+        @foreach(var role in roles) {
+            <input type="checkbox" name="@Html.Name("DiscountRoles")"@(discountRoles != null &&
+            discountRoles.Contains(role) ? " checked=\"checked\"" : "") id="@(Html.Id("DiscountRoles") + "_" + role)" value="@role"/>
+            <label class="forcheckbox" for="@(Html.Id("DiscountRoles") + "_" + role)">@role</label>
+        }
+        <span class="hint">@T("Use this to restrict the promotion to members of specific roles. Leave all unchecked for no restriction.")</span>
+    </fieldset>
+    
+    <fieldset>
+        <legend>@T("Quantity")</legend>
+        <label class="sub" for="@Html.IdFor(m => m.StartQuantity)">@T("From:")</label>
+        @Html.TextBoxFor(m => m.StartQuantity, new { @class = "text-small", @type="number" })
+        <label class="sub" for="@Html.IdFor(m => m.EndQuantity)">@T("To:")</label>
+        @Html.TextBoxFor(m => m.EndQuantity, new { @class = "text-small", @type="number" })
+    </fieldset>
+    
+    <label class="sub" for="@Html.IdFor(m => m.Pattern)">@T("Url pattern")</label><br />
+    @Html.TextBoxFor(m => m.Pattern, new { @class = "text" })<br />
+    <span class="hint">@T("If specified, this regular expression will restrict the applicability of the discount to products with a URL matching it. For example, if you specify \"/modules\", a product with a path \"/modules/display\" would have the discount applied, but not a product with a path \"/components/standoff\".")</span><br/>
+
+    <label class="sub" for="@Html.IdFor(m => m.ExclusionPattern)">@T("Url exclusion pattern")</label><br />
+    @Html.TextBoxFor(m => m.ExclusionPattern, new { @class = "text" })<br />
+    <span class="hint">@T("If specified, this regular expression will restrict the applicability of the discount to products with a URL that is not matching it. For example, if you specify \"/modules\", a product with a path \"/modules/display\" would not have the discount applied, but a product with a path \"/components/standoff\" would.")</span><br />
+    
+    <label class="sub" for="@Html.IdFor(m => m.Comment)">@T("Comment")</label><br />
+    @Html.TextBoxFor(m => m.Comment, new { @class = "text" })<br />
+    <span class="hint">@T("A short comment that will be displayed next to the discounted price on the front-end.")</span><br/>
+</fieldset>
+
+@using (Script.Foot()) {
+    @* generates the localization script *@
+    @Display.CalendarsPickerLocalization()
+    @Display.TimeEntryLocalization()
+    Script.Require("jQueryCalendars_Picker_Ext").AtFoot();
+
+<script type="text/javascript">
+//<![CDATA[
+    $(function() {
+
+        var clearHint = function($this) {
+            if ($this.val() == $this.data("hint")) {
+                $this.removeClass("hinted").val("");
+            }
+        };
+        var resetHint = function($this) {
+            setTimeout(function() {
+                if (!$this.val()) {
+                    $this.addClass("hinted").val($this.data("hint"));
+                }
+            }, 300);
+        };
+        
+        $(".nwazet-discount label.forpicker").each(function () {
+            var $this = $(this);
+            var pickerInput = $("#" + $this.attr("for"));
+            if (!pickerInput.val()) {
+                pickerInput.data("hint", $this.text());
+                pickerInput.addClass("hinted")
+                    .val(pickerInput.data("hint"))
+                    .focus(function() { clearHint($(this)); })
+                    .blur(function() { resetHint($(this)); });
+                $this.closest("form").submit(function() {
+                    clearHint(pickerInput);
+                    pickerInput = 0;
+                });
+            }
+        });
+
+        var dateRenderer = $.extend({}, $.calendarsPicker.themeRollerRenderer, {
+            picker: "<div {popup:start} id='ui-datepicker-div'{popup:end} class='ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all{inline:start} ui-datepicker-inline{inline:end}'><div class='ui-datepicker-header ui-widget-header ui-helper-clearfix ui-corner-all'>{link:prev}{link:today}{link:next}</div>{months}{popup:start}{popup:end}<div class='ui-helper-clearfix'></div></div>",
+            month: "<div class='ui-datepicker-group'><div class='ui-datepicker-month ui-helper-clearfix'>{monthHeader:MM yyyy}</div><table class='ui-datepicker-calendar'><thead>{weekHeader}</thead><tbody>{weeks}</tbody></table></div>"
+        });
+
+        $('#@Html.IdFor(m => m.StartDate)').calendarsPicker({
+            showAnim: "",
+            renderer: dateRenderer
+        });
+        $('#@Html.IdFor(m => m.StartTime)')
+            .timeEntry();
+
+        $('#@Html.IdFor(m => m.EndDate)').calendarsPicker({
+            showAnim: "",
+            renderer: dateRenderer
+        });
+        $('#@Html.IdFor(m => m.EndTime)')
+            .timeEntry();
+    })
+//]]>
+</script>
+}

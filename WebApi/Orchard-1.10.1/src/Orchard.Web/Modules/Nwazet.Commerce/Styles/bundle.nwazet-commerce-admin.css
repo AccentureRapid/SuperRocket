@@ -1,0 +1,18 @@
+﻿.bundle li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.bundle li input {
+    width: 3em;
+    vertical-align: baseline;
+}
+
+.product-image {
+    float: left;
+    margin-right: 8px;
+}
+
+.product-image .media-picker-field-product-image {
+    height:80px;
+}

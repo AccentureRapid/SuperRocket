@@ -1,0 +1,7 @@
+﻿.navicon-content-tree {
+    background-image:url(images/menu.contenttree.png) !important;
+}
+.section-content-tree.selected .navicon-content-tree,
+.navicon-content-tree:hover {
+background-position:0 -26px !important;
+}

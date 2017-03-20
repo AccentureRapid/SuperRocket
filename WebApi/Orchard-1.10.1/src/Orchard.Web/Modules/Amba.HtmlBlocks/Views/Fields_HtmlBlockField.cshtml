@@ -1,0 +1,5 @@
+﻿@using Amba.HtmlBlocks.Fields
+@{
+    var field = (HtmlBlockField)Model.Field;
+}
+@Html.Raw(field.HTML)

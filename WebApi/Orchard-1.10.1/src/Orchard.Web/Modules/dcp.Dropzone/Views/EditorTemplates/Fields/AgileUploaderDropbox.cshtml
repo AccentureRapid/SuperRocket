@@ -1,0 +1,103 @@
+﻿@using dcp.Dropzone;
+@model AgileUploaderField.ViewModels.AgileUploaderFieldViewModel
+
+@{
+    Script.Require("jQuery");
+    Script.Require("dropzone");
+    Style.Require("dropzone.default");
+
+    var dropZoneId = Html.FieldIdFor(x => x.Field.FileNames).ToString().ToDropzoneId();
+}
+
+<fieldset>
+    <div id="@Html.FieldIdFor(x => x.Field.FileNames)-dropzone" class="dropzone"
+         data-dropzone
+         data-dropzone-url="@Url.Action("Upload", "AgileUploader", new {area = "AgileUploaderField"}, null)"
+         data-dropzone-inputfor="@Html.FieldIdFor(x => x.Field.FileNames)">
+
+    </div>
+    @Html.HiddenFor(x => x.Field.FileNames)
+</fieldset>
+
+
+
+@using (Script.Foot())
+{
+    <script type="text/javascript">
+
+    Dropzone.options.@dropZoneId = false;
+
+    var agileUploadFieldSettings = {
+        fileLimit: @(Model.Settings.FileLimit),
+        maxWidth: @(Model.Settings.MaxWidth),
+        maxHeight: @(Model.Settings.MaxHeight),
+        antiForgeryToken: "@(Html.AntiForgeryTokenValueOrchard())",
+        agileUploaderMediaFolder: "@(Model.AgileUploaderMediaFolder)"
+        };
+
+    $(function () { //onReady
+        var hidden$ = $("#@(Html.FieldIdFor(x => x.Field.FileNames))");
+
+        var images = hidden$.val().split(";");
+
+        var dropzoneOptions = {
+            url: "@Url.Action("Upload", "AgileUploader", new { area = "AgileUploaderField"})",
+            maxFilesize: 2, // MB
+            maxFiles: agileUploadFieldSettings.fileLimit,
+            acceptedFiles: ".png, .jpeg, .jpg",
+            addRemoveLinks: true,
+            dictDefaultMessage: "Загрузить фото",
+            dictMaxFilesExceeded: "Вы не можете загрузить больше файлов",
+            dictRemoveFile: "Удалить файл",
+            init: function() {
+                var self = this;
+                this.on("sending", function(file, xhr, formData) {
+                    formData.append("__RequestVerificationToken", agileUploadFieldSettings.antiForgeryToken);
+                    formData.append("agileUploaderMediaFolder", agileUploadFieldSettings.agileUploaderMediaFolder);
+
+                });
+                this.on("success", function(file) {
+                    var newVal = file.xhr.responseText;
+                    var val = hidden$.val();
+                    if (val !== "")
+                        val += ";";
+                    val += newVal;
+                    hidden$.val(val);
+                    file.uploadedName = newVal;
+                });
+                this.on("removedfile", function(file) {
+                    hidden$.val($.grep(hidden$.val().split(';'), function(fileName) { return fileName !== file.uploadedName; }).join(';'));
+                });
+                
+                for (var i = 0; i < images.length; i++) {
+                    var image = images[i];
+                    if (image === "")
+                        continue;
+
+                    var imagePathComps = image.split("/");
+                    var filename = imagePathComps[imagePathComps.length - 1];
+                    // Create the mock file:
+                    var mockFile = { name: filename, size: 1 };
+                    
+                    // Call the default addedfile event handler
+                    this.emit("addedfile", mockFile);
+
+                    // And optionally show the thumbnail of the file:
+                    this.emit("thumbnail", mockFile, image);
+                    this.createThumbnailFromUrl(mockFile, image);    
+
+                    // Make sure that there is no progress bar, etc...
+                    this.emit("complete", mockFile);
+                }
+                
+
+                
+
+            }
+        };
+
+        var dropzone = new Dropzone("#@(Html.FieldIdFor(x => x.Field.FileNames))-dropzone", dropzoneOptions);
+    });
+
+    </script>
+}

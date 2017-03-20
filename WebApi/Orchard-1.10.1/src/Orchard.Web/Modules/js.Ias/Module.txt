@@ -1,0 +1,17 @@
+﻿Name: Infinite Ajax Scrolling
+Path: js.Ias
+AntiForgery: enabled
+Author: Jeroen Fiege, Team Grapto (tweet: @teamgrapto)
+Website: https://github.com/grapto/js.Ias
+Version: 1.4.1
+OrchardVersion: 1.8
+Description: The js.Ias module contains the jQuery Infinite Ajax Scrolling plugin and related script libraries.
+FeatureDescription: A common location for jQuery Infinite Ajax Scrolling and related script libraries.
+Category: Utility
+Dependencies: Orchard.jQuery
+Features:
+	js.Ias.Blogs:
+		Name: Infinite Ajax Scrolling for Blog Posts
+		Description: Auto enable Infinite Ajax Scrolling support for your Blog Posts.
+		Dependencies: js.Ias, Orchard.Blogs
+		Category: Utility

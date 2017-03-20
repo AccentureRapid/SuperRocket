@@ -1,0 +1,262 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D56D6C79-59A3-4C15-8A4F-1186BB7B9E92}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Braeburn</RootNamespace>
+    <AssemblyName>Braeburn</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Mvc, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\lib\aspnetmvc\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Activate\addressLabel1.png" />
+    <Content Include="Content\Activate\addressLabel2.png" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\fonts\Roboto\LICENSE.txt" />
+    <Content Include="Content\left_shadow.png" />
+    <Content Include="Content\left_shadow_disabled.png" />
+    <Content Include="Content\left_shadow_hover.png" />
+    <Content Include="Content\logo.png" />
+    <Content Include="Content\Payment\card_csc.png" />
+    <Content Include="Content\Payment\card_csc_amex.png" />
+    <Content Include="Content\right_shadow.png" />
+    <Content Include="Content\right_shadow_disabled.png" />
+    <Content Include="Content\right_shadow_hover.png" />
+    <Content Include="Content\Web.config" />
+    <Content Include="Scripts\bootstrap-datepicker.js" />
+    <Content Include="Scripts\bootstrap-datepicker.min.js">
+      <DependentUpon>bootstrap-datepicker.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js">
+      <DependentUpon>bootstrap.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\braeburn.js" />
+    <Content Include="Scripts\braeburn.min.js">
+      <DependentUpon>braeburn.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\scroller.js" />
+    <Content Include="Scripts\scroller.min.js">
+      <DependentUpon>scroller.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Web.config" />
+    <Content Include="Styles\braeburn.css">
+      <DependentUpon>braeburn.less</DependentUpon>
+    </Content>
+    <Content Include="Styles\braeburn.min.css">
+      <DependentUpon>braeburn.css</DependentUpon>
+    </Content>
+    <Content Include="Styles\csspinner.css.map">
+      <DependentUpon>csspinner.css</DependentUpon>
+    </Content>
+    <Content Include="Scripts\braeburn.min.js.map">
+      <DependentUpon>braeburn.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\bootstrap-datepicker.min.js.map">
+      <DependentUpon>bootstrap-datepicker.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\scroller.min.js.map">
+      <DependentUpon>scroller.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\bootstrap.min.js.map">
+      <DependentUpon>bootstrap.min.js</DependentUpon>
+    </Content>
+    <None Include="Styles\csspinner.less" />
+    <Content Include="Styles\csspinner.css">
+      <DependentUpon>csspinner.less</DependentUpon>
+    </Content>
+    <Content Include="Styles\csspinner.min.css">
+      <DependentUpon>csspinner.css</DependentUpon>
+    </Content>
+    <Content Include="Styles\datepicker.css.map">
+      <DependentUpon>datepicker.css</DependentUpon>
+    </Content>
+    <None Include="Styles\datepicker.less" />
+    <Content Include="Styles\datepicker.css">
+      <DependentUpon>datepicker.less</DependentUpon>
+    </Content>
+    <Content Include="Styles\datepicker.min.css">
+      <DependentUpon>datepicker.css</DependentUpon>
+    </Content>
+    <Content Include="Styles\font-awesome.css.map">
+      <DependentUpon>font-awesome.css</DependentUpon>
+    </Content>
+    <None Include="Styles\font-awesome.less" />
+    <Content Include="Styles\font-awesome.css">
+      <DependentUpon>font-awesome.less</DependentUpon>
+    </Content>
+    <Content Include="Styles\font-awesome.min.css">
+      <DependentUpon>font-awesome.css</DependentUpon>
+    </Content>
+    <Content Include="Styles\Web.config" />
+    <Content Include="Web.config" />
+    <Content Include="Theme.txt" />
+    <Content Include="Theme.png" />
+    <Content Include="Placement.info" />
+    <Content Include="Views\BadgeOfHonor.cshtml" />
+    <Content Include="Views\LogOn.Form.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">
+      <Project>{2D1D92BB-4555-4CBE-8D0E-63563D6CE4C6}</Project>
+      <Name>Orchard.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Orchard.Core.csproj">
+      <Project>{9916839C-39FC-4CEB-A5AF-89CA7E87119F}</Project>
+      <Name>Orchard.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PJS.Bootstrap\PJS.Bootstrap.csproj">
+      <Project>{b0811854-21c6-4c59-9867-d844d24adfa6}</Project>
+      <Name>PJS.Bootstrap</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Theme.psd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Branding.cshtml" />
+    <Content Include="Views\Document.cshtml" />
+    <Content Include="Views\Fields.ContentPicker-FeaturedProducts.cshtml" />
+    <Content Include="Views\Fields.Enumeration-layoutOptions.cshtml" />
+    <Content Include="Views\Layout.cshtml" />
+    <Content Include="Views\LogOn.cshtml" />
+    <Content Include="Views\Menu.cshtml" />
+    <Content Include="Views\MenuItemLinkdd.cshtml" />
+    <Content Include="Views\MenuTopItemLinkdd.cshtml" />
+    <Content Include="Views\Orchard.Users\Account\LostPassword.cshtml" />
+    <Content Include="Views\Template.User.LostPassword.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="Content\fonts\Roboto\Roboto-Black.ttf" />
+    <Content Include="Content\fonts\Roboto\Roboto-BlackItalic.ttf" />
+    <Content Include="Content\fonts\Roboto\Roboto-Bold.ttf" />
+    <Content Include="Content\fonts\Roboto\Roboto-BoldItalic.ttf" />
+    <Content Include="Content\fonts\Roboto\Roboto-Italic.ttf" />
+    <Content Include="Content\fonts\Roboto\Roboto-Light.ttf" />
+    <Content Include="Content\fonts\Roboto\Roboto-LightItalic.ttf" />
+    <Content Include="Content\fonts\Roboto\Roboto-Medium.ttf" />
+    <Content Include="Content\fonts\Roboto\Roboto-MediumItalic.ttf" />
+    <Content Include="Content\fonts\Roboto\Roboto-Regular.ttf" />
+    <Content Include="Content\fonts\Roboto\Roboto-Thin.ttf" />
+    <Content Include="Content\fonts\Roboto\Roboto-ThinItalic.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Styles\braeburn.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Styles\braeburn.css.map">
+      <DependentUpon>braeburn.css</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target> -->
+  <Target Name="AfterBuild" DependsOnTargets="AfterBuildCompiler">
+    <PropertyGroup>
+      <AreasManifestDir>$(ProjectDir)\..\Manifests</AreasManifestDir>
+    </PropertyGroup>
+    <!-- If this is an area child project, uncomment the following line:
+    <CreateAreaManifest AreaName="$(AssemblyName)" AreaType="Child" AreaPath="$(ProjectDir)" ManifestPath="$(AreasManifestDir)" ContentFiles="@(Content)" />
+    -->
+    <!-- If this is an area parent project, uncomment the following lines:
+    <CreateAreaManifest AreaName="$(AssemblyName)" AreaType="Parent" AreaPath="$(ProjectDir)" ManifestPath="$(AreasManifestDir)" ContentFiles="@(Content)" />
+    <CopyAreaManifests ManifestPath="$(AreasManifestDir)" CrossCopy="false" RenameViews="true" />
+    -->
+  </Target>
+  <Target Name="AfterBuildCompiler" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(ProjectDir)\..\$(ProjectName)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>45979</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://orchard.codeplex.com</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

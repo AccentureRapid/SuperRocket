@@ -1,0 +1,19 @@
+﻿@model dcp.Routing.Models.RedirectRule
+
+<h2>@T("Edit")</h2>
+
+@Html.ValidationSummary()
+
+@using (Html.BeginFormAntiForgeryPost())
+{
+    <fieldset>
+        <legend>@T("Redirect rule")</legend>
+        @Html.EditorForModel()
+    </fieldset>
+
+    <fieldset class="save-button">
+        <button class="primaryAction" type="submit" name="submit.Save" value="submit.Save">Save</button>
+    </fieldset>
+}
+
+

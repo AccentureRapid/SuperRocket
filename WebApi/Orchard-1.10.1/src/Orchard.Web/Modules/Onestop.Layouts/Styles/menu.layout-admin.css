@@ -1,0 +1,13 @@
+﻿.navicon-layouts {
+background-image:url(images/menu.layout.png) !important;
+}
+.navicon-layouts:hover {
+background-position:0 -30px !important;
+}
+
+.subnavicon-layout {
+background-image:url(images/menu.layout.png) !important;
+}
+.subnavicon-layout:hover {
+background-position:0 -28px !important;
+}

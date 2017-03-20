@@ -1,0 +1,11 @@
+﻿<Placement>
+  <Match ContentType="HtmlModule">
+    <Place Fields_Common_Text_Edit-Title="Content:1" />
+    <Place Fields_Common_Text_Edit-Author="Content:2" />
+    <Place Fields_Common_Text_Edit-Url="Content:2.1" />
+    <Place Fields_Common_Text_Edit-Description="Content:2.2" />
+
+    <Place Fields_MediaLibraryPicker_Edit-HtmlModuleIco="Content:2.4" />
+    <Place Fields_MediaLibraryPicker_Edit-HtmlModuleFile="Content:2.5" />
+  </Match>
+</Placement>

@@ -1,0 +1,65 @@
+﻿@using System.Globalization
+@using Onestop.Layouts.Helpers
+@using Onestop.Layouts.Models
+@using Orchard.DisplayManagement.Shapes
+@{
+    Style.Include("layout-grid.css");
+}
+@{
+    var metadata = ((Shape) Model).Metadata;
+    var isAdmin = metadata.DisplayType.IndexOf("admin", StringComparison.OrdinalIgnoreCase) != -1;
+    dynamic previewWrapperTag = null;
+    if (isAdmin) {
+        Script.Require("jQuery");
+        Script.Include("layout-thumb.js").AtFoot();
+        Style.Include("layout-admin.css", "layout-admin-min.css");
+        var previewWrapper = New.PreviewWrapper();
+        previewWrapper.Classes.Add("templated-item-preview");
+        previewWrapperTag = Tag(previewWrapper, "div");
+        @previewWrapperTag.StartElement
+    }
+    if (Model.LayoutTemplate != null && !String.IsNullOrWhiteSpace(Model.LayoutTemplate.StylesheetPath)) {
+        Style.Include(Model.LayoutTemplate.StylesheetPath);
+    }
+    Model.Classes.Add("templated-item");
+    
+    var template = Model.LayoutTemplate as LayoutTemplatePart;
+    if (template != null) {
+        Model.Classes.Add(template.CssClass);
+        if (!string.IsNullOrWhiteSpace(template.PageCssClass)) {
+            Html.AddPageClassNames(template.PageCssClass);
+        }
+        var styles = new Dictionary<string, string>();
+        if (template.Width > 0) {
+            styles.Add("width", template.Width.ToString(CultureInfo.InvariantCulture) + "px");
+        }
+        if (template.Height > 0) {
+            styles.Add("height", template.Height.ToString(CultureInfo.InvariantCulture) + "px");
+        }
+        Model.Attributes["style"] = styles.BuildStyle();
+    }
+    var tag = Tag(Model, "div");
+    @tag.StartElement
+    if (Model.Elements == null) {
+        @T("The layout for this templated item can't be found.")
+    }
+    else {
+        var elements = ((IEnumerable<dynamic>) Model.Elements).ToList();
+        if (elements.Count != 0) {
+            foreach (var element in elements) {
+                element.ParentShape = Model;
+                element.Metadata.DisplayType = Model.Metadata.DisplayType;
+                if (element.UsesIndex == true) {
+                    var helperIndex = Html.GetLayoutEditorHelperIndex();
+                    element.HelperIndex = helperIndex;
+                    element.Attributes.Add("data-index", helperIndex.ToString(CultureInfo.InvariantCulture));
+                }
+                @Display(element)
+            }
+        }
+    }
+    @tag.EndElement
+    if (previewWrapperTag != null) {
+        @previewWrapperTag.EndElement
+    }
+}

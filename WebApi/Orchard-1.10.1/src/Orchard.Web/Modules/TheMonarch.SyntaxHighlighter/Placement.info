@@ -1,0 +1,7 @@
+﻿<Placement>
+    <Match ContentType="BlogPost">
+        <Place SyntaxHighlighter="Content:1"/>
+    </Match>
+
+    <Place Parts_SyntaxHighlighterSettings_Edit="Content:10"/>
+</Placement>

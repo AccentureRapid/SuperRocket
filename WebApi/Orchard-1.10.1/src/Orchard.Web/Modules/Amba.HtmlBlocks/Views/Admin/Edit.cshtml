@@ -1,0 +1,51 @@
+﻿@model Amba.HtmlBlocks.Models.HtmlBlockRecord
+@{
+    Script.Require("HB_CodeMirror_XML").AtFoot();
+    Style.Require("HB_CodeMirror").AtHead();
+
+    Layout.Title = @T("Html Block");              
+}
+@using(Html.BeginFormAntiForgeryPost())
+{
+    <fieldset>
+        <legend></legend>
+        @Html.HiddenFor(x => x.Id)
+        <div>
+            @Html.LabelFor(x => x.BlockKey, T("Html block key"))
+            @Html.TextBoxFor(x => x.BlockKey, new {@class = "text long"})
+            @Html.ValidationMessageFor(x => x.BlockKey)
+        </div>
+        <div>
+            @Html.LabelFor(x => x.HelpText, T("Help Text"))
+            @Html.TextBoxFor(x => x.HelpText, new {@class = "large text"})
+        </div>
+        <div>
+            @Html.LabelFor(x => x.HTML, T("Html"))
+            @Html.TextAreaFor(x => x.HTML, new {@class = "text"})
+        </div>
+        <div class="form-buttonset">
+            <input class="button" type="submit" value="Save"/>
+        </div>
+    </fieldset>
+}
+@using(Script.Foot())
+{
+    <script type="text/javascript">
+        CodeMirror.fromTextArea(document.getElementById("@(Html.FieldIdFor(x => x.HTML))"), {
+            lineNumbers: false,
+            mode: "text/html",
+            tabMode: "indent",
+            lineWrapping: true
+        });
+    </script>
+    
+    <style type="text/css">
+        .form-buttonset {
+            margin-top: 10px;
+        }
+        .CodeMirror-wrap {
+            border: 1px solid #BDBCBC;
+            font-size: 14px;
+        }
+    </style>
+}

@@ -1,0 +1,29 @@
+﻿@using Orchard.ContentManagement
+@using Orchard.ContentManagement.Aspects
+@using Orchard.MediaLibrary.Models;
+@using OShop.Models
+@using OShop.Downloads.Models
+@{ 
+    OrderDownloadsPart part = Model.ContentPart;
+    var order = part.ContentItem.As<OrderPart>();
+}
+@if (order != null && part.Downloads.Any()) {
+    <div class="order-downloads">
+        <h3>@T("Downloads")</h3>
+        <ul>
+            @foreach (var download in part.Downloads) {
+                string linkText;
+                var title = download.Value.As<ITitleAspect>();
+                if (title != null && !string.IsNullOrWhiteSpace(title.Title)) {
+                    linkText = title.Title;
+                }
+                else {
+                    linkText = download.Value.As<MediaPart>().FileName;
+                }
+                <li>
+                    <a href="@Url.Action("Download", "ProductDownload", new { Area = "OShop.Downloads", Id = download.Key, Reference = order.Reference })">@linkText</a>
+                </li>
+                }
+        </ul>
+    </div>
+}

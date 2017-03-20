@@ -1,0 +1,12 @@
+﻿@using OShop.Models
+@{
+    Style.Require("OShopAdmin");
+    VatPart part = Model.ContentPart;
+}
+
+@if (part.VatRate != null) {
+    <span class="vat">@T("VAT {0:P}", part.VatRate.Rate)&nbsp;&#124;&nbsp;</span>
+}
+else {
+    <span class="vat">@T("No VAT")&nbsp;&#124;&nbsp;</span>
+}

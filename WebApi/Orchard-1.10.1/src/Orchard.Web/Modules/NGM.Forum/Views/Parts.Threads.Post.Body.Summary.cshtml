@@ -1,0 +1,12 @@
+﻿@using NGM.Forum.Models
+@using NGM.Forum.Extensions
+@using NGM.Forum.ViewModels
+@using Orchard.UI.Navigation
+@{ 
+    string bodyHtml = Model.Html.ToString();
+    var body = new HtmlString(Html.Excerpt(bodyHtml, 200).ToString().Replace(Environment.NewLine, "</p>" + Environment.NewLine + "<p>"));
+
+    PostPart post = (PostPart) Model.ContentPart;
+    Pager pager = (ThreadPager) Model.Pager;
+}
+<p>@body <a href="@Url.PostView(post, pager)">@T("more")</a></p>

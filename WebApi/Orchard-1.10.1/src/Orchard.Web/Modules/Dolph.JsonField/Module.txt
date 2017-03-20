@@ -1,0 +1,10 @@
+﻿Name: Dolph.JsonField
+AntiForgery: enabled
+Author: Rudolph Koegelenberg
+Website: https://bitbucket.org/rkoegelenberg/orchard.modules.dolph.jsonfield
+Version: 1.0
+OrchardVersion: 1.8
+Description: A field with an Json Editor to manage Json data for a content item.
+Features:
+    Dolph.JsonField:
+        Description: A field with an Json Editor to manage Json data for a content item.

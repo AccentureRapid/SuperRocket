@@ -1,0 +1,19 @@
+﻿@{
+    Script.Require("jQuery");
+    Script.Include("layout-thumb.js").AtFoot();
+    Script.Include("templated-item-live-view.js").AtFoot();
+    Style.Include("layout-admin.css");
+    var pathFormatString = Href("~/__0__");
+    using (Script.Foot()) {
+        <script type="text/javascript">
+        //<![CDATA[
+            window.pathFormatString = "@pathFormatString";
+        //]]>
+        </script>
+    }
+}
+<div class="templated-item-preview-float">
+    <div class="templated-item-preview" data-size="400" data-width="@(Model.Layout != null ? Model.Layout.Width : "")" data-height="@(Model.Layout != null ? Model.Layout.Height : "")">
+        @Display(Model.TemplatedItemPreviewShape)
+    </div>
+</div>

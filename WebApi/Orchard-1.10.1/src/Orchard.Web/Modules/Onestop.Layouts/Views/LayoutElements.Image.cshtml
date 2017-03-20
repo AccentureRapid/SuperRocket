@@ -1,0 +1,30 @@
+﻿@using Onestop.Layouts.Helpers
+@using Onestop.Layouts.Models
+@{
+    var url = Url.FixedHref(s => Href(s), (string)Model.Url);
+    Model.Classes.Add("layout-element");
+    Model.Classes.Add("layout-element-img");
+    Model.Classes.Add(Model.CssClass);
+
+    var styles = new Dictionary<string, string>();
+    styles.AddPercentIfNonZeroPixels("width", (Length)Model.Width, (int)Model.LayoutWidth);
+    styles.AddIfNotEmpty("height", ((Length)Model.Height).ToString());
+    styles.AddPercentIfNonZeroPixels("left", (Length)Model.Left, (int)Model.LayoutWidth, "position", "absolute");
+    styles.AddPercentIfNonZeroPixels("top", (Length)Model.Top, (int)Model.LayoutHeight, "position", "absolute");
+        Model.Attributes["style"] = styles.BuildStyle();
+        var tag = Tag(Model, "div");
+        @tag.StartElement
+        if (Model.Metadata.DisplayType == "Preview" && Model.UsesIndex) {
+            var displayIndex = Html.GetLayoutDisplayIndex();
+            var textId = "templated_" + displayIndex + "_alt";
+            var urlId = "templated_" + displayIndex + "_src";
+            <img class="img-responsive @(urlId + "_live " + textId + "_live")"
+                 @Html.Raw("data-live-property-" + urlId + "=\"src\"")
+                 @Html.Raw("data-live-property-" + textId + "=\"alt\"")
+                 src="@url" alt="@Model.AlternateText" />
+        }
+        else {
+            <img src="@url" alt="@Model.AlternateText" class="img-responsive" />
+        }
+        @tag.EndElement
+    }

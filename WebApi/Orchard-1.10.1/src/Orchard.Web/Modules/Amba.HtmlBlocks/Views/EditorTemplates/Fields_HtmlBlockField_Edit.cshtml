@@ -1,0 +1,80 @@
+﻿@using Amba.HtmlBlocks.Settings
+@model Amba.HtmlBlocks.Fields.HtmlBlockField
+@{
+    Script.Require("HB_CodeMirror_JS").AtFoot();
+    Script.Require("HB_CodeMirror_HtmlMixed").AtFoot();
+
+    Script.Require("HB_CodeMirror_Search").AtFoot();
+    Script.Require("HB_CodeMirror_Search_Cursor").AtFoot();
+    Script.Require("HB_CodeMirror_Search_MatchHighLight").AtFoot();
+    Script.Require("HB_CodeMirror_Search_Dialog").AtFoot();
+    Script.Require("HB_CodeMirror_Lint").AtFoot();
+    Script.Require("jQueryUI_Tabs").AtHead();
+
+    Style.Require("jQueryUI_Orchard").AtHead();
+
+    Style.Require("HB_CodeMirror").AtHead();
+    Style.Require("HB_CodeMirror_Lint").AtHead();
+    Style.Require("HB_CodeMirror_MatchScrollbar").AtHead();
+    Style.Require("HB_CodeMirror_Dialog").AtHead();
+
+    var id = Guid.NewGuid().ToString();
+    var editorSettings = Model.PartFieldDefinition.Settings.GetModel<HtmlBlockFieldSettings>();
+}
+<fieldset>
+    <label>@Model.DisplayName</label>
+    <div id="@(id)_tabs">
+        <ul>
+            <li><a href="#@(id)_tab1">@T("HTML")</a></li>
+            <li><a href="#@(id)_tab2">@T("Preview")</a></li>
+        </ul>
+        <div id="@(id)_tab1">
+            @if (!string.IsNullOrWhiteSpace(editorSettings.HelpText))
+            {
+                <div class="help-text hint">
+                    @Html.Raw(editorSettings.HelpText)
+                </div>
+            }
+            @Html.TextAreaFor(x => x.HTML, new { id = id })
+        </div>
+        <div id="@(id)_tab2">
+            <iframe width="100%" height="100%" id="@(id)_preview"></iframe>
+        </div>
+    </div>
+</fieldset>
+
+@using (Script.Foot())
+{
+    <script type="text/javascript">
+        $().ready(function () {
+            var cm = CodeMirror.fromTextArea(document.getElementById("@(id)"), {
+                lineNumbers: true,
+                mode: "text/html",
+                lineWrapping: true
+            });
+            @if (editorSettings.Height > 0)
+        {
+            <text>cm.setSize('100%', '@(editorSettings.Height)px');</text>
+        }
+            $("#@(id)_tabs").tabs({})
+                .on("tabsactivate", function (event, ui) {
+                    var s = document.getElementById('@(id)_preview');
+                    s.contentDocument.open('text/html', 'replace');
+                    s.contentDocument.write(cm.getDoc().getValue());
+                    s.contentDocument.close();
+                });
+        });
+    </script>
+
+    <style type="text/css">
+         #@(id)_tab1 .CodeMirror-wrap {
+             border: 1px solid #BDBCBC;
+             font-size: 14px;
+         }
+
+.help-text {
+    margin-bottom: 5px;
+
+}
+    </style>
+}

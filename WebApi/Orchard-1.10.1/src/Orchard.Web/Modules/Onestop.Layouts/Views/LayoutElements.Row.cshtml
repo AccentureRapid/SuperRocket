@@ -1,0 +1,14 @@
+﻿@{
+    List<dynamic> elements = ((IEnumerable<dynamic>)Model.Elements).ToList();
+    if (elements.Any()) {
+        Model.Classes.Add("layout-element");
+        Model.Classes.Add("layout-element-row");
+        Model.Classes.Add((string) Model.CssClass ?? "");
+        Model.Classes.Add("row");
+                
+        var tag = Tag(Model, "div");
+        @tag.StartElement
+        @Display.ChildLayoutElements(Elements: elements, DisplayType: Model.Metadata.DisplayType, ParentShape: Model)
+        @tag.EndElement
+    }
+}

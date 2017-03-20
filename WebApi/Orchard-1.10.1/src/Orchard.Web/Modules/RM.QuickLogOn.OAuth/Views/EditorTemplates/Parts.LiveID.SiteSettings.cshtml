@@ -1,0 +1,18 @@
+﻿@model RM.QuickLogOn.OAuth.Models.LiveIDSettingsPart
+@using Orchard.Utility.Extensions;
+
+<fieldset>
+    <legend>@T("LiveID OAuth")</legend>
+    <div>
+        <label for="@Html.FieldIdFor(m => m.ClientId)">@T("Client Id")</label>
+        @Html.TextBoxFor(m=>m.ClientId)
+        @Html.ValidationMessage("ClientId", "*")
+        <span class="hint">@T("You have to register application in Windows Live to get ClientId.")&nbsp;<a href="https://manage.dev.live.com/Applications">https://manage.dev.live.com/Applications</a></span>
+    </div>
+    <div>
+        <label for="@Html.FieldIdFor(m => m.ClientSecret)">@T("Client Secret")</label>
+        @Html.PasswordFor(m=>m.ClientSecret)
+        @Html.ValidationMessage("ClientSecret", "*")
+        <span class="hint">@T("Entre client secret to change. If empty then no change.")</span>
+    </div>
+</fieldset>

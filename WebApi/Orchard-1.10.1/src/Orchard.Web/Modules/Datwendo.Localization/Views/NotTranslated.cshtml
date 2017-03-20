@@ -1,0 +1,26 @@
+﻿@using Orchard.ContentManagement;
+@using Orchard.Core.Title.Models;
+@using Orchard.Localization.Models;
+@{
+    var culture = ViewBag.Culture.ToString();
+    var contentItem = ViewBag.ContentItem as IContent;
+    var title = contentItem != null ? "'" + contentItem.As<TitlePart>().Title + "'" : null;
+    var localizations = ViewBag.Localizations as IEnumerable<LocalizationPart>;
+}
+<h2>@Html.TitleForPage(T("Translation not found"))</h2>
+<div class="box warning">
+    <p>
+        @T("The '{0}' translation of {1} you are looking for does not exist.", culture, title ?? T("content").ToString())
+    </p>
+    @if (contentItem != null) {
+    <span>
+        @T("Available translations:")
+    </span>
+    <ul>
+        @foreach (var lp in localizations)
+        {
+            <li>@Html.ItemDisplayLink(lp.ContentItem)</li>
+        }
+    </ul>
+    }
+</div>

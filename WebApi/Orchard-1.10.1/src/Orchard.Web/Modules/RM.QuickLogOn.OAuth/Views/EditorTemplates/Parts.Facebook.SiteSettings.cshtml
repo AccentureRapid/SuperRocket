@@ -1,0 +1,18 @@
+﻿@model RM.QuickLogOn.OAuth.Models.FacebookSettingsPart
+@using Orchard.Utility.Extensions;
+
+<fieldset>
+    <legend>@T("Facebook OAuth")</legend>
+    <div>
+        <label for="@Html.FieldIdFor(m => m.ClientId)">@T("Client Id")</label>
+        @Html.TextBoxFor(m=>m.ClientId)
+        @Html.ValidationMessage("ClientId", "*")
+        <span class="hint">@T("You have to create Facebook App to get ClientId.")&nbsp;<a href="https://developers.facebook.com/apps">https://developers.facebook.com/apps</a></span>
+    </div>
+    <div>
+        <label for="@Html.FieldIdFor(m => m.ClientSecret)">@T("Client Secret")</label>
+        @Html.PasswordFor(m=>m.ClientSecret)
+        @Html.ValidationMessage("ClientSecret", "*")
+        <span class="hint">@T("Entre client secret to change. If empty then no change.")</span>
+    </div>
+</fieldset>

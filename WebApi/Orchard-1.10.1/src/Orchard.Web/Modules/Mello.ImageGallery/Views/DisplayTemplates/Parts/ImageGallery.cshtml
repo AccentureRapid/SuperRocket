@@ -1,0 +1,77 @@
+﻿@using Mello.ImageGallery.Helpers
+@using System.Web.Mvc.Html
+@model Mello.ImageGallery.ViewModels.ImageGalleryViewModel
+
+@{ 
+    Style.Require("ImageGallery");
+ }
+
+@{ 
+    Script.Require("masonry").AtHead();
+    Script.Require("imagesloaded").AtHead();
+    Script.Require("infinitescroll").AtHead();
+ }
+
+@using (Script.Head()) {
+    
+<script type="text/javascript">    
+    $(document).ready(function () {
+        @Html.ImageGalleryScript(".image-gallery .grid-item a", Model.ImageGalleryPlugin) 
+    });
+
+    $('#container').imagesLoaded(function () {
+        new Masonry(document.getElementById('container'),
+            {
+                itemSelector: '.grid-item',
+                //columnWidth: '.grid-sizer',
+                isAnimated:true,
+                gutter: 10,
+                isFitWidth:false,
+                isResizableL:false,
+                isRTL: false
+            });
+    });
+
+
+    //$('#container').infinitescroll({
+    //    navSelector: '#pagination',
+    //    nextSelector: '#pagination a.next',
+    //    itemSelector: '#container .grid-item'
+    //    // .. 省去了其他参数
+    //}, function (arrayOfNewElems) {
+    //    $(arrayOfNewElems).appendTo('#container');
+    //    $('#container').imagesLoaded(function () {
+    //        new Masonry(document.getElementById('container'),
+    //       {
+    //           itemSelector: '.grid-item',
+    //           //columnWidth: '.grid-sizer',
+    //           isAnimated: true,
+    //           gutter: 10,
+    //           isFitWidth: false,
+    //           isResizableL: false,
+    //           isRTL: false
+    //       });
+    //    });
+    //});
+</script>
+    
+}
+
+<div class="image-gallery">
+    <div>
+        <ul id="container">
+            @foreach (var image in Model.Images)
+            {
+                <li class="grid-item">
+                    <a href="@image.PublicUrl" title="@image.Title" @Html.ImageGalleryAdditionalAttributes(Model.ImageGalleryPlugin, Model.ImageGalleryName)>
+                        @Html.Image(image)
+                    </a>
+                </li>
+            }
+        </ul>
+        @Display(Model.PagerShape)
+    </div>        
+</div>
+
+
+

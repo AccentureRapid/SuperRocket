@@ -1,0 +1,100 @@
+﻿@model js.Ias.Models.InfiniteAjaxScrollingPart
+@{
+    Style.Require("jQueryUI_Orchard").AtHead();
+    Script.Require("jQueryUI").AtHead();
+    
+}
+<fieldset>
+<legend>Infinite Ajax Scrolling Settings:</legend>
+    <div id="ias-settings-tabs">
+        <ul>
+            <li><a href="#ias-settings-tabs-1">@T("Settings")</a></li>
+            <li><a href="#ias-settings-tabs-2">@T("BeforePageChange")</a></li>
+            <li><a href="#ias-settings-tabs-3">@T("OnPageChange")</a></li>
+            <li><a href="#ias-settings-tabs-4">@T("OnLoadItems")</a></li>
+            <li><a href="#ias-settings-tabs-5">@T("OnRenderComplete")</a></li>
+        </ul>
+        <div id="ias-settings-tabs-1">
+            <div>
+                @Html.EditorFor(m => m.UseHistory)
+                <label class="forcheckbox" for="@Html.FieldIdFor(m => m.UseHistory)">@T("Use history module")</label>
+                <span class="hint">The IAS history module uses hashes (in the format '#/page/') to remember the last viewed page, so when a visitor hits the back button after visiting an item from that page, it will load all items up to that last page and scrolls it into view. The use of hashes can be problematic in some cases, in which case you can disable this feature.</span>
+            </div>
+            <div>
+                @Html.LabelFor(m => m.Container, T("Container"))
+                @Html.TextBoxFor(m => m.Container, new { @class = "textMedium" })
+                <span class="hint">Enter the selector of the element containing your items that you want to paginate. Default: .content-items</span>
+                @Html.ValidationMessageFor(m => m.Container, "*")
+            </div>
+            <div>
+                @Html.LabelFor(m => m.Item, T("Item"))
+                @Html.TextBoxFor(m => m.Item, new { @class = "textMedium" })
+                <span class="hint">Enter the selector of the element that each item has. Make sure the elements are inside the container element. Default: .content-item</span>
+                @Html.ValidationMessageFor(m => m.Item, "*")
+            </div>
+            <div>
+                @Html.LabelFor(m => m.Pagination, T("Pager"))
+                @Html.TextBoxFor(m => m.Pagination, new { @class = "textMedium" })
+                <span class="hint">Enter the selector of the element that contains your regular pagination links, like next, previous and the page numbers. This element will be hidden when IAS loads. Default: .zone-content .pager</span>
+                @Html.ValidationMessageFor(m => m.Pagination, "*")
+            </div>
+            <div>
+                @Html.LabelFor(m => m.NextAnchor, T("NextAnchor"))
+                @Html.TextBoxFor(m => m.NextAnchor, new { @class = "textMedium" })
+                <span class="hint">Enter the selector of the link element that links to the next page. The href attribute of this element will be used to get the items from the next page. Make sure there is only one(1) element that matches the selector. Default: .zone-content .pager .last a</span>
+                @Html.ValidationMessageFor(m => m.NextAnchor, "*")
+            </div>
+        </div>
+        <div id="ias-settings-tabs-2">
+            <div>
+                @Html.LabelFor(m => m.BeforePageChange, T("BeforePageChange"))
+                @Html.TextAreaFor(m => m.BeforePageChange)
+                <span class="hint">Event handler. Is called when a user scrolls to another page, but before the new items are loaded. Returning false will cancel the load; any return value other than false will allow the pagination to proceed as normal.</span>
+                <span class="hint">example:</span>
+                <span class="hint">function(scrollOffset, nextPageUrl) { console.log("The user wants to go to the next page, but they can't!"); return false; }</span>
+                @Html.ValidationMessageFor(m => m.BeforePageChange, "*")
+            </div>
+        </div>
+        <div id="ias-settings-tabs-3">
+            <div>
+                @Html.LabelFor(m => m.OnPageChange, T("OnPageChange"))
+                @Html.TextAreaFor(m => m.OnPageChange)
+                <span class="hint">Event handler. Is called each time the user scrolls to an other page.</span>
+                <span class="hint">example:</span>
+                <span class="hint">function(pageNum, pageUrl, scrollOffset) { console.log('Welcome on page ' + pageNum); }</span>
+                @Html.ValidationMessageFor(m => m.OnPageChange, "*")
+            </div>
+        </div>
+        <div id="ias-settings-tabs-4">
+            <div>
+                @Html.LabelFor(m => m.OnLoadItems, T("OnLoadItems"))
+                @Html.TextAreaFor(m => m.OnLoadItems)
+                <span class="hint">Event handler. Is called each time new items are loaded.</span>
+                <span class="hint">example:</span>
+                <span class="hint">function(items) { console.log('We loaded ' + items.length + ' items'); }</span>
+                @Html.ValidationMessageFor(m => m.OnLoadItems, "*")
+            </div>
+        </div>
+        <div id="ias-settings-tabs-5">
+            <div>
+                @Html.LabelFor(m => m.OnRenderComplete, T("OnRenderComplete"))
+                @Html.TextAreaFor(m => m.OnRenderComplete)
+                <span class="hint">Event handler. Is called each time new items have been inserted in the DOM.</span>
+                <span class="hint">example:</span>
+                <span class="hint">function(items) { console.log('We rendered ' + items.length + ' items'); }</span>
+                @Html.ValidationMessageFor(m => m.OnRenderComplete, "*")
+            </div>
+        </div>
+    </div>
+</fieldset>
+
+@Display.TokenHint()
+
+@using (Script.Foot())
+{
+<script>
+    $(function () {
+        $("#ias-settings-tabs").tabs();
+    });
+</script>
+}

@@ -1,0 +1,41 @@
+﻿@{
+    Script.Require("jQueryUI").AtFoot();
+    Script.Include("layout-element-text.js").AtFoot();
+}
+<fieldset class="layout-editor-element-template"
+          data-template="text"
+          data-icon="@Url.Content("~/Modules/Onestop.Layouts/Content/Text.png")"
+          data-description="Text"
+          data-for-templates="true"
+          data-default-xml="&lt;text/&gt;">
+    <legend>Text</legend>
+    <div>
+        <label for="{{title}}">@T("Title")</label>
+        <input type="text" id="{{title}}" name="{{title}}" value="{{title}}" class="text-smallish" />
+    </div>
+    <div>
+        <label for="{{default}}">@T("Default")</label>
+        <input type="text" id="{{default}}" name="{{default}}" value="{{default}}" class="text-smallish" />
+    </div>
+    <div>
+        <label for="{{font}}">@T("Font")</label>
+        <input type="text" id="{{font}}" name="{{font}}" value="{{font}}" class="text-smallish css-font-editor" />
+        <label for="{{size}}">@T("Size")</label>
+        <input type="text" id="{{size}}" name="{{size}}" value="{{size}}" class="text-small" />
+    </div>
+    <div>
+        <label for="{{left}}">@T("X")</label>
+        <input type="number" id="{{left}}" name="{{left}}" data-value="{{left}}" class="text-small left length" />
+        <label for="{{top}}">@T("Y")</label>
+        <input type="number" id="{{top}}" name="{{top}}" data-value="{{top}}" class="text-small top length" />
+    </div>
+    <div>
+        <label for="{{class}}">@T("CSS class")</label>
+        <input type="text" id="{{class}}" name="{{class}}" value="{{class}}" class="text-smallish css-class-editor" />
+    </div>
+    <div>
+        <label for="{{tag}}">@T("Tag")</label>
+        <input type="text" id="{{tag}}" name="{{tag}}" value="{{tag}}" class="text-smallish" />
+        <span> Defaults to "span"</span>
+    </div>
+</fieldset>

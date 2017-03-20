@@ -1,0 +1,45 @@
+#ajax_loader_dialog {
+    z-index: 10000;
+}
+
+    #ajax_loader_dialog .modal-dialog {
+        width: 100px;
+        height: 100px;
+    }
+
+.table tr.currentrow {
+    background-color: #DDD !important;
+}
+
+.hideoverflow {
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.table tbody > tr > td {
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.div-max-width {
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+.btn-float-left {
+    float: left;
+}
+
+.btn-float-right {
+    float: right;
+}
+
+.row-title {
+}

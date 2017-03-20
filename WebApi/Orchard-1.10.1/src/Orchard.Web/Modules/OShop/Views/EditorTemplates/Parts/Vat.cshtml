@@ -1,0 +1,10 @@
+﻿@model OShop.ViewModels.VatEditViewModel
+@using OShop.Extensions
+
+<fieldset>
+    <div>
+        @Html.LabelFor(m => m.SelectedRateId, T("VAT rate"))
+        @Html.DropDownListFor(m => m.SelectedRateId, Model.VatRates.BuildVatSelectList(true, T("None").Text))
+        @Html.ValidationMessageFor(m => m.SelectedRateId)
+    </div>
+</fieldset>

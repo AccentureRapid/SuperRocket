@@ -1,0 +1,49 @@
+@model Amba.AmazonS3.ViewModels.SettingsViewModel
+@using Orchard.ContentManagement;
+
+@{ Layout.Title = T("Edit AmazonS3 Settings").ToString(); }
+@using (Html.BeginFormAntiForgeryPost())
+{
+    @Html.ValidationSummary()
+
+    <h2>@T("Amazon S3 Settings")</h2>
+
+    <fieldset>
+
+        <div>
+            @Html.LabelFor(m => m.AWSAccessKey, @T("AccessKey"))
+            @Html.TextBoxFor(m => m.AWSAccessKey, new { @class = "text-medium" })
+            @Html.ValidationMessageFor(m => m.AWSAccessKey, "*")
+        </div>
+        <div>
+            @Html.LabelFor(m => m.AWSSecretKey, @T("SecretKey"))
+            @Html.TextBoxFor(m => m.AWSSecretKey, new { @class = "text-medium" })
+            @Html.ValidationMessageFor(m => m.AWSSecretKey, "*")
+        </div>
+        <div>
+            @Html.LabelFor(m => m.AWSFileBucket, @T("Bucket"))
+            @Html.TextBoxFor(m => m.AWSFileBucket, new { @class = "text-medium" })
+            @Html.ValidationMessageFor(m => m.AWSFileBucket, "*")
+        </div>
+@* // not implemented
+        <div>
+            @Html.LabelFor(m => m.RootFolder, @T("Root Folder"))
+            @Html.EditorFor(m => m.RootFolder)
+            @Html.ValidationMessageFor(m => m.RootFolder, "*")
+        </div>
+*@
+        <div>
+            @Html.LabelFor(m => m.AWSS3PublicUrl, @T("PublicUrl"))
+            @Html.TextBoxFor(m => m.AWSS3PublicUrl, new { @class = "text-medium" })
+            @Html.ValidationMessageFor(m => m.AWSS3PublicUrl, "*")
+        </div>
+
+        <div>
+            @Html.LabelFor(m => m.AWSExpireMinutes, @T("Expire Minutes"))
+            @Html.TextBoxFor(m => m.AWSExpireMinutes, new { @class = "text-medium" })
+            @Html.ValidationMessageFor(m => m.AWSExpireMinutes, "*")
+        </div>
+
+    </fieldset>
+    <input type="submit" value="@T("Save settings")" />
+}

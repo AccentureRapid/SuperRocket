@@ -1,0 +1,9 @@
+{
+    "name": "Amba.HtmlBlocks",
+    "version": "1.0.0",
+    "private": true,
+    "dependencies": {
+        "codemirror": "",
+        "highlightjs": "~8.8.0"
+    }
+}

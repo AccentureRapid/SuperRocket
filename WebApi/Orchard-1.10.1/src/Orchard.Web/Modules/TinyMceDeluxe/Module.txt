@@ -1,0 +1,13 @@
+Name: TinyMceDeluxe
+AntiForgery: enabled
+Author: Giscard Biamby
+Website: http://tinymcedeluxe.codeplex.com
+Version: 1.10.1
+OrchardVersion: 1.10.x
+Description: Add-on to Orchard's built-in TinyMce module. This module allows you to use all the TinyMce plugins available in the TinyMce "Full Package" download (http://www.tinymce.com/download/custom_package.php). 
+FeatureDescription: Foo
+Dependencies: 
+Category: Input Editor
+Features:
+    TinyMceDeluxe:
+        Description: Description for feature TinyMceDeluxe.Orchard.Module.

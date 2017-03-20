@@ -1,0 +1,10 @@
+﻿@using System.Globalization
+@using Onestop.Layouts.Helpers
+@foreach(dynamic elementEditor in Model.Elements) {
+    if (elementEditor.UsesIndex == true) {
+        var helperIndex = Html.GetLayoutEditorHelperIndex();
+        elementEditor.HelperIndex = helperIndex;
+        elementEditor.Attributes.Add("data-index", helperIndex.ToString(CultureInfo.InvariantCulture));
+    }
+    @Display(elementEditor)
+}

@@ -1,0 +1,22 @@
+﻿@model dcp.Routing.Models.ExtendedAliasRecord
+@{
+    Layout.Title = T("Edit Extended Alias").Text;
+}
+
+@using (Html.BeginFormAntiForgeryPost())
+{
+    <fieldset>
+        <legend>Edit extended alias</legend>
+        <div>
+            <label>@Model.AliasRecord.Path</label>
+            <input name="routeName" value="@Model.RouteName" />
+            <span class="hint">Route name to generate urls</span>
+        </div>
+    </fieldset>    
+    <fieldset>
+        <div>
+            <button class="primaryAction" type="submit">@T("Save")</button>
+        </div>
+    </fieldset>
+}
+

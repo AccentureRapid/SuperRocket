@@ -1,0 +1,10 @@
+Name: Error Log Viewer
+AntiForgery: enabled
+Author: Laughlin Constable
+Website: http://laughlin.com
+Version: 1.9
+OrchardVersion: 1.9.2
+Description: Shows a friendly view of the error log
+Category: Logging
+Features:
+    Laughlin.ErrorLog:

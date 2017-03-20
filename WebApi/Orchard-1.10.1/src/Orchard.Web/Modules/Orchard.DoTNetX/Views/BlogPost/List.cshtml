@@ -1,0 +1,40 @@
+@model Orchard.DoTNetX.ViewModels.BlogPostViewModel
+@using Orchard;
+@{
+    Style.Require("Bootstrap");
+    Script.Require("jQuery");
+    Script.Require("Bootstrap");
+    Style.Include("Orchard.DoTNetX.css");
+    Style.Include("BlogPost/List.css");
+    Script.Include("bootbox.js?v=0.1");
+    Script.Include("jquery.form.js?v=0.1");
+    Script.Include("jquery.reset.js?v=0.1");
+    Script.Include("core.js?v=0.1");
+    Script.Include(String.Format("core.{0}.js?v=0.1", WorkContext.CurrentCulture));
+    Script.Include("jquery.sort.js?v=0.1");
+    Script.Include("url.js?v=0.1");
+    Style.Include("bootstrap-datetimepicker.css");
+    Script.Include("bootstrap-datetimepicker.js?v=0.1");  
+    Script.Include("ajaxedit.js?v=0.1");
+    Script.Include(String.Format("ajaxedit.{0}.js?v=0.1", WorkContext.CurrentCulture));
+    Script.Include("BlogPost/List.js?v=0.1");
+}
+<div class="container-fluide">
+    <div class="row">
+    </div>
+    <div class="module-maincontent">
+        <div class="row row-title">
+            <a class="btn btn-primary create-button btn-float-left" href='@Url.Action("Create", new { returnUrl = Url.Action("List") })'
+               id="create_button" data-ajax="true" data-updatesection="#table_section">
+                <span class="glyphicon glyphicon-plus-sign"></span>@T("Add New BlogPost")
+            </a>
+        </div>
+        <div class="row search-bar hide">
+            @Display(Model.SearchDialog)
+        </div>
+        <div class="row tabel-section" id="table_section" data-updateurl='@Url.Action("Table")'>
+            @Display(Model.Table)
+        </div>
+    </div>
+</div>
+@Display.Loader()

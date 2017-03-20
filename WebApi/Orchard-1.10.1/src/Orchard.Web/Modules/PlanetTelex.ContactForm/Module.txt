@@ -1,0 +1,12 @@
+﻿Name: Contact Form
+AntiForgery: enabled
+Author: Planet Telex Inc.
+Website: https://orchardcontactform.codeplex.com
+Version: 1.10.1
+OrchardVersion: 1.10.1
+Description: A simple contact form with built-in spam protection.
+Features:
+    PlanetTelex.ContactForm:
+        Description: A simple contact form with built-in spam protection.
+		Dependencies: Orchard.Email, Orchard.jQuery, Settings
+		Category: Messaging

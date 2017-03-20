@@ -1,0 +1,12 @@
+﻿@using System.Globalization
+@using Onestop.Layouts.Helpers
+@foreach (dynamic childElement in Model.Elements) {
+    childElement.ParentShape = Model.ParentShape;
+    childElement.Metadata.DisplayType = Model.DisplayType;
+    if (childElement.UsesIndex == true) {
+        var helperIndex = Html.GetLayoutEditorHelperIndex();
+        childElement.HelperIndex = helperIndex;
+        childElement.Attributes["data-index"] = helperIndex.ToString(CultureInfo.InvariantCulture);
+    }
+    @Display(childElement)
+}

@@ -1,0 +1,36 @@
+﻿@model OShop.PayPal.Models.PaypalSettings
+
+@{
+    Layout.Title = T("PayPal Settings");
+}
+
+@using (Html.BeginFormAntiForgeryPost()) {
+    @Html.ValidationSummary()
+    <fieldset>
+        <legend>@T("PayPal Account")</legend>
+        <div>
+            @Html.LabelFor(m => m.ClientId, T("Client ID"))
+            @Html.TextBoxFor(m => m.ClientId, new { @class = "text medium" })
+            @Html.ValidationMessageFor(m => m.ClientId, "*")
+        </div>
+        <div>
+            @Html.LabelFor(m => m.ClientSecret, T("Client secret"))
+            @Html.TextBoxFor(m => m.ClientSecret, new { type = "password", @class = "text medium" })
+            @Html.ValidationMessageFor(m => m.ClientSecret, "*")
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>@T("Test mode")</legend>
+        <div>
+            @Html.CheckBoxFor(m => m.UseSandbox)
+            @Html.LabelFor(m => m.UseSandbox, T("Use sandbox").Text, new { @class = "forcheckbox" })
+            <span class="hint">@T("For testing purpose only.")</span>
+            @Html.ValidationMessageFor(m => m.UseSandbox, "*")
+        </div>
+    </fieldset>
+
+    <div>
+        <button type="submit" name="submit.Validate" value="validate">@T("Validate credentials")</button>
+        <button type="submit" name="submit.Save" value="create">@T("Save")</button>
+    </div>
+}

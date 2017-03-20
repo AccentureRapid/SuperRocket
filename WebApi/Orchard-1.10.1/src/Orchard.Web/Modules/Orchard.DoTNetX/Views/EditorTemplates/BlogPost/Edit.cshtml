@@ -1,0 +1,28 @@
+@model Orchard.DoTNetX.ServiceModels.BlogPostModel
+@using Orchard.DoTNetX.Models;
+@{
+    var title = Model.Id <= 0 ? T("Create") : T("Edit");
+}
+<div class="modal fade" id="edit_dialog" role="dialog" data-backdrop="static" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            @using (Html.BeginFormAntiForgeryPost(Url.Action("Update", new { returnUrl = Url.Action("List") }), FormMethod.Post, new { id = "edit_dialog_form", @class = "form-horizontal", enctype = "multipart/form-data" }))
+            {
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 id="edit_dialog_title" class="modal-title">@title</h4>
+                </div>
+                <div class="modal-body" id="edit_dialog_content">
+                    @Html.ValidationSummary(false)
+                    @Html.HiddenFor(m => m.Id)
+                </div>
+                <div class="modal-footer">
+                    <button id="edit_dialog_sumbit" type="submit" class="btn btn-primary submit-button">@T("Submit")</button>
+                    <button type="button" class="btn btn-default cancel-button" data-dismiss="modal">@T("Cancel")</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

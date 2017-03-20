@@ -1,0 +1,45 @@
+﻿@{
+    Script.Require("jQueryUI").AtFoot();
+    Script.Include("layout-element-container.js").AtFoot();
+}
+<fieldset class="layout-editor-element-template"
+          data-template="container"
+          data-icon="@Url.Content("~/Modules/Onestop.Layouts/Content/Container.png")"
+          data-description="Container"
+          data-iscontainer="true"
+          data-for-templates="true"
+          data-default-xml="&lt;container/&gt;">
+    <legend>Container</legend>
+    <div>
+        <label for="{{left}}">@T("X")</label>
+        <input type="number" id="{{left}}" name="{{left}}" data-value="{{left}}" class="text-small left length" />
+        <label for="{{top}}">@T("Y")</label>
+        <input type="number" id="{{top}}" name="{{top}}" data-value="{{top}}" class="text-small top length" />
+    </div>
+    <div>
+        <label for="{{width}}">@T("Width")</label>
+        <input type="number" id="{{width}}" name="{{width}}" data-value="{{width}}" class="text-small width length" />
+        <label for="{{height}}">@T("Height")</label>
+        <input type="number" id="{{height}}" name="{{height}}" data-value="{{height}}" class="text-small height length" />
+    </div>
+    <div>
+        <input type="checkbox" id="{{haslink}}" name="{{haslink}}" data-value="{{haslink}}" data-attribute-value="haslink"/>
+        <label for="{{haslink}}">@T("Has a link")</label>
+        <input type="checkbox" id="{{hasbackground}}" name="{{hasbackground}}" data-value="{{hasbackground}}" data-attribute-value="hasbackground"/>
+        <label for="{{hasbackground}}">@T("Has a background image")</label>
+        <input type="checkbox" id="{{hascontext}}" name="{{hascontext}}" data-value="{{hascontext}}" data-attribute-value="hascontext"/>
+        <label for="{{hascontext}}">@T("Has context")</label>
+    </div>
+    <div>
+        <input type="checkbox" id="{{center}}" name="{{center}}" data-value="{{center}}" data-attribute-value="center"/>
+        <label for="{{center}}">@T("Centered")</label>
+    </div>
+    <div>
+        <label for="{{defaultbackground}}">@T("Default Background")</label>
+        <input type="text" id="{{defaultbackground}}" name="{{defaultbackground}}" value="{{defaultbackground}}" class="text-smallish" />
+    </div>
+    <div>
+        <label for="{{class}}">@T("CSS class")</label>
+        <input type="text" id="{{class}}" name="{{class}}" value="{{class}}" class="text-smallish css-class-editor" />
+    </div>
+</fieldset>

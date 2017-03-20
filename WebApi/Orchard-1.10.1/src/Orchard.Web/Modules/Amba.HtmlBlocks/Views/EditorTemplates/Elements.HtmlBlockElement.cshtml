@@ -1,0 +1,38 @@
+﻿@model Orchard.Layouts.ViewModels.MarkdownEditorViewModel
+@using Amba.HtmlBlocks.Settings
+@{
+    Script.Require("HB_CodeMirror_JS").AtFoot();
+    Script.Require("HB_CodeMirror_HtmlMixed").AtFoot();
+    
+    Script.Require("HB_CodeMirror_Search").AtFoot();
+    Script.Require("HB_CodeMirror_Search_Cursor").AtFoot();
+    Script.Require("HB_CodeMirror_Search_MatchHighLight").AtFoot();
+    Script.Require("HB_CodeMirror_Search_Dialog").AtFoot();
+    Script.Require("HB_CodeMirror_Lint").AtFoot();
+    Script.Require("jQueryUI_Tabs").AtHead();
+
+    Style.Require("jQueryUI_Orchard").AtHead();
+           
+    Style.Require("HB_CodeMirror").AtHead();
+    Style.Require("HB_CodeMirror_Lint").AtHead();
+    Style.Require("HB_CodeMirror_MatchScrollbar").AtHead();
+    Style.Require("HB_CodeMirror_Dialog").AtHead();
+    
+    Style.Include("EditorStyle.css");
+    
+    var id = Guid.NewGuid().ToString();
+}
+@Html.TextAreaFor(x => x.Text, new {id = id})
+
+@using (Script.Foot())
+{
+    <script type="text/javascript">
+        $().ready(function () {
+            CodeMirror.fromTextArea(document.getElementById("@(id)"), {
+                lineNumbers: true,
+                mode: "text/html",
+                lineWrapping: true
+            });
+        });
+    </script>
+}

@@ -1,0 +1,14 @@
+﻿@model Datwendo.Localization.Models.CookieCulturePickerPart
+@using Orchard.Utility.Extensions;
+
+<div>
+    @Html.LabelFor(m => m.Style, T("Widget Style"))
+    @Html.DropDownListFor(m=>m.Style, new SelectList(Datwendo.Localization.Drivers.CookieCulturePickerDriver.Styles, Model.Style))
+    @Html.ValidationMessage("Widget Style", "*")
+    <span class="hint">@T("Select desired widget style")</span>
+</div>
+<div>
+    @Html.LabelFor(m => m.ShowBrowser, T("Show Browser Link"))
+    @Html.EditorFor(m => m.ShowBrowser)
+    <span class="hint">@T("Check to display browser link in widget")</span>
+</div>

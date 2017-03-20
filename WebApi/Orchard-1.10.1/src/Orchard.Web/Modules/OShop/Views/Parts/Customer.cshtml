@@ -1,0 +1,16 @@
+﻿@using Orchard.Core.Contents
+@using OShop.Models
+@{
+    CustomerPart customer = Model.ContentPart;
+    Layout.Title = T("Your customer account");
+}
+
+<h1>
+    @T("Your customer account")
+</h1>
+<div>
+    @customer.FirstName @customer.LastName
+    @if (Authorizer.Authorize(Permissions.EditContent, customer)) {
+        @Html.ActionLink(T("Edit").Text, "Edit", "Customer", new { area = "OShop", returnUrl = Context.Request.RawUrl }, new { })
+    }
+</div>

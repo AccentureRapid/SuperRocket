@@ -1,0 +1,23 @@
+﻿@using Orchard.ContentManagement;
+@using PJS.Bootstrap.Models;
+
+@{
+    var settings = WorkContext.CurrentSite.As<BootstrapThemeSettingsPart>();
+
+    // Model is Model.Menu from the layout (Layout.Menu)
+    Model.Classes.Add(settings.UseFixedNav ? "nav navbar-nav" : "nav nav-pills");
+    var tag = Tag(Model, "ul");
+
+    var items = (IList<dynamic>)Enumerable.Cast<dynamic>(Model.Items);
+
+    if (items.Any())
+    {
+        items[0].Classes.Add("first");
+        items[items.Count - 1].Classes.Add("last");
+    }
+}
+
+@tag.StartElement
+@* see MenuItem shape template *@
+@DisplayChildren(Model)
+@tag.EndElement

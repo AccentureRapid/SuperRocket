@@ -1,0 +1,22 @@
+﻿陈希章 ares@xizhang.com
+
+ 下面的节添加到system.web里面，在visual studio调试的时候用，正式发布之前删除掉
+
+    <httpHandlers>
+      <add path="*.cxml" verb="GET" type="PivotServer.CxmlHandler"/>
+      <!-- Deep Zoom Collection and Deep Zoom Image XML and image handlers -->
+      <add path="*.dzc" verb="GET" type="PivotServer.DzcHandler"/>
+      <add path="*.dzi" verb="GET" type="PivotServer.DziHandler"/>
+      <add path="*/dzi/*_files/*/*_*.jpg" verb="GET" type="PivotServer.DeepZoomImageHandler"/>
+      <add path="*_files/*/*_*.jpg" verb="GET" type="PivotServer.ImageTileHandler"/>
+    </httpHandlers>
+
+下面的节添加到system.webServer中，正式环境用
+    <handlers>
+      <add name="CXML" path="*.cxml" verb="GET" type="PivotServer.CxmlHandler"/>
+      <!-- Deep Zoom Collection and Deep Zoom Image XML and image handlers -->
+      <add name="DZC" path="*.dzc" verb="GET" type="PivotServer.DzcHandler"/>
+      <add name="DZI" path="*.dzi" verb="GET" type="PivotServer.DziHandler"/>
+      <add name="DeepZoomImage" path="*/dzi/*_files/*/*_*.jpg" verb="GET" type="PivotServer.DeepZoomImageHandler"/>
+      <add name="ImageTile" path="*_files/*/*_*.jpg" verb="GET" type="PivotServer.ImageTileHandler"/>
+    </handlers>

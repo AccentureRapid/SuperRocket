@@ -1,0 +1,8 @@
+Name: Braeburn
+Author: AdvantageCS
+Website: http://www.advantagecs.com
+Description: A Bootstrap theme with Less
+Version: 1.2
+BaseTheme: PJS.Bootstrap
+# todo: provide tags
+# Tags: Classic, Serif

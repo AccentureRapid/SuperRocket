@@ -1,0 +1,16 @@
+﻿@{
+    Script.Require("jQuery");
+}
+
+<div class="shoppingcart-widget">
+</div>
+
+@using (Script.Foot()) {
+    <script type="text/javascript">
+//<![CDATA[
+    $(function () {
+        $(".shoppingcart-widget").load("@Url.Action("Widget", "ShoppingCart", new { area = "OShop" })");
+    })
+//]]>
+    </script>
+}

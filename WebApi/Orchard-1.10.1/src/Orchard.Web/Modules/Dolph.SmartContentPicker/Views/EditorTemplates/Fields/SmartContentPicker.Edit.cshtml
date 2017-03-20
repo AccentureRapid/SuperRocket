@@ -1,0 +1,29 @@
+﻿@model Dolph.SmartContentPicker.ViewModels.SmartContentPickerFieldViewModel
+@using Dolph.SmartContentPicker.Settings;
+
+@{
+    Script.Require("SmartContentPicker");
+    Style.Require("Chosen");
+    SmartContentPickerFieldSettings settings = Model.Field.PartFieldDefinition.Settings.GetModel<SmartContentPickerFieldSettings>();
+    var availableContentItems = Model.AvailableContentItems;
+}
+
+<fieldset>
+    @if (!String.IsNullOrWhiteSpace(Model.Field.DisplayName)) {
+        <label @if(settings.Required) { <text>class="required"</text> }>@Model.Field.DisplayName</label>
+    }
+    <select name="@Html.FieldNameFor(m => m.SelectedIds)" id="SelectedIds" class="smart-content-picker" @(settings.Multiple ? "multiple" : string.Empty) data-placeholder="Choose an item">
+        <option></option>
+        @foreach(var contentItem in availableContentItems){            
+            if (Model.ContentItems.Contains(contentItem)){
+                <option value="@contentItem.Id" selected>@(((dynamic)contentItem).TitlePart.Title + " - " + contentItem.ContentType)</option>
+            }
+            else
+            {
+                <option value="@contentItem.Id">@(((dynamic)contentItem).TitlePart.Title + " - " + contentItem.ContentType)</option>
+            }            
+        }        
+    </select>
+    <span class="hint">@settings.Hint</span>
+</fieldset>
+

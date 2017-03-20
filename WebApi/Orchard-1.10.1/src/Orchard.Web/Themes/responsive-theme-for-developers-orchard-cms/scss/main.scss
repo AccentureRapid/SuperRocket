@@ -1,0 +1,35 @@
+﻿//Author: George Roubie - george.roubie@gmail.com
+
+// Boostrap
+$font-family-sans-serif: 'Open Sans', sans-serif;
+@import '../lib/css/bootstrap/_bootstrap';
+
+// FontAwesome
+@import '../lib/css/fontawesome/font-awesome';
+
+// Toastr
+@import '../lib/css/toastr/toastr.scss';
+
+// Reusable
+@import 'reusable/_variables.scss';
+@import 'reusable/_functions';
+@import 'reusable/_colors';
+@import 'reusable/_fonts';
+@import 'reusable/_buttons';
+@import 'reusable/_forms'; 
+@import 'reusable/_animations'; 
+
+// General
+@import 'layout/_basic';
+@import 'layout/_grid';
+@import 'layout/_footer';
+
+// Components
+@import 'components/_cookie-bar'; 
+@import 'components/_loader';
+@import 'components/_menu';
+@import 'components/_pager';
+@import 'components/_blog';
+
+// Snippets
+@import 'snippets/_share-btn.scss';

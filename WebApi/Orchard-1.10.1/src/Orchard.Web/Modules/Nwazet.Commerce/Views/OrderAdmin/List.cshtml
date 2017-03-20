@@ -1,0 +1,54 @@
+﻿@using Nwazet.Commerce.ViewModels
+@using System.Linq
+@{
+    var pageTitle = T("Manage Orders");
+    Layout.Title = pageTitle;
+    var selectedFilter = (string)Model.Options.SelectedFilter ?? "";
+}
+
+@using (Html.BeginFormAntiForgeryPost()) {
+    <fieldset class="bulk-actions">
+        <label for="publishActions">@T("Actions:")</label>
+        <select id="publishActions" name="Options.BulkAction">
+            @Html.SelectOption((ContentsBulkAction)Model.Options.BulkAction, ContentsBulkAction.None, T("Choose action...").ToString())
+            @Html.SelectOption((ContentsBulkAction)Model.Options.BulkAction, ContentsBulkAction.Remove, T("Archive").ToString())
+        </select>
+        <button type="submit" name="submit.BulkEdit" value="yes">@T("Apply")</button>
+    </fieldset>
+    <fieldset class="bulk-actions">
+        <label for="orderid">@T("Search:")</label>
+        <input type="text" name="Options.Search" value="@(Model.Options.Search)" />
+        <label for="filterResults" class="bulk-filter">@T("Show")</label>
+        @Html.DropDownList("Options.SelectedFilter",
+            new List<SelectListItem> {
+                new SelectListItem {
+                    Selected = String.IsNullOrEmpty(selectedFilter) ||
+                               selectedFilter.Equals("active", StringComparison.OrdinalIgnoreCase),
+                    Text = T("Active orders").Text,
+                    Value = "active"
+                },
+                new SelectListItem {
+                    Selected = selectedFilter.Equals("any", StringComparison.OrdinalIgnoreCase),
+                    Text = T("All orders").Text,
+                    Value = "any"
+                }
+            }
+                .Union(((ContentOptions)Model.Options).FilterOptions.Select(
+                    o => new SelectListItem {
+                        Selected = selectedFilter.Equals(o.Key, StringComparison.OrdinalIgnoreCase),
+                        Text = o.Value,
+                        Value = o.Key
+                    }
+                    )))
+        <label for="orderResults" class="bulk-order">@T("Ordered by")</label>
+        <select id="orderResults" name="Options.OrderBy">
+            @Html.SelectOption((ContentsOrder)Model.Options.OrderBy, ContentsOrder.Created, T("recently created").Text)
+            @Html.SelectOption((ContentsOrder)Model.Options.OrderBy, ContentsOrder.Modified, T("recently modified").Text)
+        </select>
+        <button type="submit" name="submit.Filter" value="yes please">@T("Apply")</button>
+    </fieldset>
+    <fieldset class="contentItems bulk-items">
+@Display(Model.ContentItems)
+    </fieldset>
+@Display(Model.Pager)
+}

@@ -1,0 +1,27 @@
+@using System.Web.Mvc.Html
+@using Orchard.Core.Contents.ViewModels;
+@using Orchard.Mvc.Html
+@{
+    var pageTitle = T("Manage Layouts");
+    var createLinkText = T("Create New Layout");
+    Layout.Title = pageTitle;
+    Style.Include("layout-admin.css");
+}
+
+<div class="manage">
+    @Html.ActionLink(createLinkText.Text, "Create", "Admin", new { Area = "Contents", Id = "OSLayout" }, new { @class = "button primaryAction" })
+</div>
+@using (Html.BeginFormAntiForgeryPost()) {
+    <fieldset class="bulk-actions">
+        <label for="orderResults" class="bulk-order">@T("Ordered by")</label>
+        <select id="orderResults" name="Options.OrderBy">
+            @Html.SelectOption((ContentsOrder)Model.Options.OrderBy, ContentsOrder.Created, T("recently created").Text)
+            @Html.SelectOption((ContentsOrder)Model.Options.OrderBy, ContentsOrder.Modified, T("recently modified").Text)
+            @Html.SelectOption((ContentsOrder)Model.Options.OrderBy, ContentsOrder.Published, T("recently published").Text)
+        </select>
+        <button type="submit" name="submit.Filter" value="yes please">@T("Apply")</button>
+    </fieldset>
+    <fieldset class="contentItems bulk-items">
+@Display(Model.ContentItems)
+    </fieldset>
+}

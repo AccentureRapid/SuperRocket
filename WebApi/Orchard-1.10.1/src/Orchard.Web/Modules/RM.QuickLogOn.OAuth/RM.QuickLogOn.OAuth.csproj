@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4055ACBB-280E-4BF7-9706-E5598521A684}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RM.QuickLogOn.OAuth</RootNamespace>
+    <AssemblyName>RM.QuickLogOn.OAuth</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Orchard.Core">
+      <HintPath>..\..\bin\Orchard.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Orchard.Framework">
+      <HintPath>..\..\bin\Orchard.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\FacebookOAuthController.cs" />
+    <Compile Include="Controllers\LiveIDOAuthController.cs" />
+    <Compile Include="Controllers\GoogleOAuthController.cs" />
+    <Compile Include="Controllers\TwitterOAuthController.cs" />
+    <Compile Include="Controllers\QQOAuthController.cs" />
+    <Compile Include="Controllers\SinaOAuthController.cs" />
+    <Compile Include="Controllers\RenrenOAuthController.cs" />
+    <Compile Include="Controllers\KaixinOAuthController.cs" />
+    <Compile Include="Controllers\DoubanOAuthController.cs" />
+    <Compile Include="Controllers\BaiduOAuthController.cs" />
+    <Compile Include="Controllers\TaobaoOAuthController.cs" />
+    <Compile Include="Drivers\TwitterSettingsPartDriver.cs" />
+    <Compile Include="Drivers\LiveIDSettingsPartDriver.cs" />
+    <Compile Include="Drivers\QQSettingsPartDriver.cs" />
+    <Compile Include="Drivers\SinaSettingsPartDriver.cs" />
+    <Compile Include="Drivers\RenrenSettingsPartDriver.cs" />
+    <Compile Include="Drivers\KaixinSettingsPartDriver.cs" />
+    <Compile Include="Drivers\DoubanSettingsPartDriver.cs" />
+    <Compile Include="Drivers\BaiduSettingsPartDriver.cs" />
+    <Compile Include="Drivers\TaobaoSettingsPartDriver.cs" />
+    <Compile Include="Handlers\TwitterSettingsPartHandler.cs" />
+    <Compile Include="Handlers\LiveIDSettingsPartHandler.cs" />
+    <Compile Include="Drivers\FacebookSettingsPartDriver.cs" />
+    <Compile Include="Drivers\GoogleSettingsPartDriver.cs" />
+    <Compile Include="Handlers\QQSettingsPartHandler.cs" />
+    <Compile Include="Handlers\SinaSettingsPartHandler.cs" />
+    <Compile Include="Handlers\RenrenSettingsPartHandler.cs" />
+    <Compile Include="Handlers\KaixinSettingsPartHandler.cs" />
+    <Compile Include="Handlers\DoubanSettingsPartHandler.cs" />
+    <Compile Include="Handlers\BaiduSettingsPartHandler.cs" />
+    <Compile Include="Handlers\TaobaoSettingsPartHandler.cs" />
+    <Compile Include="Migrations.cs" />
+    <Compile Include="Handlers\FacebookSettingsPartHandler.cs" />
+    <Compile Include="Handlers\GoogleSettingsPartHandler.cs" />
+    <Compile Include="Models\AccessTokenModel.cs" />
+    <Compile Include="Models\TwitterSettingsPart.cs" />
+    <Compile Include="Models\TwitterSettingsPartRecord.cs" />
+    <Compile Include="Models\LiveIDSettingsPart.cs" />
+    <Compile Include="Models\LiveIDSettingsPartRecord.cs" />
+    <Compile Include="Models\FacebookSettingsPart.cs" />
+    <Compile Include="Models\FacebookSettingsPartRecord.cs" />
+    <Compile Include="Models\GoogleSettingsPart.cs" />
+    <Compile Include="Models\GoogleSettingsPartRecord.cs" />
+    <Compile Include="Models\RequestTokenModel.cs" />
+    <Compile Include="Models\UserInfoModel.cs" />
+    <Compile Include="Models\QQSettingsPart.cs" />
+    <Compile Include="Models\QQSettingsPartRecord.cs" />
+    <Compile Include="Models\SinaSettingsPart.cs" />
+    <Compile Include="Models\SinaSettingsPartRecord.cs" />
+    <Compile Include="Models\RenrenSettingsPart.cs" />
+    <Compile Include="Models\RenrenSettingsPartRecord.cs" />
+    <Compile Include="Models\KaixinSettingsPart.cs" />
+    <Compile Include="Models\KaixinSettingsPartRecord.cs" />
+    <Compile Include="Models\DoubanSettingsPart.cs" />
+    <Compile Include="Models\DoubanSettingsPartRecord.cs" />
+    <Compile Include="Models\BaiduSettingsPart.cs" />
+    <Compile Include="Models\BaiduSettingsPartRecord.cs" />
+    <Compile Include="Models\TaobaoSettingsPart.cs" />
+    <Compile Include="Models\TaobaoSettingsPartRecord.cs" />
+    <Compile Include="Providers\QQOAuthProvider.cs" />
+    <Compile Include="Providers\SinaOAuthProvider.cs" />
+    <Compile Include="Providers\RenrenOAuthProvider.cs" />
+    <Compile Include="Providers\KaixinOAuthProvider.cs" />
+    <Compile Include="Providers\DoubanOAuthProvider.cs" />
+    <Compile Include="Providers\BaiduOAuthProvider.cs" />
+    <Compile Include="Providers\TaobaoOAuthProvider.cs" />
+    <Compile Include="Services\OAuthHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\LiveIDOAuthProvider.cs" />
+    <Compile Include="Providers\FacebookOAuthProvider.cs" />
+    <Compile Include="Providers\GoogleOAuthProvider.cs" />
+    <Compile Include="Providers\TwitterOAuthProvider.cs" />
+    <Compile Include="ResourceManifest.cs" />
+    <Compile Include="Routes.cs" />
+    <Compile Include="Services\LiveIDOAuthService.cs" />
+    <Compile Include="Services\FacebookOAuthService.cs" />
+    <Compile Include="Services\GoogleOAuthService.cs" />
+    <Compile Include="Services\TwitterOAuthService.cs" />
+    <Compile Include="Services\QQOAuthService.cs" />
+    <Compile Include="Services\SinaOAuthService.cs" />
+    <Compile Include="Services\RenrenOAuthService.cs" />
+    <Compile Include="Services\KaixinOAuthService.cs" />
+    <Compile Include="Services\DoubanOAuthService.cs" />
+    <Compile Include="Services\BaiduOAuthService.cs" />
+    <Compile Include="Services\TaobaoOAuthService.cs" />
+    <Compile Include="ViewModels\FacebookEmailAddressJsonViewModel.cs" />
+    <Compile Include="ViewModels\LiveIDEmailAddressJsonViewModel.cs" />
+    <Compile Include="ViewModels\LiveIDAccessTokenJsonModel.cs" />
+    <Compile Include="ViewModels\LiveIDOAuthAuthViewModel.cs" />
+    <Compile Include="ViewModels\FacebookOAuthAuthViewModel.cs" />
+    <Compile Include="ViewModels\GoogleAccessTokenJsonModel.cs" />
+    <Compile Include="ViewModels\GoogleEmailAddressJsonViewModel.cs" />
+    <Compile Include="ViewModels\GoogleOAuthAuthViewModel.cs" />
+    <Compile Include="ViewModels\QQOAuthAuthViewModel.cs" />
+    <Compile Include="ViewModels\SinaAccessTokenJsonModel.cs" />
+    <Compile Include="ViewModels\SinaOAuthAuthViewModel.cs" />
+    <Compile Include="ViewModels\RenrenOAuthAuthViewModel.cs" />
+    <Compile Include="ViewModels\RenrenAccessTokenJsonModel.cs" />
+    <Compile Include="ViewModels\RenrenUserInfoJsonModel.cs" />
+    <Compile Include="ViewModels\KaixinOAuthAuthViewModel.cs" />
+    <Compile Include="ViewModels\KaixinAccessTokenJsonModel.cs" />
+    <Compile Include="ViewModels\KaixinUserInfoJsonModel.cs" />
+    <Compile Include="ViewModels\DoubanAccessTokenJsonModel.cs" />
+    <Compile Include="ViewModels\DoubanOAuthAuthViewModel.cs" />
+    <Compile Include="ViewModels\BaiduAccessTokenJsonModel.cs" />
+    <Compile Include="ViewModels\BaiduOAuthAuthViewModel.cs" />
+    <Compile Include="ViewModels\BaiduUserInfoJsonModel.cs" />
+    <Compile Include="ViewModels\TaobaoAccessTokenJsonModel.cs" />
+    <Compile Include="ViewModels\TaobaoOAuthAuthViewModel.cs" />
+    <Compile Include="ViewModels\TaobaoUserInfoJsonModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\Localization\en-US\orchard.module.po" />
+    <Content Include="Placement.info" />
+    <Content Include="Views\EditorTemplates\Parts.Google.SiteSettings.cshtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Module.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RM.QuickLogOn\RM.QuickLogOn.csproj">
+      <Project>{809C09ED-F637-4C25-8AD6-65E4775E8DFE}</Project>
+      <Name>RM.QuickLogOn</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EditorTemplates\Parts.Facebook.SiteSettings.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EditorTemplates\Parts.LiveID.SiteSettings.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EditorTemplates\Parts.Twitter.SiteSettings.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EditorTemplates\Parts.QQ.SiteSettings.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EditorTemplates\Parts.Sina.SiteSettings.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EditorTemplates\Parts.Renren.SiteSettings.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EditorTemplates\Parts.Kaixin.SiteSettings.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EditorTemplates\Parts.Douban.SiteSettings.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EditorTemplates\Parts.Baidu.SiteSettings.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EditorTemplates\Parts.Taobao.SiteSettings.cshtml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

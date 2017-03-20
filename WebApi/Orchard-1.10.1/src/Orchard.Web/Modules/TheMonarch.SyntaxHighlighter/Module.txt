@@ -1,0 +1,12 @@
+Name: TheMonarch.SyntaxHighlighter
+AntiForgery: enabled
+Author: Giscard Biamby
+Website: https://github.com/GiscardBiamby/Orchard-Syntax-Highlighter/
+Version: 1.10.1
+OrchardVersion: 1.10.x
+Description: Description for the module
+Features:
+    TheMonarch.SyntaxHighlighter:
+        Description: Description for feature TheMonarch.SyntaxHighlighter.
+		Dependencies: Orchard.Blogs, Orchard.jQuery
+		Category: Content

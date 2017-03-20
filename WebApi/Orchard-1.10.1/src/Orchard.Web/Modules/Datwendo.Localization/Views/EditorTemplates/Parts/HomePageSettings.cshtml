@@ -1,0 +1,28 @@
+﻿@model Datwendo.Localization.Models.HomePageSettingsPart
+
+<fieldset>
+    <legend>@T("HomePage Settings")</legend>
+    <div>
+        @Html.EditorFor(m => m.Enabled)
+        <label for="@Html.FieldIdFor(m => m.Enabled)" class="forcheckbox">@T("Enable HomePage Localization")</label>
+        @Html.ValidationMessageFor(m => m.Enabled, "*")
+    </div>
+    <div>
+        @Html.EditorFor(m => m.AllPages)
+        <label for="@Html.FieldIdFor(m => m.AllPages)" class="forcheckbox">@T("Check to enable for All Pages, otherwhise only Home Page.")</label>
+        @Html.ValidationMessageFor(m => m.AllPages, "*")
+    </div>
+    <div>
+        @Html.LabelFor(m => m.MenuMode, @T("Select the way menus are filtered"))
+        @Html.EnumDropDownListFor(model => model.MenuMode, htmlAttributes: new { @class = "form-control" })
+    </div>
+    <div>
+        @Html.LabelFor(m => m.FallBackMode, @T("Select the way cultures are projected"))
+        @Html.EnumDropDownListFor(model => model.FallBackMode, htmlAttributes: new { @class = "form-control" })
+    </div>
+    <div>
+        @Html.LabelFor(m => m.FallBackRegex, @T("Input the regex to use when fallback specify regex usage."))
+        @Html.TextAreaFor(m => m.FallBackRegex,htmlAttributes:  new { @class = "form-control" })
+        <span class="hint">@T("Example: 'ru-RU:^uk-UA|be-BY$'")</span>
+    </div>
+</fieldset>
