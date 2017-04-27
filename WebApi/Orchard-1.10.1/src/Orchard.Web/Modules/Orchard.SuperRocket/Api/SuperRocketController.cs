@@ -1,10 +1,10 @@
 ﻿using Newtonsoft.Json;
 using Orchard.ContentManagement;
 using Orchard.ContentManagement.MetaData.Models;
+using Orchard.SuperRocket.Common;
 using Orchard.Localization;
 using Orchard.Logging;
 using Orchard.Security;
-using Orchard.SuperRocket.Common;
 using Orchard.SuperRocket.Services;
 using System;
 using System.Collections;
@@ -84,7 +84,7 @@ namespace Orchard.SuperRocket.Api
             {
                 var content = _moduleService.GetAvailableHtmlModules();
 
-                response.Content = Serialize(content, response);
+                response.Content = Utilities.Serialize(content, response);
             }
             catch (Exception ex)
             {
