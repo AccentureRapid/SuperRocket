@@ -108,6 +108,7 @@
     <Compile Include="Api\SuperRocketController.cs" />
     <Compile Include="Common\CacheAndSignals.cs" />
     <Compile Include="Common\NullToEmptyStringResolver.cs" />
+    <Compile Include="Common\Utilities.cs" />
     <Compile Include="Extension\AuthorizeAppApiAttribute.cs" />
     <Compile Include="Extension\AuthorizeAppApiFilter.cs" />
     <Compile Include="Extension\AuthorizeAppAttribute.cs" />

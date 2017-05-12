@@ -147,6 +147,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="lib\Ionic.Zip.dll" />
     <Content Include="Module.txt" />
   </ItemGroup>
   <ItemGroup>

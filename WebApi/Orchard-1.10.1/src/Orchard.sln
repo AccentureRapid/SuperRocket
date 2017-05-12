@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.9
+VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{E9C9F120-07BA-4DFB-B9C3-3AFB9D44C9D5}"
 EndProject
@@ -369,6 +369,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orchard.CRM.Notification", "Orchard.Web\Modules\Orchard.CRM.Notification\Orchard.CRM.Notification.csproj", "{FA02C41C-4238-48A1-AF35-64D9F3C66580}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhymedCode.BlogsWebApi", "Orchard.Web\Modules\RhymedCode.BlogsWebApi\RhymedCode.BlogsWebApi.csproj", "{1AD8B2DD-1579-487C-89EB-E9A97AD31A2B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheBootstrapMachine", "Orchard.Web\Themes\TheBootstrapMachine\TheBootstrapMachine.csproj", "{2D079130-3AD4-40BC-B080-E711344ACBE2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -2719,6 +2721,24 @@ Global
 		{1AD8B2DD-1579-487C-89EB-E9A97AD31A2B}.Staging AR|Any CPU.Build.0 = Release|Any CPU
 		{1AD8B2DD-1579-487C-89EB-E9A97AD31A2B}.Staging|Any CPU.ActiveCfg = Release|Any CPU
 		{1AD8B2DD-1579-487C-89EB-E9A97AD31A2B}.Staging|Any CPU.Build.0 = Release|Any CPU
+		{2D079130-3AD4-40BC-B080-E711344ACBE2}.CodeCoverage|Any CPU.ActiveCfg = Release|Any CPU
+		{2D079130-3AD4-40BC-B080-E711344ACBE2}.CodeCoverage|Any CPU.Build.0 = Release|Any CPU
+		{2D079130-3AD4-40BC-B080-E711344ACBE2}.Coverage|Any CPU.ActiveCfg = Release|Any CPU
+		{2D079130-3AD4-40BC-B080-E711344ACBE2}.Coverage|Any CPU.Build.0 = Release|Any CPU
+		{2D079130-3AD4-40BC-B080-E711344ACBE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D079130-3AD4-40BC-B080-E711344ACBE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D079130-3AD4-40BC-B080-E711344ACBE2}.Dev|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D079130-3AD4-40BC-B080-E711344ACBE2}.Dev|Any CPU.Build.0 = Debug|Any CPU
+		{2D079130-3AD4-40BC-B080-E711344ACBE2}.FxCop|Any CPU.ActiveCfg = Release|Any CPU
+		{2D079130-3AD4-40BC-B080-E711344ACBE2}.FxCop|Any CPU.Build.0 = Release|Any CPU
+		{2D079130-3AD4-40BC-B080-E711344ACBE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D079130-3AD4-40BC-B080-E711344ACBE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D079130-3AD4-40BC-B080-E711344ACBE2}.Stage|Any CPU.ActiveCfg = Release|Any CPU
+		{2D079130-3AD4-40BC-B080-E711344ACBE2}.Stage|Any CPU.Build.0 = Release|Any CPU
+		{2D079130-3AD4-40BC-B080-E711344ACBE2}.Staging AR|Any CPU.ActiveCfg = Release|Any CPU
+		{2D079130-3AD4-40BC-B080-E711344ACBE2}.Staging AR|Any CPU.Build.0 = Release|Any CPU
+		{2D079130-3AD4-40BC-B080-E711344ACBE2}.Staging|Any CPU.ActiveCfg = Release|Any CPU
+		{2D079130-3AD4-40BC-B080-E711344ACBE2}.Staging|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2853,6 +2873,7 @@ Global
 		{7BDA8D48-448B-4C5B-88C6-8F8D519E5CE9} = {E9C9F120-07BA-4DFB-B9C3-3AFB9D44C9D5}
 		{FA02C41C-4238-48A1-AF35-64D9F3C66580} = {E9C9F120-07BA-4DFB-B9C3-3AFB9D44C9D5}
 		{1AD8B2DD-1579-487C-89EB-E9A97AD31A2B} = {E9C9F120-07BA-4DFB-B9C3-3AFB9D44C9D5}
+		{2D079130-3AD4-40BC-B080-E711344ACBE2} = {74492CBC-7201-417E-BC29-28B4C25A58B0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPath = packages\TransientFaultHandling.Core.5.1.1209.1\lib\NET4
