@@ -120,7 +120,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Views\WeiXinAdmin\SetMenu.cshtml" />
+    <Content Include="Views\WeiXinAdmin\SetMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Orchard.Forms\Orchard.Forms.csproj">
@@ -167,47 +167,47 @@
     <Compile Include="Services\WeiXinResp.cs" />
     <Compile Include="Services\WeiXinSdk.cs" />
     <Compile Include="Services\WinXinService.cs" />
-    <Compile Include="Views\EditorTemplates\Parts\WinXinSettings.cshtml" />
+    <Content Include="Views\EditorTemplates\Parts\WinXinSettings.cshtml" />
     <Content Include="Placement.info" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Views\EditorTemplates\Parts.WeiXinClickMenuItemPart.Edit.cshtml" />
+    <Content Include="Views\EditorTemplates\Parts.WeiXinClickMenuItemPart.Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Views\EditorTemplates\Parts.MenuItem.Edit.cshtml" />
+    <Content Include="Views\EditorTemplates\Parts.MenuItem.Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Views\WinXin\Index.cshtml" />
+    <Content Include="Views\WinXin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Views\Content.Detail-WXVideoMsg-url-wxsvc.cshtml" />
+    <Content Include="Views\Content.Detail-WXVideoMsg-url-wxsvc.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Views\Content.Detail-WXImageMsg-url-wxsvc.cshtml" />
+    <Content Include="Views\Content.Detail-WXImageMsg-url-wxsvc.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Views\Content.Detail-WXVoiceMsg-url-wxsvc.cshtml" />
+    <Content Include="Views\Content.Detail-WXVoiceMsg-url-wxsvc.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Views\Content.Detail-WXMusicMsg-url-wxsvc.cshtml" />
+    <Content Include="Views\Content.Detail-WXMusicMsg-url-wxsvc.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Views\Content.Detail-WXNewsMsg-url-wxsvc.cshtml" />
+    <Content Include="Views\Content.Detail-WXNewsMsg-url-wxsvc.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Views\Content.Detail-WXTextMsg-url-wxsvc.cshtml" />
+    <Content Include="Views\Content.Detail-WXTextMsg-url-wxsvc.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Views\List-url-wxsvc.cshtml" />
+    <Content Include="Views\List-url-wxsvc.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Views\Content.Detail-WXNewsItemMsg-url-wxsvc.cshtml" />
+    <Content Include="Views\Content.Detail-WXNewsItemMsg-url-wxsvc.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Views\Content.Detail-WXDKFMsg-url-wxsvc.cshtml" />
+    <Content Include="Views\Content.Detail-WXDKFMsg-url-wxsvc.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
