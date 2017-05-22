@@ -388,8 +388,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Senparc.Weixin.Open", "Orch
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Senparc.Weixin.WxOpen", "Orchard.OpenSource\Orchard.WeChatSDK\src\Senparc.Weixin.WxOpen\src\Senparc.Weixin.WxOpen\Senparc.Weixin.WxOpen\Senparc.Weixin.WxOpen.csproj", "{379D8C97-4F96-45AF-9F91-6BD160514495}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Senparc.WebSocket.packages", "Orchard.OpenSource\Orchard.WeChatSDK\src\Senparc.WebSocket\src\Senparc.WebSocket\Senparc.WebSocket\Senparc.WebSocket.packages.csproj", "{B745F5F5-9120-4D56-A86D-ED34EADB703C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CodeCoverage|Any CPU = CodeCoverage|Any CPU
@@ -4537,46 +4535,6 @@ Global
 		{379D8C97-4F96-45AF-9F91-6BD160514495}.Test|Any CPU.Build.0 = Release|Any CPU
 		{379D8C97-4F96-45AF-9F91-6BD160514495}.Test|x86.ActiveCfg = Release|Any CPU
 		{379D8C97-4F96-45AF-9F91-6BD160514495}.Test|x86.Build.0 = Release|Any CPU
-		{B745F5F5-9120-4D56-A86D-ED34EADB703C}.CodeCoverage|Any CPU.ActiveCfg = Release|Any CPU
-		{B745F5F5-9120-4D56-A86D-ED34EADB703C}.CodeCoverage|Any CPU.Build.0 = Release|Any CPU
-		{B745F5F5-9120-4D56-A86D-ED34EADB703C}.CodeCoverage|x86.ActiveCfg = Release|Any CPU
-		{B745F5F5-9120-4D56-A86D-ED34EADB703C}.CodeCoverage|x86.Build.0 = Release|Any CPU
-		{B745F5F5-9120-4D56-A86D-ED34EADB703C}.Coverage|Any CPU.ActiveCfg = Release|Any CPU
-		{B745F5F5-9120-4D56-A86D-ED34EADB703C}.Coverage|Any CPU.Build.0 = Release|Any CPU
-		{B745F5F5-9120-4D56-A86D-ED34EADB703C}.Coverage|x86.ActiveCfg = Release|Any CPU
-		{B745F5F5-9120-4D56-A86D-ED34EADB703C}.Coverage|x86.Build.0 = Release|Any CPU
-		{B745F5F5-9120-4D56-A86D-ED34EADB703C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B745F5F5-9120-4D56-A86D-ED34EADB703C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B745F5F5-9120-4D56-A86D-ED34EADB703C}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{B745F5F5-9120-4D56-A86D-ED34EADB703C}.Debug|x86.Build.0 = Debug|Any CPU
-		{B745F5F5-9120-4D56-A86D-ED34EADB703C}.Dev|Any CPU.ActiveCfg = Debug|Any CPU
-		{B745F5F5-9120-4D56-A86D-ED34EADB703C}.Dev|Any CPU.Build.0 = Debug|Any CPU
-		{B745F5F5-9120-4D56-A86D-ED34EADB703C}.Dev|x86.ActiveCfg = Debug|Any CPU
-		{B745F5F5-9120-4D56-A86D-ED34EADB703C}.Dev|x86.Build.0 = Debug|Any CPU
-		{B745F5F5-9120-4D56-A86D-ED34EADB703C}.FxCop|Any CPU.ActiveCfg = Release|Any CPU
-		{B745F5F5-9120-4D56-A86D-ED34EADB703C}.FxCop|Any CPU.Build.0 = Release|Any CPU
-		{B745F5F5-9120-4D56-A86D-ED34EADB703C}.FxCop|x86.ActiveCfg = Release|Any CPU
-		{B745F5F5-9120-4D56-A86D-ED34EADB703C}.FxCop|x86.Build.0 = Release|Any CPU
-		{B745F5F5-9120-4D56-A86D-ED34EADB703C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B745F5F5-9120-4D56-A86D-ED34EADB703C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B745F5F5-9120-4D56-A86D-ED34EADB703C}.Release|x86.ActiveCfg = Release|Any CPU
-		{B745F5F5-9120-4D56-A86D-ED34EADB703C}.Release|x86.Build.0 = Release|Any CPU
-		{B745F5F5-9120-4D56-A86D-ED34EADB703C}.Stage|Any CPU.ActiveCfg = Release|Any CPU
-		{B745F5F5-9120-4D56-A86D-ED34EADB703C}.Stage|Any CPU.Build.0 = Release|Any CPU
-		{B745F5F5-9120-4D56-A86D-ED34EADB703C}.Stage|x86.ActiveCfg = Release|Any CPU
-		{B745F5F5-9120-4D56-A86D-ED34EADB703C}.Stage|x86.Build.0 = Release|Any CPU
-		{B745F5F5-9120-4D56-A86D-ED34EADB703C}.Staging AR|Any CPU.ActiveCfg = Release|Any CPU
-		{B745F5F5-9120-4D56-A86D-ED34EADB703C}.Staging AR|Any CPU.Build.0 = Release|Any CPU
-		{B745F5F5-9120-4D56-A86D-ED34EADB703C}.Staging AR|x86.ActiveCfg = Release|Any CPU
-		{B745F5F5-9120-4D56-A86D-ED34EADB703C}.Staging AR|x86.Build.0 = Release|Any CPU
-		{B745F5F5-9120-4D56-A86D-ED34EADB703C}.Staging|Any CPU.ActiveCfg = Release|Any CPU
-		{B745F5F5-9120-4D56-A86D-ED34EADB703C}.Staging|Any CPU.Build.0 = Release|Any CPU
-		{B745F5F5-9120-4D56-A86D-ED34EADB703C}.Staging|x86.ActiveCfg = Release|Any CPU
-		{B745F5F5-9120-4D56-A86D-ED34EADB703C}.Staging|x86.Build.0 = Release|Any CPU
-		{B745F5F5-9120-4D56-A86D-ED34EADB703C}.Test|Any CPU.ActiveCfg = Release|Any CPU
-		{B745F5F5-9120-4D56-A86D-ED34EADB703C}.Test|Any CPU.Build.0 = Release|Any CPU
-		{B745F5F5-9120-4D56-A86D-ED34EADB703C}.Test|x86.ActiveCfg = Release|Any CPU
-		{B745F5F5-9120-4D56-A86D-ED34EADB703C}.Test|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -4719,7 +4677,6 @@ Global
 		{2CA35598-F1A1-4DC9-AA20-A4346BFCB954} = {53457CA4-0F1B-455E-8E21-8DE697075BF0}
 		{54732C3D-B673-4BBF-B0C3-6432E3D6F522} = {53457CA4-0F1B-455E-8E21-8DE697075BF0}
 		{379D8C97-4F96-45AF-9F91-6BD160514495} = {53457CA4-0F1B-455E-8E21-8DE697075BF0}
-		{B745F5F5-9120-4D56-A86D-ED34EADB703C} = {53457CA4-0F1B-455E-8E21-8DE697075BF0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPath = packages\TransientFaultHandling.Core.5.1.1209.1\lib\NET4
