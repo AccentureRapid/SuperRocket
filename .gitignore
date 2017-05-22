@@ -244,3 +244,4 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 /WebApi/Orchard-1.10.1/src/Orchard.Web/App_Data.zip
+*.dll
